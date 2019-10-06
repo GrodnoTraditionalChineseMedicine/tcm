@@ -1,0 +1,1 @@
+export const FOR_EXAMPLE = "header/for_example";
