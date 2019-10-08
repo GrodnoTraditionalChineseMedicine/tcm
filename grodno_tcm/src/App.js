@@ -8,6 +8,7 @@ import store from "./store";
 
 import Home from "./pages/home";
 import HospitalIntro from "./pages/hosintro";
+import CenterIntro from "./pages/cenintro";
 import Header from "./common/header";
 import Footer from "./common/footer";
 
@@ -21,6 +22,7 @@ class App extends Component {
             <Header/>
               <Route path="/" exact component={Home}/>
               <Route path="/hospital_intro" exact component={HospitalIntro}/>
+              <Route path="/center_intro" exact component={CenterIntro}/>
             <Footer/>
           </BrowserRouter>
         </Provider>

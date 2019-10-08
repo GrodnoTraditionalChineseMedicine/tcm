@@ -4,7 +4,7 @@ import pure_logo from "../../statics/logo/pure_logo.png";
 
 export const HeaderWrapper = styled.header`
     z-index: 1000;
-    min-width: 1060px;
+    min-width: 1020px;
     position: sticky;
     top: 0;
     left: 0;
@@ -15,13 +15,10 @@ export const HeaderWrapper = styled.header`
     padding-bottom: 2px;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(26,26,26,.1);
-    .ant-back-top{
-      right: 60px;
-    }
 `;
 
 export const NavMenu = styled.div`
-  width: 1180px;
+  width: 1120px;
   height: 64px;
   padding: 0 20px;
   margin: 0 auto;
@@ -46,7 +43,7 @@ export const NavArea = styled.div`
     right: 0;
     bottom: 0;
     margin: 0 auto;
-    width: 1180px;
+    width: 1120px;
     height: 64px;
     padding: 0 20px;
     font-weight: 500;

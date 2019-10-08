@@ -5,7 +5,7 @@ import PicTest from "../../statics/picture/2.jpg";
 export const HomeWrapper = styled.div`
     position: relative;
     z-index: 100;
-    min-width: 1060px;
+    min-width: 1020px;
     display: block;
     overflow: hidden;
     padding-top: 10px;
@@ -44,8 +44,8 @@ export const DynamicAnnounceWrapper = styled.div`
 `;
 
 export const DynamicArea = styled.div`
-    width: 1060px;
-    min-width: 1060px;
+    width: 1020px;
+    min-width: 1020px;
     padding: 10px 20px;
     margin: 0 auto;
     h3{
@@ -80,7 +80,7 @@ export const DynamicItem = styled.div`
 `;
 
 export const HomeVideoWrapper = styled.div`
-    width: 1060px;
+    width: 1020px;
     margin: 20px auto;
     padding: 10px 20px;
 `;
@@ -95,7 +95,7 @@ export const TuinaWrapper = styled.div`
 `;
 
 export const TuinaArea = styled.div`
-    width: 1060px;
+    width: 1020px;
     margin: 20px auto;
     padding: 0 20px;
     position: relative;
@@ -131,7 +131,7 @@ export const TuinaImg = styled.div`
 `;
 
 export const MapTitle = styled.div`
-    width: 1060px;
+    width: 1020px;
     font-size: 16px;
     color: #95a5a6;
     letter-spacing: 2px;
@@ -141,7 +141,7 @@ export const MapTitle = styled.div`
 `;
 
 export const HomeMapWrapper = styled.div`
-    width: 1060px;
+    width: 1020px;
     margin: 20px auto;
     padding: 10px 20px;
     display: flex;
