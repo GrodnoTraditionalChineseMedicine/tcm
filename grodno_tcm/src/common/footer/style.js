@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FooterWrapper = styled.div`
     position: relative;
     z-index: 100;
-    min-width: 1180px;
+    min-width: 1060px;
     overflow: hidden;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -11,7 +11,7 @@ export const FooterWrapper = styled.div`
 `;
 
 export const FooterMenu = styled.div`
-    width: 1180px;
+    width: 1060px;
     height: 300px;
     padding: 0 20px;
     margin: 0 auto;

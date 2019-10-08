@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import store from "./store";
 
 import Home from "./pages/home";
+import HospitalIntro from "./pages/hosintro";
 import Header from "./common/header";
 import Footer from "./common/footer";
 
@@ -19,6 +20,7 @@ class App extends Component {
           <BrowserRouter>
             <Header/>
               <Route path="/" exact component={Home}/>
+              <Route path="/hospital_intro" exact component={HospitalIntro}/>
             <Footer/>
           </BrowserRouter>
         </Provider>
