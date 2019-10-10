@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { GlobalStyled } from "./style";
 import { GlobalIconFont } from "./statics/iconfont/iconfont";
 import 'antd/dist/antd.css';
 import store from "./store";
 
-import Home from "./pages/home";
-import HospitalIntro from "./pages/hosintro";
-import CenterIntro from "./pages/cenintro";
-import Header from "./common/header";
-import Footer from "./common/footer";
+import PrivateLayout from "./router/PrivateLayout";
+import PublicLayout from "./router/PublicLayout";
+
+
 
 class App extends Component {
   render() {
@@ -19,11 +18,21 @@ class App extends Component {
           <GlobalStyled/>
           <GlobalIconFont/>
           <BrowserRouter>
-            <Header/>
-              <Route path="/" exact component={Home}/>
-              <Route path="/hospital_intro" exact component={HospitalIntro}/>
-              <Route path="/center_intro" exact component={CenterIntro}/>
-            <Footer/>
+                {/*<Route exact path={["/hospital_intro", "/","/center_intro","/learn_tcm"]}>
+                    <Header/>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/hospital_intro" exact component={HospitalIntro}/>
+                    <Route path="/center_intro" exact component={CenterIntro}/>
+                    <Route path="/learn_tcm" exact component={LearnTcm}/>
+                    <Footer/>
+                </Route>
+                <Route exact path={["/rich_editor"]}>
+                    <Route path="/rich_editor" exact component={RichEditor}/>
+                </Route>*/}
+              <Switch>
+                  <Route path='/manage' component={PrivateLayout} />
+                  <Route path='/' component={PublicLayout} />
+              </Switch>
           </BrowserRouter>
         </Provider>
     );

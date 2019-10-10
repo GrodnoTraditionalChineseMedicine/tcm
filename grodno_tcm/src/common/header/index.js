@@ -23,8 +23,9 @@ class Header extends Component {
                         <Menu.Item onClick={handleChangeKey} key="1"><Link to="/">首页</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="2"><Link to="/hospital_intro">医院简介</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="3"><Link to="/center_intro">中心简介</Link></Menu.Item>
-                        <Menu.Item onClick={handleChangeKey} key="4"><Link to="/learn_ctm">了解中医</Link></Menu.Item>
+                        <Menu.Item onClick={handleChangeKey} key="4"><Link to="/learn_tcm">了解中医</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="5"><Link to="/massage">小儿推拿</Link></Menu.Item>
+                        <Menu.Item onClick={handleChangeKey} key="6"><Link to="/manage/rich_editor">富文本测试</Link></Menu.Item>
                     </Menu>
                 </NavMenu>
                 <NavArea isHide={isHide}>
@@ -37,8 +38,9 @@ class Header extends Component {
                         <Menu.Item onClick={handleChangeKey} key="1"> <Link to="/">首页</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="2"><Link to="/hospital_intro">医院简介</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="3"><Link to="/center_intro">中心简介</Link></Menu.Item>
-                        <Menu.Item onClick={handleChangeKey} key="4"><Link to="/learn_ctm">了解中医</Link></Menu.Item>
+                        <Menu.Item onClick={handleChangeKey} key="4"><Link to="/learn_tcm">了解中医</Link></Menu.Item>
                         <Menu.Item onClick={handleChangeKey} key="5"><Link to="/massage">小儿推拿</Link></Menu.Item>
+                        <Menu.Item onClick={handleChangeKey} key="6"><Link to="/manage/rich_editor">富文本测试</Link></Menu.Item>
                     </Menu>
                 </NavArea>
             </HeaderWrapper>
