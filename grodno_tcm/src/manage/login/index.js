@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
-import {actionCreators} from "./store";
+import {actionCreators, actionTypes} from "./store";
 import {
     Form, Icon, Input, Button, Checkbox,
 } from 'antd';
@@ -13,6 +13,7 @@ import {
     LoginArea,
     FormWrapper
 } from "./style";
+import {login} from "./store/actionCreators";
 
 
 class Login extends Component{
@@ -27,8 +28,20 @@ class Login extends Component{
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const {isLogged, isRegister} = this.props;
-        if (!isLogged) {
+        let { loginData }  = this.props;
+
+        const { from } = this.props.location.state || { from: { pathname: "/manage" } };
+        if (typeof loginData === 'object' && loginData.get("code") === 200) {
+            sessionStorage.setItem('isAuthenticated', true);
+        } else {
+            sessionStorage.setItem('isAuthenticated', false);
+        }
+        let isAuthenticated  = sessionStorage.getItem('isAuthenticated');
+        // 判断是否登录，
+        if (isAuthenticated === "true") {
+            from.pathname = from.pathname === '/manage/login' ? '/manage' :  from.pathname;
+            return <Redirect to={from} />;
+        } else {
             return (
                 <LoginWrapper>
                     <LoginArea>
@@ -69,29 +82,37 @@ class Login extends Component{
                             </Form>
                         </FormWrapper>
                     </LoginArea>
-
                 </LoginWrapper>
             );
-        } else {
-            return <Redirect to="/"/>
         }
     }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
+
 
 const mapStateToProps = (state) => {
     return {
-        isLogged: state.get("login").get("isLogged")
+        loginData: state.get("login").get("loginData"),
+        auth: state.auth
     }
 };
+
+/*
+Login.propTypes = {
+    auth: React.PropTypes.object.isRequired
+};
+*/
 
 const mapDispatchToProps = (dispatch) => {
     return {
         login(values){
+            dispatch(actionCreators.fetchPosts('/api/manage/login', actionTypes.LOGIN_ACTION, 'loginData', values));
+        },
+        axiosTest(values){
             dispatch(actionCreators.login(values));
         }
     }
 };
 
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);

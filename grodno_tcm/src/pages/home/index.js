@@ -20,7 +20,6 @@ import {
 import "video-react/dist/video-react.css";
 import {Player} from "video-react";
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
-import {actionCreators} from "./store";
 import homeVideo from "../../statics/video/FishingBoat.mp4";
 import {connect} from "react-redux";
 

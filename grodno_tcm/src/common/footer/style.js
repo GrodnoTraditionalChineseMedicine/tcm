@@ -7,7 +7,7 @@ export const FooterWrapper = styled.div`
     overflow: hidden;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: #303952;
+    background: #1f1f1f;
 `;
 
 export const FooterMenu = styled.div`

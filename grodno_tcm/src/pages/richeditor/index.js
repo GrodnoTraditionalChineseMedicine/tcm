@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 // 引入编辑器组件
 import BraftEditor from 'braft-editor'
 // 引入编辑器样式
 import 'braft-editor/dist/index.css'
 import { Form, Input, Button } from 'antd'
 import {
-    RichEditorWrapper
+    RichEditorWrapper,
+    RichEditorInfo
 } from './style';
 import FormItem from "antd/es/form/FormItem";
 
@@ -49,14 +49,13 @@ class RichEditor extends Component {
             window.previewWindow.close()
         }
 
-        window.previewWindow = window.open()
-        window.previewWindow.document.write(this.buildPreviewHtml())
+        window.previewWindow = window.open();
+        window.previewWindow.document.write(this.buildPreviewHtml());
         window.previewWindow.document.close()
 
     };
 
     buildPreviewHtml () {
-
         return `
       <!Doctype html>
       <html>
@@ -138,6 +137,7 @@ class RichEditor extends Component {
         ];
         return (
             <RichEditorWrapper>
+                <RichEditorInfo>
                 <Form onSubmit={this.handleSubmit}>
                     <FormItem label="文章标题">
                         {getFieldDecorator('title', {
@@ -166,6 +166,7 @@ class RichEditor extends Component {
                             <BraftEditor
                                 className="my-editor"
                                 contentStyle={{height: 210, boxShadow: 'inset 0 1px 3px rgba(0,0,0,.1)'}}
+                                onChange={this.handleChange}
                                 excludeControls={excludeControls}
                                 extendControls={extendControls}
                                 placeholder="请输入正文内容"
@@ -176,6 +177,7 @@ class RichEditor extends Component {
                         <Button size="large" type="primary" htmlType="submit">提交</Button>
                     </FormItem>
                 </Form>
+                </RichEditorInfo>
             </RichEditorWrapper>
         );
     }

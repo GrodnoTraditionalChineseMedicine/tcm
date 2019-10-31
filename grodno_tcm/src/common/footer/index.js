@@ -26,7 +26,7 @@ function Footer() {
                 <FooterRight>
                     <Link className="link-content" to="/about"><p>关于我们</p></Link>
                     <Link className="link-content" to="/help"><p>帮助</p></Link>
-                    <Link className="link-content" to="/account"><p>账号</p></Link>
+                    <Link className="link-content" to="/manage"><p>账号</p></Link>
                     <Link className="link-content" to="/account"><p>联系我们</p></Link>
                     <Link className="link-content" to="/account"><p>隐私政策</p></Link>
                 </FooterRight>

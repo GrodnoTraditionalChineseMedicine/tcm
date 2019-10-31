@@ -1,6 +1,8 @@
 import { combineReducers } from "redux-immutable";
 import { reducer as headerReducer } from "../common/header/store";
 import { reducer as loginReducer } from "../manage/login/store";
+import { reducer as manageReducer } from "../manage/store";
+import { reducer as learnTcmReducer } from "../pages/learntcm/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -8,7 +10,9 @@ import { reducer as loginReducer } from "../manage/login/store";
 */
 const reducer = combineReducers({
     header: headerReducer,
-    login: loginReducer
+    login: loginReducer,
+    manage: manageReducer,
+    learntcm: learnTcmReducer
 });
 
 export default reducer;

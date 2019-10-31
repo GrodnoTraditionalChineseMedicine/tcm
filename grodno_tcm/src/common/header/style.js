@@ -1,83 +1,90 @@
 import styled from 'styled-components';
 import last_logo from "../../statics/logo/logo.png";
-import pure_logo from "../../statics/logo/pure_logo.png";
 
 export const HeaderWrapper = styled.header`
     z-index: 1000;
     min-width: 1020px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    box-sizing: border-box;
+    width: 100%;
+    top: -68px;
+    position: fixed;
     display: block;
-    padding-bottom: 2px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    transform: translate3d(0,0,0);
 `;
 
 export const NavMenu = styled.div`
-  width: 1120px;
-  height: 64px;
-  padding: 0 20px;
-  margin: 0 auto;
-  font-weight: 600;
-  transition: transform .3s cubic-bezier(.645,.045,.355,1);
-  ${function (props) {
-        if (props.isHide === true){
-            return "transform: translateY(100%);"
-        } else {
-            return null;
-        }
-    }
-  }
-  /*z-index: ${props => props.isHide === true ? "1000" : "0"};
-  position: ${props => props.isHide === true ? "fixed" : "relative"};*/
-`;
-
-export const NavArea = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    position: relative;
+    height: 68px;
+    padding: 0 35px;
     margin: 0 auto;
-    width: 1120px;
-    height: 64px;
-    padding: 0 20px;
-    font-weight: 500;
-    transition: transform .3s cubic-bezier(.645,.045,.355,1),-webkit-transform .3s cubic-bezier(.645,.045,.355,1);
-    .ant-menu{
-      font-size: 16px;
-    }
+    font-weight: 600;
+    transition: top .25s ease-in-out,background .25s ease-in-out;
     ${function (props) {
-            if (props.isHide === false){
-                return "transform: translateY(100%);"
+        if (props.isTop === true) {
+            return "top: 68px;background-color: rgba(0,0,0,0);"
+        } else {
+            if (props.isHide === false) {
+                return "top: 68px;background-color: rgba(255, 255, 255,1);"
             } else {
-                return null;
+                return "top: 0;background-color: rgba(255, 255, 255,1);";
             }
         }
+    }}
+`;
+
+export const HeaderMenu = styled.div`
+    width: 100%;
+    height: 68px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    transition: top .25s ease-in-out;
+`;
+
+export const HeaderNav = styled.ul`
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    float: right;
+    .ant-menu{
+        background: none;
+        position: relative;
+        .ant-menu-horizontal .ant-menu-item-active{
+          color:red;
+        }
     }
+    .ant-menu-item .ant-menu-item-selected, 
+    .ant-menu-horizontal .ant-menu-item-active,
+    .ant-menu-horizontal{
+        border-bottom: none;
+    }
+`;
+
+export const MenuItem = styled.li`
+    line-height: 68px;
+    position: relative;
+    float: left;
+    display: inline-block;
+    &.active{
+        color: #9abdb1;
+    }
+    a{
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(241, 242, 246,1.0);
+    }
+    padding-left: 45px;
 `;
 
 export const NavLogo = styled.a.attrs({
    href: '/'
 })`
-    height: 64px;
-    width: calc(100% / 5.5);
+    height: 68px;
+    width: 180px;
     float: left;
+    z-index: 999;
+    position: relative;
     margin-right: 30px;
     background: url(${last_logo}) no-repeat center/100%;
-`;
-
-export const PureLogo = styled.a.attrs({
-    href: "/"
-})`
-    height: 62px;
-    width: calc(100% / 10);
-    float: left;
-    margin-right: 30px;
-    background: url(${pure_logo}) no-repeat 0;
-    background-size: auto 80%;
 `;

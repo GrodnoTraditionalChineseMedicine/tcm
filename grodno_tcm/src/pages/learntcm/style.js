@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Hospital from "../../statics/picture/gszyy.jpg";
+import LearnTcm from "../../statics/picture/learntcm.jpg";
 
 export const LearnTcmWrapper = styled.div`
     width: 100%;
@@ -10,8 +10,41 @@ export const LearnTcmWrapper = styled.div`
     background-color: #f6f6f6;
 `;
 
-export const HospitalIntroImg = styled.div`
+export const LearnTcmImg = styled.div`
+    width: 100%;
+    height: 450px;
+    background: url(${LearnTcm}) no-repeat center/100%;
+`;
+
+export const LearnTcmContent = styled.div`
+    width: 980px;
+    min-width: 980px;
+    padding: 10px 20px;
+    margin: 5px auto;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #fff;
+    .ant-menu-submenu-title{
+      font-weight: 600;
+    }
+`;
+
+export const SiderMenu = styled.div`
+  position: relative;
+  display: table-cell;
+  width: 20%;
+`;
+
+export const ContentList = styled.div`
+  position: relative;
+  display: table-cell;
+  width: 70%;
+`;
+
+
+/*export const HospitalIntroImg = styled.div`
     width: 100%;
     height: 500px;
     background: url(${Hospital}) no-repeat center/100%;
-`;
+`;*/

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PicTest from "../../statics/picture/2.jpg";
+import PicTest from "../../statics/picture/1.jpg";
 
 
 export const HomeWrapper = styled.div`
@@ -8,7 +8,6 @@ export const HomeWrapper = styled.div`
     min-width: 1020px;
     display: block;
     overflow: hidden;
-    padding-top: 10px;
     padding-bottom: 10px;
     box-sizing: border-box;
     background-color: #f6f6f6;
@@ -24,9 +23,9 @@ export const HomeCarouselWrapper = styled.div`
     
     .ant-carousel .slick-slide {
       text-align: center;
-      height: 500px;
+      height: 700px;
       overflow: hidden;
-      line-height: 500px;
+      line-height: 700px;
       background: #364d79;
       }
     

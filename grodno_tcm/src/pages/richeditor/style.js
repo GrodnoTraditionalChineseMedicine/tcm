@@ -9,3 +9,11 @@ export const RichEditorWrapper = styled.div`
     overflow: hidden;
     background-color: #f6f6f6;
 `;
+
+export const RichEditorInfo = styled.div`
+    width: 980px;
+    min-width: 980px;
+    padding: 10px 20px;
+    margin: 5px auto;
+    background: #fff;
+`;

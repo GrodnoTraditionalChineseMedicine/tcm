@@ -1,17 +1,15 @@
 import React from "react";
-import {Route, Switch, Link} from "react-router-dom";
 
-import RichEditor from "../pages/richeditor";
-import Login from "../manage/login";
+import {RenderRoutes} from "./utils";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { main as mainConfig } from './index';
 
 function PrivateLayout(props) {
     return (
         <div>
             <Switch>
-                <Route path="/manage/rich_editor" exact component={RichEditor}/>
-                <Route path="/manage/login" exact component={Login}/>
+                <RenderRoutes routes={mainConfig}/>
             </Switch>
-            {/*<Link to="/">首页</Link>*/}
         </div>
     );
 }

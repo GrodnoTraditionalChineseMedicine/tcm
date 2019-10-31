@@ -3,16 +3,15 @@ import {actionTypes} from "./index";
 
 const defaultState = fromJS({
     isLogged: false,
-    currentUser: {}
+    currentUser: {},
+    loginData: "暂无数据"
 });
 
 export default (state=defaultState, action) => {
     switch (action.type) {
-        case actionTypes.CHANGE_LOGIN:
-            return state.merge({
-                isLogged: action.isLogged,
-                currentUser: fromJS(action.currentUser)
-            });
+        case actionTypes.LOGIN_ACTION:
+            return state.set("loginData", fromJS(action.loginData));
+           /* return {...state, ...action};*/
         case actionTypes.CHANGE_LOGOUT:
             return state.merge({
                 isLogged: action.isLogged,
