@@ -5,6 +5,7 @@ import { GlobalStyled } from "./style";
 import { GlobalIconFont } from "./statics/iconfont/iconfont";
 import 'antd/dist/antd.css';
 import store from "./store";
+import "./mock";
 
 import PrivateLayout from "./router/PrivateLayout";
 import PublicLayout from "./router/PublicLayout";
