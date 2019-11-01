@@ -26,12 +26,12 @@ class Crumbs extends Component {
             );
             ItemName = ItemName.join('');
             return (
-                ItemName && (<Breadcrumb.Item key={url}>
+                ItemName &&((<Breadcrumb.Item key={url}>
                     <Link to={url}>
                         {ItemName}
                     </Link>
                 </Breadcrumb.Item>) || ''
-            );
+            ));
         });
         return (
             <div className="my-breadcrumb"  style={{margin: "16px 16px"}}>

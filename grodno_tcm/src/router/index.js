@@ -1,10 +1,9 @@
 import Login from "../manage/login";
 import Index from "../manage/index";
 import ManageHome from "../manage/managehome";
-import React, { Component }  from 'react';
+import React from 'react';
 import { RenderRoutes } from '../router/utils';
 
-const Test = () => <h3>test</h3>;
 const Ui = ({routes}) => (<div>
     <h3>Ui
     </h3>

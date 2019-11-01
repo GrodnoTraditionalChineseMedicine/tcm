@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Layout} from 'antd'; // +
 import { connect} from 'react-redux' // +
-import {Redirect} from "react-router-dom"; // +
 import Crumbs  from '../components/crumb' // +
 import MyHeader  from '../components/header' // +
 import MyMain  from '../components/main' // +

@@ -1,6 +1,5 @@
 import React from 'react';
 import avator from "../../statics/picture/avator.jpg";
-import {Link} from "react-router-dom";
 import Hospital from "../../statics/picture/gszyy.jpg";
 import {
     CenterIntroWrapper,

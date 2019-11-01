@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Menu, BackTop} from "antd";
 import {Link, withRouter} from "react-router-dom";
 import {
-    HeaderWrapper, NavLogo, NavMenu,HeaderMenu,HeaderNav,MenuItem
+    HeaderWrapper, NavLogo, NavMenu,HeaderMenu,HeaderNav
 } from './style';
 import {actionCreators} from "./store";
 
@@ -12,7 +12,7 @@ let thisScrollY = 0;
 
 class Header extends Component {
     render() {
-        const {isHide, isTop, selectedKey, handleChangeKey} = this.props;
+        const {isHide, isTop, handleChangeKey} = this.props;
         const path = this.props.location.pathname;
         return (
             <HeaderWrapper>
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleScroll(event) {
+        handleScroll() {
             thisScrollY = window.scrollY;
             if (thisScrollY === 0) {
                 dispatch(actionCreators.changeTop(true));

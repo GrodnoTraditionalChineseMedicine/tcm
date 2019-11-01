@@ -1,6 +1,5 @@
 // 使用 Mock
 import Mock from 'mockjs'
-const Random = Mock.Random
 
 export default Mock.mock('/api/learntcm/menus/articles','get',{
     success: true,

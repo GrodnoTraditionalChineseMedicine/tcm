@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from "../../statics/logo/logo.png";
-import {Link} from "react-router-dom";
 import {
     HospitalIntroWrapper,
     HospitalIntroImg,

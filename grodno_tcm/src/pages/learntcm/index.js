@@ -11,24 +11,10 @@ import {actionCreators} from "./store";
 import {connect} from "react-redux";
 
 const { SubMenu } = Menu;
-const data = [
-    {
-        title: 'Ant Design Title 1',
-    },
-    {
-        title: 'Ant Design Title 2',
-    },
-    {
-        title: 'Ant Design Title 3',
-    },
-    {
-        title: 'Ant Design Title 4',
-    },
-];
 
 class LearnTcm extends Component {
     componentDidMount() {
-        const {getAllMenus, getAllArticles, menus} = this.props;
+        const {getAllMenus, getAllArticles} = this.props;
         getAllMenus();
         getAllArticles();
     }

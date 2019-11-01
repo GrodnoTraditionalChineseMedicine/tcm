@@ -13,8 +13,6 @@ import {
     LoginArea,
     FormWrapper
 } from "./style";
-import {login} from "./store/actionCreators";
-
 
 class Login extends Component{
     handleSubmit = (e) => {

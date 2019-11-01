@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from "../../statics/logo/logo.png";
 import {ManageHomeLogo, ManageHomeWrapper} from './style';
 
 

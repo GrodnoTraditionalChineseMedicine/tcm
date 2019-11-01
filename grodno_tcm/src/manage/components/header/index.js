@@ -5,7 +5,6 @@ import {filterData} from "../../utils";
 import {Layout, Icon, Menu, Dropdown, Avatar} from 'antd';
 import {login} from "../../login/store/actionCreators";
 const { Header } = Layout;
-const { SubMenu, ItemGroup } = Menu;
 
 class MyHeader extends Component {
     constructor(props){

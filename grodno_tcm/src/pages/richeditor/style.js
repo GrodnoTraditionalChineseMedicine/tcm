@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Hospital from "../../statics/picture/gszyy.jpg";
 
 export const RichEditorWrapper = styled.div`
     width: 100%;
