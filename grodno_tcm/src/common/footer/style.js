@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterWrapper = styled.div`
     position: relative;
-    z-index: 100;
+    z-index: 10;
     min-width: 1020px;
     overflow: hidden;
     padding-top: 10px;

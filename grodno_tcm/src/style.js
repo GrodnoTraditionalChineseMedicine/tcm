@@ -27,6 +27,12 @@ body {
   margin: 0;
   color: #1a1a1a;
   background-color: #f6f6f6;
+  .react-images__blanket{
+      z-index: 2000;
+  }
+  .react-images__positioner{
+      z-index: 5000;
+  }
 }
 
 /**

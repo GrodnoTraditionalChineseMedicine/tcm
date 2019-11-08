@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Carousel, Row, Col, Button} from "antd";
+import {Carousel, Divider, Row, Col, Button} from "antd";
 import {
     HomeWrapper,
     HomeCarouselWrapper,
@@ -61,6 +61,7 @@ class Home extends Component {
 
                     <DynamicArea>
                         <h3>最新公告</h3>
+                        <Divider/>
                         <DynamicList>
                             {data.map((item)=>{
                                 return (
@@ -84,6 +85,7 @@ class Home extends Component {
                     <TuinaArea>
                         <TuinaIntro>
                             <h3>小儿推拿</h3>
+                            <Divider/>
                             <p>
                                 小儿推拿疗法，是在其体表的特定穴位或部位施以手法，用来防病治病、助长益智的一种外治疗法。
                                 小儿推拿是一种中医传统的保健治疗方法，推拿通过按压穴位、经络和肌肉或神经，消除阻碍淤塞,达到气血通畅。
@@ -106,6 +108,7 @@ class Home extends Component {
                         </MapContainer>
                         <MapContactInfo>
                             <h3>联系方式</h3>
+                            <Divider/>
                             <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                 <Col span={3}><span className="iconfont">&#xe625;</span></Col>
                                 <Col span={21}>

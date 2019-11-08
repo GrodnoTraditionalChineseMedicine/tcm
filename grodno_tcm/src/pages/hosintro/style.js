@@ -7,7 +7,6 @@ export const HospitalIntroWrapper = styled.div`
     min-width: 1020px;
     display: block;
     overflow: hidden;
-    background-color: #f6f6f6;
 `;
 
 export const HospitalIntroImg = styled.div`

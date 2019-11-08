@@ -71,8 +71,6 @@ class LearnTcm extends Component {
     }
 }
 
-
-
 const mapStateToProps = (state) => {
     return {
         menus: state.get("learntcm").get("menus"),
