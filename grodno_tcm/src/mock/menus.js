@@ -1,7 +1,6 @@
 import Mock from "mockjs";
 
 export default Mock.mock('/api/learntcm/menus','get',{
-    success: true,
     data: {
         code: 200,
         menus: [{
@@ -236,5 +235,6 @@ export default Mock.mock('/api/learntcm/menus','get',{
                 submenu: []
             }]
         }]
-    }
+    },
+    success: true
 })
