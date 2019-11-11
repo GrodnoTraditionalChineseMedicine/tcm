@@ -3,6 +3,8 @@ import { reducer as headerReducer } from "../common/header/store";
 import { reducer as loginReducer } from "../manage/login/store";
 import { reducer as manageReducer } from "../manage/store";
 import { reducer as learnTcmReducer } from "../pages/learntcm/store";
+import { reducer as pediatricReducer } from "../pages/pediatric/store";
+import { reducer as localesReducer } from "../locales/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -12,7 +14,9 @@ const reducer = combineReducers({
     header: headerReducer,
     login: loginReducer,
     manage: manageReducer,
-    learntcm: learnTcmReducer
+    learntcm: learnTcmReducer,
+    pediatric: pediatricReducer,
+    locales: localesReducer
 });
 
 export default reducer;

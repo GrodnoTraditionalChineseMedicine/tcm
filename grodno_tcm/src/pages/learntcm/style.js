@@ -7,7 +7,6 @@ export const LearnTcmWrapper = styled.div`
     min-width: 1020px;
     display: block;
     overflow: hidden;
-    background-color: #f6f6f6;
 `;
 
 export const LearnTcmImg = styled.div`
@@ -34,6 +33,9 @@ export const SiderMenu = styled.div`
   position: relative;
   display: table-cell;
   width: 20%;
+  .ant-menu-inline{
+      border-left: 1px solid #e8e8e8;
+  }
 `;
 
 export const ContentList = styled.div`

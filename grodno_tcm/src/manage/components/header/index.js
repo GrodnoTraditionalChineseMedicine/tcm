@@ -3,7 +3,6 @@ import { connect  } from 'react-redux'
 import {actionCreators} from "../../store";
 import {filterData} from "../../utils";
 import {Layout, Icon, Menu, Dropdown, Avatar} from 'antd';
-import {login} from "../../login/store/actionCreators";
 const { Header } = Layout;
 
 class MyHeader extends Component {

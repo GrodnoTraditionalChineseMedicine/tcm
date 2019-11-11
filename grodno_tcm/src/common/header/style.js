@@ -24,9 +24,9 @@ export const NavMenu = styled.div`
             return "top: 68px;background-color: rgba(0,0,0,0);"
         } else {
             if (props.isHide === false) {
-                return "top: 68px;background-color: rgba(255, 255, 255,1);"
+                return "top: 68px;background-color: rgba(255, 255, 255,1);box-shadow: 0 0 1px 1px rgba(34,45,57,.15);"
             } else {
-                return "top: 0;background-color: rgba(255, 255, 255,1);";
+                return "top: 0;background-color: rgba(255, 255, 255,1);box-shadow: 0 0 1px 1px rgba(34,45,57,.15);";
             }
         }
     }}
@@ -87,4 +87,17 @@ export const NavLogo = styled.a.attrs({
     position: relative;
     margin-right: 30px;
     background: url(${last_logo}) no-repeat center/100%;
+`;
+
+export const LanguageChange = styled.div`
+    line-height: 68px;
+    width: 80px;
+    position: relative;
+    float: right;
+    display: inline-block;
+    .iconfont{
+        float: left;
+        font-size: 14px;
+        font-weight: 500;
+    }
 `;

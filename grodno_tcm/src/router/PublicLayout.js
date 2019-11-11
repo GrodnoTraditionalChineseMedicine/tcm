@@ -9,6 +9,7 @@ import CenterIntro from "../pages/cenintro";
 import LearnTcm from "../pages/learntcm";
 import RichEditor from "../pages/richeditor";
 import Pediatric from "../pages/pediatric";
+import ContactUs from "../pages/contact";
 
 function PublicLayout(props) {
     return (
@@ -21,6 +22,7 @@ function PublicLayout(props) {
                 <Route path="/learn_tcm" exact component={LearnTcm}/>
                 <Route path="/rich_editor" exact component={RichEditor}/>
                 <Route path="/pediatric" exact component={Pediatric}/>
+                <Route path="/contact" exact component={ContactUs}/>
             </Switch>
             <Footer/>
         </div>

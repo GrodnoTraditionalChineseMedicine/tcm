@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PicTest from "../../statics/picture/1.jpg";
+import PicTest from "../../statics/picture/home.png";
 
 
 export const HomeWrapper = styled.div`
@@ -10,7 +10,6 @@ export const HomeWrapper = styled.div`
     overflow: hidden;
     padding-bottom: 10px;
     box-sizing: border-box;
-    background-color: #f6f6f6;
 `;
 
 export const HomeCarouselWrapper = styled.div`
@@ -23,9 +22,9 @@ export const HomeCarouselWrapper = styled.div`
     
     .ant-carousel .slick-slide {
       text-align: center;
-      height: 700px;
+      height: 650px;
       overflow: hidden;
-      line-height: 700px;
+      line-height: 650px;
       background: #364d79;
       }
     
@@ -105,7 +104,6 @@ export const TuinaIntro = styled.div`
     float: left;
     padding-right: 20px;
     h3{
-    border-bottom: 1px solid #bdc3c7;
       font-weight: 600;
       font-size: 25px;
       color: #1a1a1a;
