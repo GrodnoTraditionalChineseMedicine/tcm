@@ -1,5 +1,12 @@
 const mysql = require('mysql');
+const josnContent = require('./databaseconfig');
 const connection = mysql.createConnection({
-   host: 'localhost',
-   user: 'zoey',
+   host: josnContent.host,
+   user: josnContent.user,
+   password: josnContent.password,
+   database: josnContent.database
 });
+
+
+
+module.exports = connection;
