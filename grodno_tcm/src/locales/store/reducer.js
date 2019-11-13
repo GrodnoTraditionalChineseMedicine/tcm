@@ -2,7 +2,7 @@ import { fromJS } from "immutable";
 import {actionTypes} from "./index";
 
 const defaultState = fromJS({
-    usersLocale: "en"
+    usersLocale: "cn"
 });
 
 export default (state = defaultState, action) => {

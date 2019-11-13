@@ -20,7 +20,7 @@ class App extends Component {
                 locale={usersLocale}
                 messages={messages[usersLocale]}
             >
-                {console.log(usersLocale, messages)}
+                {console.log(usersLocale, messages[usersLocale])}
                 <GlobalStyled/>
                 <GlobalIconFont/>
                 <BrowserRouter>

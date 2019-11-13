@@ -10,6 +10,7 @@ import LearnTcm from "../pages/learntcm";
 import RichEditor from "../pages/richeditor";
 import Pediatric from "../pages/pediatric";
 import ContactUs from "../pages/contact";
+import PrivacyPolicy from "../pages/privicy";
 
 function PublicLayout(props) {
     return (
@@ -23,6 +24,7 @@ function PublicLayout(props) {
                 <Route path="/rich_editor" exact component={RichEditor}/>
                 <Route path="/pediatric" exact component={Pediatric}/>
                 <Route path="/contact" exact component={ContactUs}/>
+                <Route path="/privacy" exact component={PrivacyPolicy}/>
             </Switch>
             <Footer/>
         </div>

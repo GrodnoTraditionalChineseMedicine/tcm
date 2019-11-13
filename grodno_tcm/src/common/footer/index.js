@@ -29,7 +29,7 @@ function Footer() {
                     <Link className="link-content" to="/help"><p><FormattedMessage id="components.footer.help" defaultMessage="帮助"/></p></Link>
                     <Link className="link-content" to="/manage"><p><FormattedMessage id="components.footer.account" defaultMessage="账号"/></p></Link>
                     <Link className="link-content" to="/contact"><p><FormattedMessage id="components.footer.contact" defaultMessage="联系我们"/></p></Link>
-                    <Link className="link-content" to="/account"><p><FormattedMessage id="components.footer.privacy" defaultMessage="隐私政策"/></p></Link>
+                    <Link className="link-content" to="/privacy"><p><FormattedMessage id="components.footer.privacy" defaultMessage="隐私政策"/></p></Link>
                 </FooterRight>
             </FooterMenu>
         </FooterWrapper>

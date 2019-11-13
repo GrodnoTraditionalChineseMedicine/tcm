@@ -86,20 +86,12 @@ class Login extends Component{
     }
 }
 
-
-
 const mapStateToProps = (state) => {
     return {
         loginData: state.get("login").get("loginData"),
         auth: state.auth
     }
 };
-
-/*
-Login.propTypes = {
-    auth: React.PropTypes.object.isRequired
-};
-*/
 
 const mapDispatchToProps = (dispatch) => {
     return {

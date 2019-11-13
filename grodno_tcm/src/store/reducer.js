@@ -5,6 +5,7 @@ import { reducer as manageReducer } from "../manage/store";
 import { reducer as learnTcmReducer } from "../pages/learntcm/store";
 import { reducer as pediatricReducer } from "../pages/pediatric/store";
 import { reducer as localesReducer } from "../locales/store";
+import { reducer as containerReducer } from "../manage/containers/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -16,7 +17,8 @@ const reducer = combineReducers({
     manage: manageReducer,
     learntcm: learnTcmReducer,
     pediatric: pediatricReducer,
-    locales: localesReducer
+    locales: localesReducer,
+    containers: containerReducer
 });
 
 export default reducer;
