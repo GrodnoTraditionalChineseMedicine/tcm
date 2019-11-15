@@ -7,6 +7,7 @@ import * as getAllRoles from "./role/getAllRoles";
 import * as deleteRole from "./role/deleteRole";
 import * as updateRole from "./role/updateRole";
 import * as addRole from "./role/addRole";
+import * as getAllContent from "./content/getAllContent";
 
 export {
     data,
@@ -17,5 +18,6 @@ export {
     getAllRoles,
     deleteRole,
     updateRole,
-    addRole
+    addRole,
+    getAllContent
 };

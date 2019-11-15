@@ -20,12 +20,12 @@ class LearnTcm extends Component {
     }
     renderMenu = (data) => {
         return data.map((item)=>{
-            if(item.get("submenu").size !== 0){
-                return <SubMenu key={item.get("menuCode")} title={item.get("menuName")}>
-                    { this.renderMenu(item.get("submenu")) }
+            if(item.hasOwnProperty("submenu")){
+                return <SubMenu key={item.menuCode} title={item.menuName}>
+                    { this.renderMenu(item.submenu) }
                 </SubMenu>
             }
-            return <Menu.Item key={item.get("menuCode")} title={item.get("menuName")}>{item.get("menuName")}</Menu.Item>
+            return <Menu.Item key={item.menuCode} title={item.menuName}>{item.menuName}</Menu.Item>
         })
     };
 
@@ -57,10 +57,10 @@ class LearnTcm extends Component {
                             <List.Item>
                                 <List.Item.Meta
                                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                    title={<a href="https://ant.design">{item.get("articleTitle")}</a>}
-                                    description={item.get("articleRow")}
+                                    title={<a href="https://ant.design">{item.articleTitle}</a>}
+                                    description={item.articleRow}
                                 />
-                                <div>{item.get("publishTime")}</div>
+                                <div>{item.publishTime}</div>
                             </List.Item>
                         )}
                     />
@@ -87,6 +87,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.getAllArticles())
         },
         handleClick(e){
+            console.log(e);
             dispatch(actionCreators.getMenuArticles(e.key))
         }
     }

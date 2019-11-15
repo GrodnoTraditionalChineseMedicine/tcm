@@ -11,6 +11,11 @@ export const changeArticles = (articles) => ({
     articles
 });
 
+export const changeCurrentMenus = (menu) => ({
+    type: actionTypes.CHANGE_CURRENT_MENU,
+    menu
+});
+
 export const getAllMenus = () => {
     return (dispatch) => {
         axios.get("/api/learntcm/menus")

@@ -1,6 +1,8 @@
-import Mock from "mockjs";
+// 使用 Mock
+import Mock from 'mockjs'
 
-export default Mock.mock('/api/learntcm/menus','get',{
+export default Mock.mock('/api/manage/containers/content','get',{
+    /*和menus差不多*/
     data: {
         code: 200,
         success: true,
@@ -120,6 +122,7 @@ export default Mock.mock('/api/learntcm/menus','get',{
             submenu: [{
                 menuCode: "002001",
                 menuName: "望诊",
+                imgUrl: "https://i.loli.net/2019/11/16/mfbAaXW6gntFd3G.jpg",
                 level: "2-1",
                 isShow: 1,
                 isModify: 0
@@ -152,6 +155,7 @@ export default Mock.mock('/api/learntcm/menus','get',{
             submenu: [{
                 menuCode: "003001",
                 menuName: "针刺",
+                imgUrl: "https://i.loli.net/2019/11/16/mfbAaXW6gntFd3G.jpg",
                 level: "3-1",
                 isShow: 1,
                 isModify: 0

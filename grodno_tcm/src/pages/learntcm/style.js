@@ -18,12 +18,14 @@ export const LearnTcmImg = styled.div`
 export const LearnTcmContent = styled.div`
     width: 980px;
     min-width: 980px;
-    padding: 10px 20px;
-    margin: 5px auto;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: -100px;
     position: relative;
     display: block;
     overflow: hidden;
-    background: #fff;
+    background: #f0f0f0;
+    border-radius: 20px 20px 0 0;
     .ant-menu-submenu-title{
       font-weight: 600;
     }
@@ -34,14 +36,19 @@ export const SiderMenu = styled.div`
   display: table-cell;
   width: 20%;
   .ant-menu-inline{
-      border-left: 1px solid #e8e8e8;
+      border-radius: 10px;
+      border: none;
   }
 `;
 
 export const ContentList = styled.div`
-  position: relative;
-  display: table-cell;
-  width: 70%;
+      position: relative;
+      display: table-cell;
+      padding: 10px;
+      background: #fff;
+      border-radius: 10px;
+/*      box-shadow: 2px 2px 8px #888888;*/
+      width: 70%;
 `;
 
 
