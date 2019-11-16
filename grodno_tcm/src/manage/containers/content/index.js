@@ -1,5 +1,5 @@
 import React from "react";
-import {Divider, Form, Input, Popconfirm, Table} from "antd";
+import {Button, Divider, Form, Input, Modal, Popconfirm, Table, Icon, Upload, Cascader} from "antd";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 
@@ -80,6 +80,66 @@ const EditableRow = ({ form, index, ...props }) => (
 
 const EditableFormRow = Form.create()(EditableRow);
 
+const fileList = [
+    {
+        uid: '-1',
+        name: 'xxx.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    }
+];
+const props = {
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    listType: 'picture',
+    defaultFileList: [...fileList],
+};
+
+const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
+    // eslint-disable-next-line
+    class extends React.Component {
+        render() {
+            const { visible, onCancel, onCreate, form } = this.props;
+            const { getFieldDecorator } = form;
+            return (
+                <Modal
+                    visible={visible}
+                    title="新增角色"
+                    okText="保存"
+                    onCancel={onCancel}
+                    onOk={onCreate}
+                >
+                    <Form layout="vertical">
+                        <Form.Item label="目录名称">
+                            {getFieldDecorator('name', {
+                                rules: [{ required: true, message: '请输入目录名称!' }],
+                            })(<Input />)}
+                        </Form.Item>
+                        <Form.Item label="选择它所属目录">
+                            {getFieldDecorator('residence', {
+                                rules: [
+                                    { type: 'array', required: true, message: '请务必选择一个目录' },
+                                ],
+                            })(<Cascader options={oldData} />)}
+                        </Form.Item>
+                        <Form.Item label="上传目录图" extra="请上传 .jpg 或 .png格式的照片">
+                            <Upload {...props}>
+                                {
+                                    fileList.length >= 2 ? null :
+                                        <Button>
+                                            <Icon type="upload" /> Upload
+                                        </Button>
+                                }
+                            </Upload>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            );
+        }
+    },
+);
+
+
 class EditableCell extends React.Component {
     state = {
         editing: false,
@@ -155,9 +215,13 @@ class EditableCell extends React.Component {
     }
 }
 
+
 class ContentManage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            visible: false
+        };
         this.columns = [
             {
                 title: '目录名称',
@@ -215,6 +279,35 @@ class ContentManage extends React.Component {
         console.log(key,isShow)
     };
 
+    //新增
+    showModal = () => {
+        this.setState({ visible: true });
+    };
+
+    handleCancel = () => {
+        this.setState({ visible: false });
+    };
+
+    handleCreate = () => {
+        const { form } = this.formRef.props;
+        const { addRole } = this.props;
+        form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            const role = {
+                roleName: values.name
+            };
+            addRole(role);
+            form.resetFields();
+            this.setState({ visible: false });
+        });
+    };
+
+    saveFormRef = formRef => {
+        this.formRef = formRef;
+    };
+
     componentDidMount() {
         const { getAllRoles } = this.props;
         getAllRoles();
@@ -244,6 +337,15 @@ class ContentManage extends React.Component {
         });
         return (
             <div>
+                <Button onClick={this.showModal} type="primary" style={{ marginBottom: 16 }}>
+                    新增目录
+                </Button>
+                <CollectionCreateForm
+                    wrappedComponentRef={this.saveFormRef}
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    onCreate={this.handleCreate}
+                />
                 <Table
                     bordered
                     columns={columns}
