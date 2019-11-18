@@ -12,7 +12,8 @@ export const LearnTcmWrapper = styled.div`
 export const LearnTcmImg = styled.div`
     width: 100%;
     height: 450px;
-    background: url(${LearnTcm}) no-repeat center/100%;
+    background: url("${props => props.imgUrl !== null ? props.imgUrl : LearnTcm}") no-repeat center/100%;
+    transition: .5s;
 `;
 
 export const LearnTcmContent = styled.div`

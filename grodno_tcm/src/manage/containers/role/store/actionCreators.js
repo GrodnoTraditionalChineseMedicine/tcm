@@ -13,7 +13,6 @@ export const getAllRoles = () => {
         axios.get("/api/manage/containers/roles")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("article res", res.data.data);*/
                 dispatch(changeRoles(result.roles, result.count))
             })
     }

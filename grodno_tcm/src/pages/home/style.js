@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PicTest from "../../statics/picture/home.png";
+import PicTest from "../../statics/picture/home.jpg";
 
 
 export const HomeWrapper = styled.div`
@@ -35,45 +35,86 @@ export const HomeCarouselWrapper = styled.div`
 
 export const DynamicAnnounceWrapper = styled.div`
     width: 100%;
-    padding: 20px 0;
-    margin-top: 20px;
+    position: relative;
+    z-index: 1000;
     box-sizing: border-box;
-    background-color: #fff;
+    margin-top: -50px;
 `;
 
 export const DynamicArea = styled.div`
     width: 1020px;
     min-width: 1020px;
-    padding: 10px 20px;
+    padding: 30px 20px;
     margin: 0 auto;
+    background-color: rgba(240, 240, 240, .95);
+    border-radius: 10px;
     h3{
       color: #1a1a1a;
       font-size: 25px;
       font-weight: 600;
       padding: 5px 0;
     }
+    a{
+      font-size: 16px;
+      text-align: center;
+    }
 `;
 
 export const DynamicList = styled.div`
-    padding: 5px 20px;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
+    width: 980px;
+    margin: 0 auto;
 `;
 
-export const DynamicItem = styled.div`
-    height: 30px;
-    cursor: pointer;
+export const MomentItem = styled.div`
+    height: 100px;
+    margin: 10px 0;
+    transition: 0.5s;
+    position: relative;
     &:hover{
-      color: #333333;
+        opacity: 0.7;
+        cursor: pointer;
     }
-    .title{
-      width: 90%;
-      float: left;
-      font-weight: 600;
+`;
+
+export const ItemNumber = styled.div`
+    height: 80px;
+    width: 90%;
+    line-height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 10px;
+    p{
+      width: 10%;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: #333;
     }
-    
-    .time{
-      float: right;
+`;
+
+export const ItemInfo = styled.div`
+    height: 80px;
+    width: 90%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 2px solid #fff;
+    background: ${props=>props.background};
+    border-radius: 10px;
+    h2{
+        margin-top: 10px;
+        font-size: 18px;
+        padding: 0 20px;
+        color: #f1f1f1;
+        font-weight: 600;
+    }
+    p{
+        float: right;
+        padding: 0 20px;
+        color: #999999;
     }
 `;
 
@@ -83,8 +124,7 @@ export const HomeVideoWrapper = styled.div`
     padding: 10px 20px;
 `;
 
-export const TuinaWrapper = styled.div`
-    
+export const TuinaWrapper = styled.div` 
     width: 100%;
     padding: 20px 0;
     margin-top: 20px;
@@ -140,9 +180,11 @@ export const MapTitle = styled.div`
 export const HomeMapWrapper = styled.div`
     width: 1020px;
     margin: 20px auto;
-    padding: 10px 20px;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
+    background: #f1f1f1;
+    border-radius: 10px;
 `;
 
 export const MapContainer = styled.div`

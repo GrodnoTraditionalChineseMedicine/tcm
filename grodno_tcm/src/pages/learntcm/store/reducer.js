@@ -4,7 +4,7 @@ import {actionTypes} from "./index";
 const defaultState = fromJS({
     menus: [],
     articles: [],
-    currentMenus: null
+    currentMenu: null
 });
 
 export default (state = defaultState, action) => {
@@ -13,6 +13,8 @@ export default (state = defaultState, action) => {
             return state.set("menus", action.menus);
         case actionTypes.GET_ARTICLES_ACTION:
             return state.set("articles", action.articles);
+        case actionTypes.CHANGE_CURRENT_MENU:
+            return state.set("currentMenu", action.currentMenu);
         default:
             return state;
     }

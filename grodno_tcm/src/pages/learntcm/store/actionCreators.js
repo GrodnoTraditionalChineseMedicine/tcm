@@ -11,9 +11,9 @@ export const changeArticles = (articles) => ({
     articles
 });
 
-export const changeCurrentMenus = (menu) => ({
+export const changeCurrentMenu = (currentMenu) => ({
     type: actionTypes.CHANGE_CURRENT_MENU,
-    menu
+    currentMenu
 });
 
 export const getAllMenus = () => {
@@ -45,6 +45,16 @@ export const getMenuArticles = (code) => {
                 const result = res.data.data;
                 /*console.log("menu articles res", res.data.data);*/
                 dispatch(changeArticles(result.article))
+            })
+    }
+};
+
+export const getCurrentMenu = (menuCode) => {
+    return (dispatch) => {
+        axios.post("/api/learntcm/current", menuCode)
+            .then((res)=>{
+                const result = res.data.data;
+                dispatch(changeCurrentMenu(result.menu));
             })
     }
 };

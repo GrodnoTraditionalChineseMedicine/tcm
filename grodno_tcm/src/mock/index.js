@@ -8,16 +8,22 @@ import * as deleteRole from "./role/deleteRole";
 import * as updateRole from "./role/updateRole";
 import * as addRole from "./role/addRole";
 import * as getAllContent from "./content/getAllContent";
+import * as getCurrentMenu from "./learntcm/getCurrentMenu";
+import * as getAllMoments from "./home/getAllMoments";
+import * as changeContentShow from "./content/changeContentShow";
 
 export {
     data,
     menus,
     menuData1,
     menuData,
+    getAllMoments,
+    getCurrentMenu,
     pediatricCourse,
     getAllRoles,
     deleteRole,
     updateRole,
     addRole,
-    getAllContent
+    getAllContent,
+    changeContentShow
 };

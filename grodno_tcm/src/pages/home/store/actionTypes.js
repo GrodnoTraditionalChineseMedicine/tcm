@@ -1,1 +1,1 @@
-export const FOR_EXAMPLE = "header/for_example";
+export const CHANGE_MOMENTS = "home/change_moments";

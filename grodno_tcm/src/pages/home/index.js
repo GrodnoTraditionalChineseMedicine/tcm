@@ -6,7 +6,9 @@ import {
     DynamicAnnounceWrapper,
     DynamicArea,
     DynamicList,
-    DynamicItem,
+    MomentItem,
+    ItemInfo,
+    ItemNumber,
     HomeVideoWrapper,
     TuinaWrapper,
     TuinaArea,
@@ -19,9 +21,12 @@ import {
 } from './style';
 import "video-react/dist/video-react.css";
 import {Player} from "video-react";
+import {Link, withRouter} from "react-router-dom";
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
 import homeVideo from "../../statics/video/FishingBoat.mp4";
 import {connect} from "react-redux";
+import {actionCreators} from "./store";
+import {actionCreators as headAC} from "../../common/header/store";
 
 class Home extends Component {
     render() {
@@ -39,10 +44,11 @@ class Home extends Component {
                 time: "2019/04/12"
             }
         ];
+        const { moments, handleChangeKey } = this.props;
         return (
             <HomeWrapper>
                 <HomeCarouselWrapper>
-                    <Carousel autoplay>
+                    <Carousel autoplay dotPosition="right">
                         <div>
                             <h3>1</h3>
                         </div>
@@ -58,20 +64,23 @@ class Home extends Component {
                     </Carousel>
                 </HomeCarouselWrapper>
                 <DynamicAnnounceWrapper>
-
                     <DynamicArea>
-                        <h3>最新公告</h3>
-                        <Divider/>
                         <DynamicList>
-                            {data.map((item)=>{
+                            <h3>最新公告</h3>
+                            {moments.map((item, index)=>{
                                 return (
-                                    <DynamicItem key={item.title}>
-                                        <p className="title">{item.title}</p>
-                                        <p className="time">{item.time}</p>
-                                    </DynamicItem>
+                                    <MomentItem key={index}>
+                                        <ItemNumber>
+                                            <p>{ "0" + (index + 1)}</p>
+                                        </ItemNumber>
+                                        <ItemInfo background={index===0?"#f07c82":"#93b5cf"}>
+                                            <h2>{item.title}</h2>
+                                            <p>{item.time}</p>
+                                        </ItemInfo>
+                                    </MomentItem>
                                 )
                             })}
-
+                            <a>......</a>
                         </DynamicList>
                     </DynamicArea>
                 </DynamicAnnounceWrapper>
@@ -90,12 +99,12 @@ class Home extends Component {
                                 小儿推拿疗法，是在其体表的特定穴位或部位施以手法，用来防病治病、助长益智的一种外治疗法。
                                 小儿推拿是一种中医传统的保健治疗方法，推拿通过按压穴位、经络和肌肉或神经，消除阻碍淤塞,达到气血通畅。
                             </p>
-                            <Button className="button" size="large">加入课程</Button>
+                            <Button className="button" size="large" onClick={handleChangeKey}><Link to="/pediatric">加入课程</Link></Button>
                         </TuinaIntro>
                         <TuinaImg/>
                     </TuinaArea>
                 </TuinaWrapper>
-                <MapTitle>OUR LOCATION</MapTitle>
+                {/*<MapTitle>OUR LOCATION</MapTitle>*/}
                 <HomeMapWrapper>
                     <YMaps>
                         <MapContainer>
@@ -144,22 +153,28 @@ class Home extends Component {
         );
     }
     componentDidMount() {
-        // this.props.handleGetImgs();
+        const { getAllMomentNews } = this.props;
+        getAllMomentNews()
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        moments: state.get("home").get("moments")
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        /*handleGetImgs(){
-            dispatch(actionCreators.getBuskerInfo());
-        }*/
+        getAllMomentNews(){
+            dispatch(actionCreators.getAllMomentNews());
+        },
+        handleChangeKey(e){
+            console.log(e);
+            dispatch(headAC.changeTheSelectedKey(e))
+        }
     }
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

@@ -19,9 +19,10 @@ class LearnTcm extends Component {
         getAllArticles();
     }
     renderMenu = (data) => {
+        const {clickSubmenu} = this.props;
         return data.map((item)=>{
             if(item.hasOwnProperty("submenu")){
-                return <SubMenu key={item.menuCode} title={item.menuName}>
+                return <SubMenu key={item.menuCode} title={item.menuName} onTitleClick={clickSubmenu.bind(this)}>
                     { this.renderMenu(item.submenu) }
                 </SubMenu>
             }
@@ -30,12 +31,12 @@ class LearnTcm extends Component {
     };
 
     render() {
-        const { menus, articles, handleClick } = this.props;
+        const { menus, articles, handleClick, currentMenu } = this.props;
         let isEmpty;
         isEmpty = menus.size === 0;
         return (
             <LearnTcmWrapper>
-                <LearnTcmImg/>
+                <LearnTcmImg imgUrl={currentMenu === null ? null : currentMenu.imgUrl}/>
                 <LearnTcmContent>
                     <SiderMenu>
                     {
@@ -74,7 +75,8 @@ class LearnTcm extends Component {
 const mapStateToProps = (state) => {
     return {
         menus: state.get("learntcm").get("menus"),
-        articles: state.get("learntcm").get("articles")
+        articles: state.get("learntcm").get("articles"),
+        currentMenu: state.get("learntcm").get("currentMenu")
     };
 };
 
@@ -87,8 +89,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.getAllArticles())
         },
         handleClick(e){
-            console.log(e);
-            dispatch(actionCreators.getMenuArticles(e.key))
+            dispatch(actionCreators.getMenuArticles(e.key));
+            dispatch(actionCreators.getCurrentMenu(e.key))
+        },
+        clickSubmenu(e){
+            dispatch(actionCreators.getCurrentMenu(e.key))
         }
     }
 };

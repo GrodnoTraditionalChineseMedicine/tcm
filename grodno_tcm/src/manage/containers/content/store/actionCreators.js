@@ -13,7 +13,18 @@ export const getContent = () => {
             .then((res)=>{
                 const result = res.data.data;
                 /*console.log("article res", res.data.data);*/
-                dispatch(changeContent(result.menus))
+                dispatch(changeContent(result.content))
+            })
+    }
+};
+
+export const changeIsShow = (key, isShow) => {
+    return (dispatch) => {
+        axios.post("/api/manage/containers/content/show", {key, isShow})
+            .then((res)=>{
+                const result = res.data.data;
+                dispatch(changeContent(result.content));
+                message.info(result.message);
             })
     }
 };

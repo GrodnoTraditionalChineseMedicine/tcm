@@ -44,7 +44,7 @@ export const LoginArea = styled.div`
     transform: translate(-50%,-50%);
     border-radius: 20px;
     background: url(${loginBackground}) no-repeat center/100%;
-    box-shadow: 0 3px 5px rgba(0,0,0,.1);
+    box-shadow: 3px 3px 8px rgba(0,0,0,.1);
     display: flex;
     align-items: center;
     justify-content: center;

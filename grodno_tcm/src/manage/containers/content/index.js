@@ -3,73 +3,6 @@ import {Button, Divider, Form, Input, Modal, Popconfirm, Table, Icon, Upload, Ca
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 
-
-const oldData = [{
-    menuCode: "002",
-    menuName: "诊断方法",
-    level: "2",
-    isShow: 1,
-    isModify: 0,
-    submenu: [{
-        menuCode: "002001",
-        menuName: "望诊",
-        level: "2-1",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "002002",
-        menuName: "闻诊",
-        level: "2-2",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "002003",
-        menuName: "问诊",
-        level: "2-3",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "002004",
-        menuName: "切诊",
-        level: "2-4",
-        isShow: 0,
-        isModify: 0
-    }]
-},{
-    menuCode: "003",
-    menuName: "治疗方法",
-    level: "3",
-    isShow: 0,
-    isModify: 0,
-    submenu: [{
-        menuCode: "003001",
-        menuName: "针刺",
-        level: "3-1",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "003002",
-        menuName: "艾灸",
-        level: "3-2",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "003003",
-        menuName: "砭石",
-        level: "3-3",
-        isShow: 1,
-        isModify: 0
-    },{
-        menuCode: "003004",
-        menuName: "汤药",
-        level: "3-4",
-        isShow: 1,
-        isModify: 0
-    }]
-}];
-
-const data = JSON.parse(JSON.stringify(oldData).replace(/menuCode/g,"key"));
-
 const EditableContext = React.createContext();
 
 const EditableRow = ({ form, index, ...props }) => (
@@ -95,12 +28,20 @@ const props = {
     defaultFileList: [...fileList],
 };
 
+let options = [];
+
 const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
     // eslint-disable-next-line
     class extends React.Component {
+        onChange = value=> {
+          console.log(value)
+        };
         render() {
             const { visible, onCancel, onCreate, form } = this.props;
             const { getFieldDecorator } = form;
+            let op = JSON.parse(JSON.stringify(options).replace(/menuCode/g,"value"));
+            op = JSON.parse(JSON.stringify(op).replace(/menuName/g,"label"));
+            op = JSON.parse(JSON.stringify(op).replace(/submenu/g,"children"));
             return (
                 <Modal
                     visible={visible}
@@ -120,7 +61,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
                                 rules: [
                                     { type: 'array', required: true, message: '请务必选择一个目录' },
                                 ],
-                            })(<Cascader options={oldData} />)}
+                            })(<Cascader options={op} onChange={this.onChange} changeOnSelect/>)}
                         </Form.Item>
                         <Form.Item label="上传目录图" extra="请上传 .jpg 或 .png格式的照片">
                             <Upload {...props}>
@@ -239,14 +180,14 @@ class ContentManage extends React.Component {
                 dataIndex: 'isShow',
                 width: '30%',
                 render: (text, record) =>
-                    data.length >= 1 ? (
+                    this.props.content.length >= 1 ? (
                         record.isShow === 1 ? <span>显示</span> : <span>隐藏</span>
                     ) : null,
             },{
                 title: '操作',
                 dataIndex: 'operation',
                 render: (text, record) =>
-                    data.length >= 1 ? (
+                    this.props.content.length >= 1 ? (
                         <span>
                     <Popconfirm title="确认隐藏吗?隐藏后该目录所有文章将隐藏！" onConfirm={() => this.handleChangeShow(record.key, record.isShow === 1)}>
                         <a disabled={record.isShow !== 1}>隐藏</a>
@@ -257,7 +198,7 @@ class ContentManage extends React.Component {
                     </Popconfirm>
                     <Divider type="vertical" />
                     <Popconfirm title="确认显示吗?显示后该目录所有文章将展示！" onConfirm={() => this.handleDelete(record.key)}>
-                        <a>删除</a>
+                        <a disabled={record.isModify === 0}>删除</a>
                     </Popconfirm>
                 </span>
                     ) : null,
@@ -276,7 +217,8 @@ class ContentManage extends React.Component {
     };
 
     handleChangeShow = (key, isShow) => {
-        console.log(key,isShow)
+        const {changeShowState} = this.props;
+        changeShowState(key, !isShow);
     };
 
     //新增
@@ -314,6 +256,9 @@ class ContentManage extends React.Component {
     }
 
     render(){
+        const { content } = this.props;
+        options = content;
+        const data = JSON.parse(JSON.stringify(content).replace(/menuCode/g,"key"));
         const components = {
             body: {
                 row: EditableFormRow,
@@ -360,7 +305,7 @@ class ContentManage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        content: state.get("containers").get("content").get("content")
     }
 };
 
@@ -369,6 +314,9 @@ const mapDispatchToProps = (dispatch) => {
         getAllRoles(){
             dispatch(actionCreators.getContent())
         },
+        changeShowState(key, isShow){
+            dispatch(actionCreators.changeIsShow(key, isShow));
+        }
         /*updateRole(role){
             dispatch(actionCreators.updateRole(role))
         },

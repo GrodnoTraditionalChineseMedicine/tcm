@@ -1,9 +1,9 @@
 import Mock from "mockjs";
 
 export default Mock.mock('/api/learntcm/menus','get',{
+    success: true,
     data: {
         code: 200,
-        success: true,
         menus: [{
             menuCode: "001",
             menuName: "基本理论",

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux-immutable";
 import { reducer as headerReducer } from "../common/header/store";
 import { reducer as loginReducer } from "../manage/login/store";
+import { reducer as homeReducer } from "../pages/home/store";
 import { reducer as manageReducer } from "../manage/store";
 import { reducer as learnTcmReducer } from "../pages/learntcm/store";
 import { reducer as pediatricReducer } from "../pages/pediatric/store";
@@ -14,6 +15,7 @@ import { reducer as containerReducer } from "../manage/containers/store";
 const reducer = combineReducers({
     header: headerReducer,
     login: loginReducer,
+    home: homeReducer,
     manage: manageReducer,
     learntcm: learnTcmReducer,
     pediatric: pediatricReducer,
