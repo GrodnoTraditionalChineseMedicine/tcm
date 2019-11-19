@@ -2,7 +2,7 @@
 import Mock from 'mockjs'
 
 export default Mock.mock('/api/manage/containers/role/delete','post',function(option){
-    console.log("mock role delete",option.body);//可以删掉
+    console.log("mock role delete",option.body);//可以删掉 option.body = 1
     return Mock.mock({
         success: true,
         data: {

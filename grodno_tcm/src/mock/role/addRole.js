@@ -3,9 +3,7 @@ import Mock from 'mockjs'
 
 export default Mock.mock('/api/manage/containers/role/add','post',function(option){
     console.log("mock role add",option.body);//可以删掉
-    const postValue = {
-        roleName: "新增测试"
-    };//这是我传过来的值
+    const postValue = {"key":"1","roleId":1,"roleName":"超级管理员"};//这是我传过来的值 前面的key的""可以删掉
     return Mock.mock({
         success: true,
         data: {

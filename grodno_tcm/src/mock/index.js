@@ -1,4 +1,5 @@
 import * as data from "./data1";
+import * as pictureUpload from "./pictureUpload";
 import * as menus from "./menus";
 import * as menuData1 from "./menuData1";
 import * as menuData from "./menuData";
@@ -11,9 +12,13 @@ import * as getAllContent from "./content/getAllContent";
 import * as getCurrentMenu from "./learntcm/getCurrentMenu";
 import * as getAllMoments from "./home/getAllMoments";
 import * as changeContentShow from "./content/changeContentShow";
+import * as updateContent from "./content/updateContent";
+import * as deleteContent from "./content/deleteContent";
+import * as addContent from "./content/addContent";
 
 export {
     data,
+    pictureUpload,
     menus,
     menuData1,
     menuData,
@@ -25,5 +30,8 @@ export {
     updateRole,
     addRole,
     getAllContent,
-    changeContentShow
+    changeContentShow,
+    updateContent,
+    deleteContent,
+    addContent
 };

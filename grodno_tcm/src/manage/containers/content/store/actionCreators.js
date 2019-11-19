@@ -29,34 +29,34 @@ export const changeIsShow = (key, isShow) => {
     }
 };
 
-export const deleteRole = (id) => {
+export const deleteContent = (menuCode) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/delete", id)
+        axios.post("/api/manage/containers/content/delete", menuCode)
             .then((res)=>{
                 const result = res.data.data;
-                /*dispatch(changeRoles(result.roles, result.count));*/
+                dispatch(changeContent(result.content));
                 message.info(result.message);
             })
     }
 };
 
-export const updateRole = (role) => {
+export const updateContent = (content) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/update", role)
+        axios.post("/api/manage/containers/content/update", content)
             .then((res)=>{
                 const result = res.data.data;
-                /*dispatch(changeRoles(result.roles, result.count));*/
+                dispatch(changeContent(result.content));
                 message.info(result.message);
             })
     }
 };
 
-export const addRole = (role) => {
+export const addContent = (content) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/add", role)
+        axios.post("/api/manage/containers/content/add", content)
             .then((res)=>{
                 const result = res.data.data;
-                /*dispatch(changeRoles(result.roles, result.count));*/
+                dispatch(changeContent(result.content));
                 message.info(result.message);
             })
     }

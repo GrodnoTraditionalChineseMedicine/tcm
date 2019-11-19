@@ -22,11 +22,6 @@ const fileList = [
         thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     }
 ];
-const props = {
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    listType: 'picture',
-    defaultFileList: [...fileList],
-};
 
 let options = [];
 
@@ -35,6 +30,11 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
     class extends React.Component {
         onChange = value=> {
           console.log(value)
+        };
+        normFile = e => {
+            let fileList = [...e.fileList];
+            fileList = fileList.slice(-1);//截取fileList最后一个元素
+            return fileList;
         };
         render() {
             const { visible, onCancel, onCreate, form } = this.props;
@@ -64,14 +64,85 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
                             })(<Cascader options={op} onChange={this.onChange} changeOnSelect/>)}
                         </Form.Item>
                         <Form.Item label="上传目录图" extra="请上传 .jpg 或 .png格式的照片">
-                            <Upload {...props}>
+                            {getFieldDecorator('upload', {
+                                valuePropName: 'fileList',
+                                getValueFromEvent: this.normFile,
+                            })(<Upload
+                                action='/api/upload/picture'
+                                listType='picture'
+                            >
                                 {
                                     fileList.length >= 2 ? null :
                                         <Button>
                                             <Icon type="upload" /> Upload
                                         </Button>
                                 }
-                            </Upload>
+                            </Upload>)}
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            );
+        }
+    },
+);
+
+const TitlePicCreateForm = Form.create({ name: 'form_in_pic_modal' })(
+    // eslint-disable-next-line
+    class extends React.Component {
+        normFile = e => {
+            let fileList = [...e.fileList];
+            fileList = fileList.slice(-1);//截取fileList最后一个元素
+            return fileList;
+        };
+        render() {
+            const { visible, onCancel, onCreate, form, currentMenu } = this.props;
+            const { getFieldDecorator } = form;
+            let fl = [];
+            if(currentMenu !== null) {
+                if (typeof (currentMenu.imgUrl) !== "undefined") {
+                    fl = [
+                        {
+                            uid: '-1',
+                            name: currentMenu.imgUrl,
+                            status: 'done',
+                            url: currentMenu.imgUrl,
+                            thumbUrl: currentMenu.imgUrl,
+                        }
+                    ];
+                }
+
+            }
+            return (
+                <Modal
+                    visible={visible}
+                    title="题图修改"
+                    okText="保存"
+                    onCancel={onCancel}
+                    onOk={onCreate}
+                >
+                    <Form layout="vertical">
+                        <Form.Item
+                            label="上传目录图"
+                            extra={
+                                <span>请上传 .jpg 或 .png格式的照片<br/>
+                                <span style={{color: "red"}}>注意：上传第二张图片会覆盖第一张图片，请谨慎保存！</span>
+                                </span>}
+                        >
+                            {getFieldDecorator('upload', {
+                                valuePropName: 'fileList',
+                                getValueFromEvent: this.normFile,
+                                initialValue: fl
+                            })(<Upload
+                                action='/api/upload/picture'
+                                listType='picture'
+                            >
+                                {
+                                    fileList.length >= 2 ? null :
+                                        <Button>
+                                            <Icon type="upload" /> Upload
+                                        </Button>
+                                }
+                            </Upload>)}
                         </Form.Item>
                     </Form>
                 </Modal>
@@ -161,24 +232,27 @@ class ContentManage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
+            picVisible: false,
+            currentMenu: null
         };
         this.columns = [
             {
                 title: '目录名称',
                 dataIndex: 'menuName',
+                width: '30%',
                 editable: true,
             },
             {
                 title: '目录等级',
                 dataIndex: 'level',
-                width: '12%',
+                width: '20%',
                 editable: true,
             },
             {
                 title: '是否展示',
                 dataIndex: 'isShow',
-                width: '30%',
+                width: '15%',
                 render: (text, record) =>
                     this.props.content.length >= 1 ? (
                         record.isShow === 1 ? <span>显示</span> : <span>隐藏</span>
@@ -197,23 +271,25 @@ class ContentManage extends React.Component {
                         <a disabled={record.isShow === 1}>显示</a>
                     </Popconfirm>
                     <Divider type="vertical" />
-                    <Popconfirm title="确认显示吗?显示后该目录所有文章将展示！" onConfirm={() => this.handleDelete(record.key)}>
+                    <Popconfirm title="确认删除吗?删除会导致该目录和子目录全部删除！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.key)}>
                         <a disabled={record.isModify === 0}>删除</a>
                     </Popconfirm>
+                    <Divider type="vertical" />
+                    <Button size="small" type={typeof(record.imgUrl) === "undefined" ? "primary" : null} onClick={()=>this.handleShow(record)}>{typeof(record.imgUrl) === "undefined" ? "添加题图" : "修改题图"}</Button>
                 </span>
                     ) : null,
             }
         ];
     }
     handleSave = row => {
-        const {updateRole} = this.props;
-        updateRole(row);
+        delete row.submenu;
+        const {updateContent} = this.props;
+        updateContent(row);
     };
 
     handleDelete = key => {
-        /*const {deleteRole} = this.props;
-        deleteRole(id);*/
-        console.log(key);
+        const {deleteContent} = this.props;
+        deleteContent(key);
     };
 
     handleChangeShow = (key, isShow) => {
@@ -221,9 +297,18 @@ class ContentManage extends React.Component {
         changeShowState(key, !isShow);
     };
 
+    handleShow = row => {
+        this.showPicModal();
+        this.setState({currentMenu: row});
+    };
+
     //新增
     showModal = () => {
-        this.setState({ visible: true });
+        this.setState({ visible: true , picVisible: false});
+    };
+
+    showPicModal = () => {
+        this.setState({ visible: false , picVisible: true});
     };
 
     handleCancel = () => {
@@ -232,22 +317,68 @@ class ContentManage extends React.Component {
 
     handleCreate = () => {
         const { form } = this.formRef.props;
-        const { addRole } = this.props;
+        const { addContent } = this.props;
         form.validateFields((err, values) => {
             if (err) {
                 return;
             }
-            const role = {
-                roleName: values.name
-            };
-            addRole(role);
+            let url = null;
+            console.log(values);
+            if (typeof values.upload !== "undefined"){
+                if((typeof values.upload[0].response) === "undefined"){
+                    url = values.upload[0].url;
+                } else {
+                    url = values.upload[0].response.data.url;
+                }
+                values.imgUrl = url;
+                delete values.upload;
+            }
+            values.residence = values.residence[values.residence.length - 1];
+            delete values.upload;
+            console.log("value", values);
+            addContent(values);
             form.resetFields();
             this.setState({ visible: false });
         });
     };
 
+    handlePicCancel = () => {
+        this.setState({ picVisible: false });
+    };
+
+    handlePicCreate = () => {
+        const { form } = this.picFormRef.props;
+        const { updateContent } = this.props;
+        form.validateFields((err, values) => {
+            if (err) {
+                return;
+            }
+            let url = null;
+            if (values.upload.length === 0){
+                return;
+            } else {
+                if((typeof values.upload[0].response) === "undefined"){
+                    url = values.upload[0].url;
+                } else {
+                    url = values.upload[0].response.data.url;
+                }
+            }
+            let current = this.state.currentMenu;
+            current.imgUrl = url;
+            delete current.submenu;
+            console.log("currentMenu", current);
+            updateContent(current);
+            form.resetFields();
+            this.setState({ picVisible: false });
+        });
+    };
+
     saveFormRef = formRef => {
         this.formRef = formRef;
+    };
+
+    savePicFormRef = picFormRef => {
+        this.picFormRef = picFormRef;
     };
 
     componentDidMount() {
@@ -291,6 +422,13 @@ class ContentManage extends React.Component {
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
                 />
+                <TitlePicCreateForm
+                    wrappedComponentRef={this.savePicFormRef}
+                    visible={this.state.picVisible}
+                    onCancel={this.handlePicCancel}
+                    onCreate={this.handlePicCreate}
+                    currentMenu={this.state.currentMenu}
+                />
                 <Table
                     bordered
                     columns={columns}
@@ -312,20 +450,20 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAllRoles(){
-            dispatch(actionCreators.getContent())
+            dispatch(actionCreators.getContent());
         },
         changeShowState(key, isShow){
             dispatch(actionCreators.changeIsShow(key, isShow));
+        },
+        updateContent(content){
+            dispatch(actionCreators.updateContent(content));
+        },
+        deleteContent(menuCode){
+            dispatch(actionCreators.deleteContent(menuCode));
+        },
+        addContent(content){
+            dispatch(actionCreators.addContent(content));
         }
-        /*updateRole(role){
-            dispatch(actionCreators.updateRole(role))
-        },
-        deleteRole(id){
-            dispatch(actionCreators.deleteRole(id))
-        },
-        addRole(role){
-            dispatch(actionCreators.addRole(role))
-        }*/
     }
 };
 
