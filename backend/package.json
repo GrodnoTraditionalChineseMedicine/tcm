@@ -4,7 +4,7 @@
   "description": "backend server side",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node %NODE_DEBUG_OPTION% server.js",
     "start": "node server.js"
   },
   "author": "Hoen",

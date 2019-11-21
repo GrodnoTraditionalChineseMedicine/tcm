@@ -8,8 +8,9 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 //api business logic
-const adminApi = require('./src/router/adminApi');
+const adminRouter = require('./src/router/adminApi');
 const emailRouter = require('./src/router/email');
+const learntcmRouter = require('./src/router/learntcmApi');
 
 //third-party middleware using
 app.use(express.json());
@@ -19,8 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //middleware using
-app.use('/api/admin',adminApi);
+app.use('/api/manage',adminRouter);
 app.use('/api/email', emailRouter);
+app.use('/api/learntcm',learntcmRouter);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 

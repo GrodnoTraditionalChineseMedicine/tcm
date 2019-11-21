@@ -1,0 +1,3 @@
+{
+  "getAllmenus" : "SELECT * FROM sys_menu Where is_show = 1;"
+}

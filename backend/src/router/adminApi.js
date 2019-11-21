@@ -4,7 +4,7 @@ const adminManagementObject = require('../jsonObject/managementLogin');
 const express = require('express');
 const adminRouter = express.Router();
 
-adminRouter.get('/sign',(req, res)=> {
+adminRouter.get('/login',(req, res)=> {
     const admin_account = req.query.username;
     const password = req.query.password;
     dbTool.query(adminSql.getAdminAllInfoById, admin_account, (err, result)=>{
@@ -34,6 +34,7 @@ adminRouter.get('/sign',(req, res)=> {
                 adminManagementObject.data.currentUser.roleId = result[0]['role'];
                 adminManagementObject.data.currentUser.imgUrl = result[0]['avatar_url'];
                 res.status(200).json(adminManagementObject);
+                res.end();
             }
         }
     });
