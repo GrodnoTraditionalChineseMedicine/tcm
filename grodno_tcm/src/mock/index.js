@@ -15,6 +15,8 @@ import * as changeContentShow from "./content/changeContentShow";
 import * as updateContent from "./content/updateContent";
 import * as deleteContent from "./content/deleteContent";
 import * as addContent from "./content/addContent";
+import * as getAllArticles from "./article/getAllArticles";
+import * as getArticleByCode from "./article/getArticleByCode";
 
 export {
     data,
@@ -33,5 +35,7 @@ export {
     changeContentShow,
     updateContent,
     deleteContent,
-    addContent
+    addContent,
+    getAllArticles,
+    getArticleByCode
 };

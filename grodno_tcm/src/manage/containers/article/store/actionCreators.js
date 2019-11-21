@@ -2,19 +2,37 @@ import {actionTypes} from "./index";
 import { message } from 'antd';
 import axios from "axios";
 
-export const changeRoles = (roles, count) => ({
-    type: actionTypes.GET_ROLES,
-    roles: roles,
-    count: count
+export const changeArticles = (articles) => ({
+    type: actionTypes.CHANGE_ARTICLES,
+    articles: articles
 });
 
-export const getAllRoles = () => {
+export const getAllArticles = () => {
     return (dispatch) => {
-        axios.get("/api/manage/containers/roles")
+        axios.get("/api/manage/containers/articles")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("article res", res.data.data);*/
-                dispatch(changeRoles(result.roles, result.count))
+                dispatch(changeArticles(result.articles));
+            })
+    }
+};
+
+export const getArticlesByCode = (menuCode) => {
+    return (dispatch) => {
+        axios.get("/api/manage/containers/articles?code=" + menuCode)
+            .then((res)=>{
+                const result = res.data.data;
+                dispatch(changeArticles(result.articles));
+            })
+    }
+};
+
+export const changeIsShow = (key, isShow) => {
+    return (dispatch) => {
+        axios.post("/api/manage/containers/articles/code", {key, isShow})
+            .then((res)=>{
+                const result = res.data.data;
+                dispatch(changeArticles(result.articles));
             })
     }
 };
@@ -24,7 +42,7 @@ export const deleteRole = (id) => {
         axios.post("/api/manage/containers/role/delete", id)
             .then((res)=>{
                 const result = res.data.data;
-                dispatch(changeRoles(result.roles, result.count));
+                dispatch(changeArticles(result.articles));
                 message.info(result.message);
             })
     }
@@ -35,7 +53,7 @@ export const updateRole = (role) => {
         axios.post("/api/manage/containers/role/update", role)
             .then((res)=>{
                 const result = res.data.data;
-                dispatch(changeRoles(result.roles, result.count));
+                dispatch(changeArticles(result.articles));
                 message.info(result.message);
             })
     }
@@ -46,7 +64,7 @@ export const addRole = (role) => {
         axios.post("/api/manage/containers/role/add", role)
             .then((res)=>{
                 const result = res.data.data;
-                dispatch(changeRoles(result.roles, result.count));
+                dispatch(changeArticles(result.articles));
                 message.info(result.message);
             })
     }

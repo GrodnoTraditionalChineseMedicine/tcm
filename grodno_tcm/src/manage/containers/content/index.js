@@ -13,16 +13,6 @@ const EditableRow = ({ form, index, ...props }) => (
 
 const EditableFormRow = Form.create()(EditableRow);
 
-const fileList = [
-    {
-        uid: '-1',
-        name: 'xxx.png',
-        status: 'done',
-        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    }
-];
-
 let options = [];
 
 const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
@@ -71,12 +61,9 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
                                 action='/api/upload/picture'
                                 listType='picture'
                             >
-                                {
-                                    fileList.length >= 2 ? null :
-                                        <Button>
-                                            <Icon type="upload" /> Upload
-                                        </Button>
-                                }
+                                <Button>
+                                    <Icon type="upload" /> Upload
+                                </Button>
                             </Upload>)}
                         </Form.Item>
                     </Form>
@@ -136,12 +123,9 @@ const TitlePicCreateForm = Form.create({ name: 'form_in_pic_modal' })(
                                 action='/api/upload/picture'
                                 listType='picture'
                             >
-                                {
-                                    fileList.length >= 2 ? null :
-                                        <Button>
-                                            <Icon type="upload" /> Upload
-                                        </Button>
-                                }
+                                <Button>
+                                    <Icon type="upload" /> Upload
+                                </Button>
                             </Upload>)}
                         </Form.Item>
                     </Form>
@@ -382,8 +366,8 @@ class ContentManage extends React.Component {
     };
 
     componentDidMount() {
-        const { getAllRoles } = this.props;
-        getAllRoles();
+        const { getAllContent } = this.props;
+        getAllContent();
     }
 
     render(){
@@ -449,7 +433,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllRoles(){
+        getAllContent(){
             dispatch(actionCreators.getContent());
         },
         changeShowState(key, isShow){

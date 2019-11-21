@@ -1,6 +1,7 @@
 import { combineReducers } from "redux-immutable";
 import { reducer as roleReducer } from "../role/store";
 import { reducer as contentReducer } from "../content/store";
+import { reducer as articleReducer } from "../article/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -8,7 +9,8 @@ import { reducer as contentReducer } from "../content/store";
 */
 const reducer = combineReducers({
     role: roleReducer,
-    content: contentReducer
+    content: contentReducer,
+    article: articleReducer
 });
 
 export default reducer;
