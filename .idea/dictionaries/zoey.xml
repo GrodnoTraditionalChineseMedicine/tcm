@@ -2,7 +2,9 @@
   <dictionary name="zoey">
     <words>
       <w>allmenus</w>
+      <w>currentdate</w>
       <w>learntcm</w>
+      <w>seperator</w>
     </words>
   </dictionary>
 </component>
