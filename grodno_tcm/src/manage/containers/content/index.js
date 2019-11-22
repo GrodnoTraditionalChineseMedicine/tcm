@@ -397,7 +397,7 @@ class ContentManage extends React.Component {
         });
         return (
             <div>
-                <Button onClick={this.showModal} type="primary" style={{ marginBottom: 16 }}>
+                <Button onClick={this.showModal} type="primary" style={{ marginBottom: 5 }}>
                     新增目录
                 </Button>
                 <CollectionCreateForm

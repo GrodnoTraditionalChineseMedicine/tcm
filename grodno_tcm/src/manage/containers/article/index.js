@@ -114,7 +114,7 @@ class ArticleManage extends Component {
                 ...this.getColumnSearchProps('articleTitle'),
                 render: (text,record) =>
                     <span>
-                        <Link to={"/manage/index/learn/article/"+record.articleId}><ArticleTitle>{text}</ArticleTitle></Link>
+                        <Link to={`/learn_tcm/article/detail/${record.articleId}`} target="_blank"><ArticleTitle>{text}</ArticleTitle></Link>
                     </span>
             },
             {
@@ -157,7 +157,7 @@ class ArticleManage extends Component {
                     <strong>提示：</strong>默认显示所有文章，点击左侧菜单，右侧文章列表发生改变。
                 </ArticleHelpInfo>
                 <SiderMenu>
-                    <Button size="small" type="primary">新增文章</Button>
+                    <Button className="add-button" type="primary">新增文章</Button>
                     {
                         !isEmpty ?
                             <Menu

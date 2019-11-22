@@ -20,6 +20,9 @@ export const SiderMenu = styled.div`
       border-radius: 10px;
       border: 1px solid #e8e8e8;
   }
+  .add-button{
+      margin-bottom: 5px;
+  }
 `;
 
 export const TableList = styled.div`

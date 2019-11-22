@@ -1,0 +1,1 @@
+export const CHANGE_ARTICLE = "article/change_article";

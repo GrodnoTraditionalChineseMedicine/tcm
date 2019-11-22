@@ -16,7 +16,7 @@ import * as updateContent from "./content/updateContent";
 import * as deleteContent from "./content/deleteContent";
 import * as addContent from "./content/addContent";
 import * as getAllArticles from "./article/getAllArticles";
-import * as getArticleByCode from "./article/getArticleByCode";
+import * as getArticleByCode from "./article/getArticlesByCode";
 
 export {
     data,
