@@ -17,6 +17,7 @@ import * as deleteContent from "./content/deleteContent";
 import * as addContent from "./content/addContent";
 import * as getAllArticles from "./article/getAllArticles";
 import * as getArticleByCode from "./article/getArticlesByCode";
+import * as getArticleById from "./article/getArticleById";
 
 export {
     data,
@@ -37,5 +38,6 @@ export {
     deleteContent,
     addContent,
     getAllArticles,
-    getArticleByCode
+    getArticleByCode,
+    getArticleById
 };

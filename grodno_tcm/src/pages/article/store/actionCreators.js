@@ -7,9 +7,9 @@ export const changeArticle = (articles) => ({
     articles: articles
 });
 
-export const getArticleById = () => {
+export const getArticleById = (id) => {
     return (dispatch) => {
-        axios.post("/api/article/get-article")
+        axios.post("/api/article/get-article", id)
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeArticle(result.articles));

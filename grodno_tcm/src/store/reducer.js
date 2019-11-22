@@ -7,6 +7,7 @@ import { reducer as learnTcmReducer } from "../pages/learntcm/store";
 import { reducer as pediatricReducer } from "../pages/pediatric/store";
 import { reducer as localesReducer } from "../locales/store";
 import { reducer as containerReducer } from "../manage/containers/store";
+import { reducer as articleReducer } from "../pages/article/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     home: homeReducer,
     manage: manageReducer,
     learntcm: learnTcmReducer,
+    article: articleReducer,
     pediatric: pediatricReducer,
     locales: localesReducer,
     containers: containerReducer
