@@ -1,0 +1,3 @@
+{
+  "getAllCourses" : "SELECT * FROM sys_massage_course;"
+}
