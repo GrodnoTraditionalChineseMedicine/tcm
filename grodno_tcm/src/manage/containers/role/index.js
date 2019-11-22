@@ -227,6 +227,7 @@ class EditableTable extends React.Component {
                 />
                 <Table
                     components={components}
+                    rowKey="roleId"
                     rowClassName={() => 'editable-row'}
                     bordered
                     dataSource={Array.from(roles)}
@@ -251,6 +252,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.getAllRoles())
         },
         updateRole(role){
+            delete role.key;
             dispatch(actionCreators.updateRole(role))
         },
         deleteRole(id){

@@ -18,9 +18,9 @@ export const getContent = () => {
     }
 };
 
-export const changeIsShow = (key, isShow) => {
+export const changeIsShow = (menuCode, isShow) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/content/show", {key, isShow})
+        axios.post("/api/manage/containers/content/show", {menuCode, isShow})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeContent(result.content));

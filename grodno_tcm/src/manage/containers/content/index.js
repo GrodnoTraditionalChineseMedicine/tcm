@@ -247,15 +247,15 @@ class ContentManage extends React.Component {
                 render: (text, record) =>
                     this.props.content.length >= 1 ? (
                         <span>
-                    <Popconfirm title="确认隐藏吗?隐藏后该目录所有文章将隐藏！" onConfirm={() => this.handleChangeShow(record.key, record.isShow === 1)}>
+                    <Popconfirm title="确认隐藏吗?隐藏后该目录所有文章将隐藏！" onConfirm={() => this.handleChangeShow(record.menuCode, record.isShow === 1)}>
                         <a disabled={record.isShow !== 1}>隐藏</a>
                     </Popconfirm>
                     <Divider type="vertical" />
-                    <Popconfirm title="确认显示吗?显示后该目录所有文章将展示！" onConfirm={() => this.handleChangeShow(record.key, record.isShow === 1)}>
+                    <Popconfirm title="确认显示吗?显示后该目录所有文章将展示！" onConfirm={() => this.handleChangeShow(record.menuCode, record.isShow === 1)}>
                         <a disabled={record.isShow === 1}>显示</a>
                     </Popconfirm>
                     <Divider type="vertical" />
-                    <Popconfirm title="确认删除吗?删除会导致该目录和子目录全部删除！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.key)}>
+                    <Popconfirm title="确认删除吗?删除会导致该目录和子目录全部删除！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.menuCode)}>
                         <a disabled={record.isModify === 0}>删除</a>
                     </Popconfirm>
                     <Divider type="vertical" />
@@ -271,14 +271,14 @@ class ContentManage extends React.Component {
         updateContent(row);
     };
 
-    handleDelete = key => {
+    handleDelete = menuCode => {
         const {deleteContent} = this.props;
-        deleteContent(key);
+        deleteContent(menuCode);
     };
 
-    handleChangeShow = (key, isShow) => {
+    handleChangeShow = (menuCode, isShow) => {
         const {changeShowState} = this.props;
-        changeShowState(key, !isShow);
+        changeShowState(menuCode, !isShow);
     };
 
     handleShow = row => {
@@ -373,7 +373,6 @@ class ContentManage extends React.Component {
     render(){
         const { content } = this.props;
         options = content;
-        const data = JSON.parse(JSON.stringify(content).replace(/menuCode/g,"key"));
         const components = {
             body: {
                 row: EditableFormRow,
@@ -418,7 +417,8 @@ class ContentManage extends React.Component {
                     columns={columns}
                     components={components}
                     childrenColumnName="submenu"
-                    dataSource={data}
+                    dataSource={Array.from(content)}
+                    rowKey="menuCode"
                 />
             </div>
         )
@@ -436,8 +436,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllContent(){
             dispatch(actionCreators.getContent());
         },
-        changeShowState(key, isShow){
-            dispatch(actionCreators.changeIsShow(key, isShow));
+        changeShowState(menuCode, isShow){
+            dispatch(actionCreators.changeIsShow(menuCode, isShow));
         },
         updateContent(content){
             dispatch(actionCreators.updateContent(content));
