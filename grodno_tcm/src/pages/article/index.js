@@ -1,15 +1,43 @@
 import React, {Component} from 'react';
-import {ArticleDetailWrapper} from "./style";
+
 import {connect} from "react-redux";
+import {actionCreators} from "./store";
+import BraftEditor from "braft-editor";
+import 'braft-editor/dist/output.css'
+import {ArticleDetailWrapper,DetailInfo,TitleLine} from "./style";
 
 class ArticleDetail extends Component {
     componentDidMount() {
-        console.log("Article",this.props.match.params.id);
+        const { getContent } = this.props;
+        let id = this.props.match.params.id;
+        getContent(id);
     }
     render() {
+        const { article } = this.props;
+        let isNull = article === null;
+        let articleImg;
+        let editorState;
+        if (!isNull){
+            if(typeof article.articleImg === "undefined"){
+                articleImg = null;
+            } else {
+                articleImg = <img className="title-img" src={article.articleImg} alt="article image"/>;
+            }
+            editorState = BraftEditor.createEditorState(article.articleRow).toHTML();
+            console.log(editorState);
+        }
         return (
             <ArticleDetailWrapper>
-                ArticleDetail
+                    {
+                        isNull ? null :
+                            <DetailInfo>
+                                {articleImg}
+                                <header>
+                                    <h1>{article.articleTitle}<TitleLine/></h1>
+                                </header>
+                                <div className="braft-output-content" dangerouslySetInnerHTML={{__html: editorState}}/>
+                            </DetailInfo>
+                    }
             </ArticleDetailWrapper>
         )
     }
@@ -17,12 +45,16 @@ class ArticleDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        article: state.get("article").get("article")
+        article: state.get("article").get("article"),
+        menu: state.get("article").get("menu")
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getContent(id){
+            dispatch(actionCreators.getArticleById(id))
+        }
     }
 };
 

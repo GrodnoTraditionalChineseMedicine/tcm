@@ -52,7 +52,6 @@ class Header extends Component {
                                 <Menu.Item onClick={handleChangeKey} key="/center_intro"><Link to="/center_intro"><FormattedMessage id="components.header.center" defaultMessage="中心简介"/></Link></Menu.Item>
                                 <Menu.Item onClick={handleChangeKey} key="/learn_tcm"><Link to="/learn_tcm"><FormattedMessage id="components.header.learn" defaultMessage="了解中医"/></Link></Menu.Item>
                                 <Menu.Item onClick={handleChangeKey} key="/pediatric"><Link to="/pediatric"><FormattedMessage id="components.header.pediatric" defaultMessage="小儿推拿"/></Link></Menu.Item>
-                                {/*<Menu.Item onClick={handleChangeKey} key="/rich_editor"><Link to="/rich_editor">富文本测试</Link></Menu.Item>*/}
                             </Menu>
                         </HeaderNav>
                     </HeaderMenu>

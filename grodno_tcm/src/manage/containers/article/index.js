@@ -114,7 +114,7 @@ class ArticleManage extends Component {
                 ...this.getColumnSearchProps('articleTitle'),
                 render: (text,record) =>
                     <span>
-                        <Link to={`/learn_tcm/article/detail/${record.articleId}`} target="_blank"><ArticleTitle>{text}</ArticleTitle></Link>
+                        <Link to={`/article/detail/${record.articleId}`} target="_blank"><ArticleTitle>{text}</ArticleTitle></Link>
                     </span>
             },
             {

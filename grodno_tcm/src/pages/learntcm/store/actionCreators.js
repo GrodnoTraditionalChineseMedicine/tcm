@@ -51,7 +51,7 @@ export const getMenuArticles = (code) => {
 
 export const getCurrentMenu = (menuCode) => {
     return (dispatch) => {
-        axios.post("/api/learntcm/current", menuCode)
+        axios.post("/api/learntcm/current", {menuCode})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeCurrentMenu(result.menu));

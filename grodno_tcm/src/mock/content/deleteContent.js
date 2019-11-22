@@ -3,7 +3,8 @@ import Mock from 'mockjs'
 
 export default Mock.mock('/api/manage/containers/content/delete','post',function(option){
     console.log("mock role delete",option.body);
-    //可以删掉option.body = 001004 注意 删除会导致子目录一并删除 如删除001004 则001004001 001004002等都会删除
+    const postValue = {"menuCode":"001004"};
+    //注意 删除会导致子目录一并删除 如删除001004 则001004001 001004002等都会删除
     return Mock.mock({
         success: true,
         data: {

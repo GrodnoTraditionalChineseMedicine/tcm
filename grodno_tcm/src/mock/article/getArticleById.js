@@ -2,20 +2,17 @@
 import Mock from 'mockjs'
 
 export default Mock.mock('/api/article/get-article','post',function(option){
-    console.log("mock role update",option.body);
-    //这里不管是否隐藏 因为这个api前后台都需要 所以只需要传过来文章的id就找到文章和它对应的目录返回
-    const postValue = {
-        id: 1
-    };//这是我传过来的值
+    console.log("mock article get",option.body); //option.body = 1
+    //这里不管是否隐藏 因为这个api前后台都需要 所以只需要传过来文章的id就找到文章和它对应的目录返回 不需要子目录
     return Mock.mock({
         success: true,
         data: {
             code: 200,
             article: {
                 articleId: 1,
-                articleTitle: "中医基本论",
+                articleTitle: "太恐怖了！感冒了一定不能吃这些东西，不然会威胁到生命！",
                 articleImg: "https://i.loli.net/2019/11/17/ACyIbrQNcJwxGM7.jpg",//为了区分menu的imgUrl
-                articleRow: '{"blocks":[{"key":"9hu83","text":"Discover the truth behind the myths of confinement from a TCM perspective... Read More","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":6,"length":5,"style":"BOLD"},{"offset":6,"length":5,"style":"COLOR-F32784"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
+                articleRow: '{"blocks":[{"key":"at34q","text":"Hello World!","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":6,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{"nodeAttributes":{}}}],"entityMap":{}}',
                 publishedTime: "2019-11-10 13:11:12",
                 isShow: 1
             },

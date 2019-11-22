@@ -31,7 +31,7 @@ export const changeIsShow = (key, isShow) => {
 
 export const deleteContent = (menuCode) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/content/delete", menuCode)
+        axios.post("/api/manage/containers/content/delete", {menuCode})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeContent(result.content));

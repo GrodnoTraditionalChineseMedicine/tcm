@@ -1,1 +1,1 @@
-export const CHANGE_ARTICLE = "article/change_article";
+export const CHANGE_CURRENT = "article/change_current";

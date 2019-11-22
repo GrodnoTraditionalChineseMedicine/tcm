@@ -20,7 +20,7 @@ export const getAllRoles = () => {
 
 export const deleteRole = (id) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/delete", id)
+        axios.post("/api/manage/containers/role/delete", {id})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeRoles(result.roles, result.count));
