@@ -1,0 +1,4 @@
+{
+  "getSubMenusByParentCode" : "SELECT * FROM sys_menu WHERE parent_code = ? ORDER BY menu_code DESC;",
+  "insertRecord " : "INSERT INTO sys_menu(menu_code, menu_name, parent_code, level, is_show, is_modify, imgUrl) VALUES(?, ?, ?, ?, ?, ?, ?);"
+}

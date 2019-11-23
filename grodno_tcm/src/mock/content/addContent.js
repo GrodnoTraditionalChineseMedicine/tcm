@@ -6,7 +6,7 @@ export default Mock.mock('/api/manage/containers/content/add','post',function(op
     const postValue = {"name":"123","residence":"003","imgUrl":"https://i.loli.net/2019/11/17/ACyIbrQNcJwxGM7.jpg"};
     //name: menuName, residence: parentCode, imgUrl: "https://i.loli.net/2019/11/17/ACyIbrQNcJwxGM7.jpg"
     //我传过来的值只有menuName parentCode imgUrl 而menuCode和level需要根据一些算法在后台进行计算然后保存 isShow和isModify在数据库已经设置了默认值1了
-    return Mock.mock({
+        return Mock.mock({
         success: true,
         data: {
             code: 200,

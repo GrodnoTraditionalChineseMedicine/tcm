@@ -26,13 +26,13 @@ menusRouter.get('/', (req, res)=>{
             for(var i = 0; i < result.length; i++) {
                 var menusWithImg = {
                     "menuCode": "002",
-                    "menuName": "诊断方法",
-                    "parentCode" : "",
-                    "level": "2",
-                    "imgUrl": "https://i.loli.net/2019/11/16/rUzXQ7VEOMdH6af.jpg",
-                    "isShow": 1,
-                    "isModify" : 0
-                }
+                        "menuName": "诊断方法",
+                        "parentCode" : "",
+                        "level": "2",
+                        "imgUrl": "https://i.loli.net/2019/11/16/rUzXQ7VEOMdH6af.jpg",
+                        "isShow": 1,
+                        "isModify" : 0
+                };
                 var menusWithoutImg = {
                     "menuCode": "002",
                     "menuName": "诊断方法",
@@ -40,7 +40,7 @@ menusRouter.get('/', (req, res)=>{
                     "level": "2",
                     "isShow": 1,
                     "isModify" : 0
-                }
+                };
                 if(result[i].imgUrl === undefined){
                     menusWithoutImg.menuCode = result[i].menu_code;
                     menusWithoutImg.menuName = result[i].menu_name;
@@ -68,7 +68,7 @@ menusRouter.get('/', (req, res)=>{
             menusObject.data.code = 200;
             menusObject.data.menus = menus;
             res.json(menusObject);
-            next();
+            res.end();
         }
     });
 });
