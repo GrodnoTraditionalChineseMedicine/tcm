@@ -3,7 +3,20 @@ const menusManagementRouter = express.Router();
 const menusManagementSql = require('../../dao/mensuManagementsSql');
 const dbTool = require('../../dao/databaseConnection');
 const requestHelper = require('request-promise');
-
+const options = {
+    method: 'GET',
+    url: 'http://localhost:3001/api/learntcm/menus',
+    json: true
+};
+// const optionsOfPost = {
+//   method : 'POST',
+//     url  : 'http://localhost:3001/api/manage/containers/content/delete',
+//     json : true,
+//     headers : {
+//         "content-type": "application/json",
+//     },
+//     body: {"menuCode" : ''}
+// };
 menusManagementRouter.post('/add', (req,res)=>{
     let menu = {
         "menuCode": "002",
@@ -59,11 +72,6 @@ menusManagementRouter.post('/add', (req,res)=>{
                     }
                     else{
                         //make request to getmenus api to get all menus
-                        const options = {
-                            method: 'GET',
-                            uri: 'http://localhost:3001/api/learntcm/menus',
-                            json: true
-                        };
                         requestHelper(options)
                             .then(function (response) {
                                 // Request was successful, use the response object at will
@@ -95,5 +103,100 @@ menusManagementRouter.post('/add', (req,res)=>{
 
 
 });
+menusManagementRouter.post('/delete', (req, res)=>{
+    const code = req.body.menuCode;
+    console.log(req.body);
+    let jsonObject = {
+        "success" : false,
+        "data" : {
+            "code" : 400,
+            "message" : "错误！没有menuCode!!!",
+            "content" : []
+        }
+    };
+    if(code === undefined){
+      res.json(jsonObject);
+      res.end();
+    }
+    else{
+        dbTool.query(menusManagementSql.deleteRecordByMenuCode, ("^" + code), (err)=>{
+            if(err){
+                res.json({
+                    "message" : "database updated failed!!",
+                    "err info" : err.toString()
+                });
+                res.end();
+            }
+            else{
+                jsonObject.success = true;
+                jsonObject.data.code = 200;
+                jsonObject.data.message = "删除成功！！！";
+                requestHelper(options)
+                    .then(function (response) {
+                        // Request was successful, use the response object at will
+                        jsonObject.data.content = response.data.menus;
+                        res.json(jsonObject);
+                        res.end();
+                    })
+                    .catch(function (err) {
+                        // Something bad happened, handle the error
+                    });
+            }
+
+        });
+    }
+});
+menusManagementRouter.post('/show', (req, res)=>{
+    let jsonObject = {
+        "success" : false,
+        "data" :{
+            "code" : 400,
+            "message" : "更改isShow失败！！！",
+            "content" :[],
+        }
+    };
+    const isShow = req.body.isShow;
+    const menuCode = req.body.menuCode;
+    let code = 0;
+    if(isShow === undefined || menuCode === undefined){
+        jsonObject.data.message = "参数不齐全！！！";
+        res.json(jsonObject);
+        res.end();
+    }
+    else{
+        if(isShow === true){
+            code = 1;
+        }
+        dbTool.query(menusManagementSql.updateFiledIsShow, [code,"^" + menuCode], (err)=>{
+           if(err){
+               res.json({
+                   "database update failed!!" : err.toString(),
+               });
+               res.status(400).end();
+           }
+           else{
+               requestHelper(options)
+                   .then(function (response) {
+                       // Request was successful, use the response object at will
+                       if(response.success === true){
+                           jsonObject.success = true;
+                           jsonObject.data = response.data;
+                       }
+                       res.json(jsonObject);
+                       res.end();
+                   })
+                   .catch(function (err) {
+                       // Something bad happened, handle the error
+                       res.json({
+                           "err occured! err info" : err.toString(),
+                       });
+                       res.end();
+                   });
+           }
+        });
+
+    }
+});
+
 
 module.exports = menusManagementRouter;
