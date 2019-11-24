@@ -13,7 +13,13 @@ function treeData(cloneData){
 }
 menusRouter.get('/', (req, res)=>{
     let success,code ;
-    dbTool.query(sqlJson.getAllmenus, (err,result, next)=>{
+    let sql = sqlJson.getAllmenus;
+    // console.log(req.query.all)
+    if(req.query.all === "true"){
+        sql = sqlJson.getAllMenusNoMatterIsShow;
+    }
+    // console.log(sql);
+    dbTool.query(sql, (err,result, next)=>{
         if(err){
             console.log('Database query failed!!!'+ "/n err info:" + err.toString());
             success = false;

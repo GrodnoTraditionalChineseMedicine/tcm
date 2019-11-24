@@ -6,6 +6,11 @@ const requestHelper = require('request-promise');
 const options = {
     method: 'GET',
     url: 'http://localhost:3001/api/learntcm/menus',
+    json: true,
+};
+const optionsForGetAllContents = {
+    method: 'GET',
+    url: 'http://localhost:3001/api/learntcm/menus?all=true',
     json: true
 };
 // const optionsOfPost = {
@@ -196,6 +201,90 @@ menusManagementRouter.post('/show', (req, res)=>{
         });
 
     }
+});
+menusManagementRouter.get('/', (req, res)=>{
+    let jsonObject = {
+      "success" : false,
+        "data" : {
+          "code" : 400,
+          "content" : [],
+        }
+    };
+    requestHelper(optionsForGetAllContents)
+        .then(function (response) {
+            // Request was successful, use the response object at will
+            if(response.success === true){
+                jsonObject.success = true;
+                jsonObject.data.content = response.data.menus;
+                jsonObject.data.code = 200;
+            }
+            res.json(jsonObject);
+            res.end();
+        })
+        .catch(function (err) {
+            // Something bad happened, handle the error
+            res.json({
+                "err occured! err info" : err.toString(),
+            });
+            res.end();
+        });
+
+});
+menusManagementRouter.post('/update', (req, res)=>{
+    let jsonObject = {
+            "menuCode": "002",
+            "menuName": "诊断方法",
+            "parentCode" : "",
+            "level": "2",
+            "imgUrl": "https://i.loli.net/2019/11/16/rUzXQ7VEOMdH6af.jpg",
+            "isShow": 1,
+            "isModify" : 0
+    };
+    let resObject = {
+        "success" : false,
+        "data" : {
+            "code" : 400,
+            "message" : "",
+            "content" : [],
+        },
+    };
+    if(req.body.menuCode === undefined){
+        resObject.data.message = "request 中没有menusCode参数！！，非法参数！！"
+        res.json(resObject);
+        res.end();
+    }
+    jsonObject.menuName = (req.body.menuName !== undefined) ? req.body.menuName : null;
+    jsonObject.level = (req.body.level !== undefined) ? req.body.level : null;
+    jsonObject.imgUrl = (req.body.imgUrl !== undefined) ? req.body.imgUrl : null;
+    jsonObject.isShow = (req.body.isShow !== undefined) ? req.body.isShow : null;
+    jsonObject.isModify = (req.body.isModify !== undefined) ? req.body.isModify : null;
+    jsonObject.menuCode = (req.body.menuCode !== undefined) ? req.body.menuCode : null;
+
+    dbTool.query(menusManagementSql.update, [jsonObject.menuName, jsonObject.level, jsonObject.imgUrl, jsonObject.isShow, jsonObject.isModify, jsonObject.menuCode], (err, result)=>{
+        if(err){
+            res.json({"database update failed!!! err info:" : err.toString()});
+            res.status(400).end();
+        }
+        requestHelper(options)
+            .then(function (response) {
+                // Request was successful, use the response object at will
+                if(response.success === true){
+                    resObject.success = true;
+                    resObject.data.code = 200;
+                    resObject.data.message = "修改成功！！！";
+                    resObject.data.content = response.data.menus;
+                }
+                res.json(resObject);
+                res.end();
+            })
+            .catch(function (err) {
+                // Something bad happened, handle the error
+                res.json({
+                    "err occured! err info" : err.toString(),
+                });
+                res.end();
+            });
+    });
 });
 
 
