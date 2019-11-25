@@ -1,5 +1,4 @@
 import {actionTypes} from "./index";
-import { message } from 'antd';
 import axios from "axios";
 
 export const changeCurrent = (article, menu) => ({

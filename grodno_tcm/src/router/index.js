@@ -1,6 +1,6 @@
 import Login from "../manage/login";
 import Index from "../manage/index";
-import ManageHome from "../manage/managehome";
+
 import React from 'react';
 import { RenderRoutes } from '../router/utils';
 
@@ -10,6 +10,8 @@ import StaffManage from "../manage/containers/staff";
 import ContentManage from "../manage/containers/content";
 import LearnTCM from "../manage/containers/learn";
 import ArticleManage from "../manage/containers/article";
+import ArticleAdd from "../manage/containers/addArticle";
+import ArticleUpdate from "../manage/containers/updateArticle";
 import PediatricMassageManagement from "../manage/containers/pediatric";
 import RoleManagement from "../manage/containers/role";
 
@@ -20,9 +22,6 @@ const Ui = ({routes}) => (<div>
 </div>);
 const Button = () => <h3>Button</h3>;
 const Icon = () => <h3>Icon</h3>;
-const Animation = () => <h3>Animation</h3>;
-const From = () => <h3>From</h3>;
-
 export const menus = [    // 菜单相关路由
     { path: '/manage/index/carousel', name: '轮播图管理', icon: 'file-image', component: CarouselManage },
     { path: '/manage/index/staff', name: '职工管理', icon: 'idcard', component: StaffManage },
@@ -45,7 +44,8 @@ export const main = [
     { path: '/manage/login', exact: true, name: '登录', component: Login, meta: {
             isAuth: true
         }},
-    { path: '/manage/manageHome', exact: true, name: "测试页", component: ManageHome},
+    { path: '/manage/article/add', exact: true, name: "新增文章", component: ArticleAdd},
+    { path: '/manage/article/update/:id', exact: true, name: "修改文章", component: ArticleUpdate},
     { path: '/manage', exact: true,  name: '首页', Redirect: '/manage/index'},
     { path: '/manage/index', name: '首页', component: Index, routes: menus}
 ];

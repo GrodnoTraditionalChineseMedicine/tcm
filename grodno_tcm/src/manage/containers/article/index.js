@@ -110,7 +110,7 @@ class ArticleManage extends Component {
             {
                 title: '标题',
                 dataIndex: 'articleTitle',
-                width: '40%',
+                width: '35%',
                 ...this.getColumnSearchProps('articleTitle'),
                 render: (text,record) =>
                     <span>
@@ -135,19 +135,21 @@ class ArticleManage extends Component {
                 dataIndex: 'operation',
                 render: (text, record) =>
                     this.props.content.length >= 1 ? (
-                        <span>
-                    <Popconfirm title="确认隐藏吗?隐藏后该文章将在前台隐藏！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
-                        <a disabled={record.isShow !== 1}>隐藏</a>
-                    </Popconfirm>
-                    <Divider type="vertical" />
-                    <Popconfirm title="确认显示吗?显示后该文章将在前台展示！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
-                        <a disabled={record.isShow === 1}>显示</a>
-                    </Popconfirm>
-                    <Divider type="vertical" />
-                    <Popconfirm title="确认删除吗?删除会导致该文章不会显示！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.articleId)}>
-                        <a>删除</a>
-                    </Popconfirm>
-                </span>
+                    <span>
+                        <Popconfirm title="确认隐藏吗?隐藏后该文章将在前台隐藏！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
+                            <a disabled={record.isShow !== 1}>隐藏</a>
+                        </Popconfirm>
+                        <Divider type="vertical" />
+                        <Popconfirm title="确认显示吗?显示后该文章将在前台展示！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
+                            <a disabled={record.isShow === 1}>显示</a>
+                        </Popconfirm>
+                        <Divider type="vertical" />
+                        <Popconfirm title="确认删除吗?删除会导致该文章不会显示！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.articleId)}>
+                            <a>删除</a>
+                        </Popconfirm>
+                        <Divider type="vertical" />
+                        <Link to={`/manage/article/update/${record.articleId}`} target="_blank"><Icon type="edit" /></Link>
+                    </span>
                     ) : null,
             }
         ];
@@ -157,7 +159,7 @@ class ArticleManage extends Component {
                     <strong>提示：</strong>默认显示所有文章，点击左侧菜单，右侧文章列表发生改变。
                 </ArticleHelpInfo>
                 <SiderMenu>
-                    <Button className="add-button" type="primary">新增文章</Button>
+                    <Link to="/manage/article/add" target="_blank"><Button className="add-button" type="primary">新增文章</Button></Link>
                     {
                         !isEmpty ?
                             <Menu
