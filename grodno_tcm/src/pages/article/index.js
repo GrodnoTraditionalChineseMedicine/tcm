@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import BraftEditor from "braft-editor";
 import 'braft-editor/dist/output.css'
-import {ArticleDetailWrapper,DetailInfo,TitleLine} from "./style";
+import {ArticleDetailWrapper,DetailInfo,TitleLine,HeaderInfo} from "./style";
 
 class ArticleDetail extends Component {
     componentDidMount() {
@@ -13,7 +13,7 @@ class ArticleDetail extends Component {
         getContent(id);
     }
     render() {
-        const { article } = this.props;
+        const { article, menu } = this.props;
         let isNull = article === null;
         let articleImg;
         let editorState;
@@ -34,6 +34,10 @@ class ArticleDetail extends Component {
                                 {articleImg}
                                 <header>
                                     <h1>{article.articleTitle}<TitleLine/></h1>
+                                    <HeaderInfo>
+                                        <span className="menu-name">{menu.menuName}</span>
+                                        <span className="time">{article.publishedTime}</span>
+                                    </HeaderInfo>
                                 </header>
                                 <div className="braft-output-content" dangerouslySetInnerHTML={{__html: editorState}}/>
                             </DetailInfo>

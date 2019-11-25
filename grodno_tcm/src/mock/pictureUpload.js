@@ -7,7 +7,7 @@ export default Mock.mock('/api/upload/picture','post',function(option){
         message: "上传成功!",
         data: {
             name: "ACyIbrQNcJwxGM7.jpg",
-            url: "https://i.loli.net/2019/11/17/ACyIbrQNcJwxGM7.jpg"
+            url: "https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg"
         }
     })
     //上传失败

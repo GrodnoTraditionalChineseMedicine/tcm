@@ -18,6 +18,8 @@ import * as addContent from "./content/addContent";
 import * as getAllArticles from "./article/getAllArticles";
 import * as getArticleByCode from "./article/getArticlesByCode";
 import * as getArticleById from "./article/getArticleById";
+import * as addArticle from "./article/addArticle";
+import * as updateArticle from "./article/updateArticle";
 
 export {
     data,
@@ -39,5 +41,7 @@ export {
     addContent,
     getAllArticles,
     getArticleByCode,
-    getArticleById
+    getArticleById,
+    addArticle,
+    updateArticle
 };
