@@ -27,19 +27,9 @@ export const getArticlesByCode = (menuCode) => {
     }
 };
 
-export const changeIsShow = (key, isShow) => {
+export const changeIsShow = (id, isShow) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/articles/code", {key, isShow})
-            .then((res)=>{
-                const result = res.data.data;
-                dispatch(changeArticles(result.articles));
-            })
-    }
-};
-
-export const deleteRole = (id) => {
-    return (dispatch) => {
-        axios.post("/api/manage/containers/role/delete", id)
+        axios.post("/api/manage/containers/articles/show", {id, isShow})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeArticles(result.articles));
@@ -48,20 +38,9 @@ export const deleteRole = (id) => {
     }
 };
 
-export const updateRole = (role) => {
+export const deleteArticle = (articleId) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/update", role)
-            .then((res)=>{
-                const result = res.data.data;
-                dispatch(changeArticles(result.articles));
-                message.info(result.message);
-            })
-    }
-};
-
-export const addRole = (role) => {
-    return (dispatch) => {
-        axios.post("/api/manage/containers/role/add", role)
+        axios.post("/api/manage/containers/articles/delete", {articleId})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeArticles(result.articles));

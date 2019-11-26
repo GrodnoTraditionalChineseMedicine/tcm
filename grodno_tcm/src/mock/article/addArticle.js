@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/article/add','post',function(option){
+export default Mock.mock('/api/manage/containers/articles/add','post',function(option){
     console.log("mock article add",option.body);//可以删掉
     const postValue = {
         "title":"这里有点小问题",

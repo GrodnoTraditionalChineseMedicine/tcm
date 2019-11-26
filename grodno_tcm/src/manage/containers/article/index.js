@@ -87,7 +87,12 @@ class ArticleManage extends Component {
     }
 
     handleChangeShow = (articleId, isShow) => {
-        console.log(articleId, isShow);
+        const {changeShowState} = this.props;
+        changeShowState(articleId, !isShow);
+    };
+
+    handleDelete = (articleId) => {
+        this.props.deleteArticle(articleId);
     };
 
     renderMenu = (data) => {
@@ -201,23 +206,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleClick(e){
             dispatch(actionCreators.getArticlesByCode(e.key));
-            console.log(e.key)
         },
-        changeShowState(key, isShow){
-            dispatch(actionCreators.changeIsShow(key, isShow));
+        changeShowState(id, isShow){
+            dispatch(actionCreators.changeIsShow(id, isShow));
+        },
+        deleteArticle(articleId){
+            dispatch(actionCreators.deleteArticle(articleId));
         }
-        /*getAllRoles(){
-            dispatch(actionCreators.getAllRoles())
-        },
-        updateRole(role){
-            dispatch(actionCreators.updateRole(role))
-        },
-        deleteRole(id){
-            dispatch(actionCreators.deleteRole(id))
-        },
-        addRole(role){
-            dispatch(actionCreators.addRole(role))
-        }*/
     }
 };
 

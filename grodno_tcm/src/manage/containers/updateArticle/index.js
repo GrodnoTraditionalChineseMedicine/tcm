@@ -45,12 +45,12 @@ class AddArticle extends React.Component {
     }
 
     handleSubmit = (event) => {
-        const { imageUrl, updateArticle } = this.props;
+        const { imageUrl, updateArticle, article } = this.props;
         event.preventDefault();
         this.props.form.validateFields((error, values) => {
             if (!error) {
-                const { createArticle } = this.props;
                 const submitData = {
+                    articleId: article.articleId,
                     title: values.title,
                     raw: values.content.toRAW(), // or values.content.toHTML()
                     url: imageUrl,
