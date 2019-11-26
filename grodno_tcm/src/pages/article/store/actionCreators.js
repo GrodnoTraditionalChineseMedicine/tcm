@@ -7,9 +7,9 @@ export const changeCurrent = (article, menu) => ({
     menu: menu
 });
 
-export const getArticleById = (id) => {
+export const getArticleById = (articleId) => {
     return (dispatch) => {
-        axios.post("/api/article/get-article", id)
+        axios.post("/api/manage/containers/articles/id", articleId)
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeCurrent(result.article, result.menu));

@@ -17,10 +17,10 @@ function loadingPosts() {
     return { type: "LOADING_POSTS" }
 }
 
-export const fetchPosts = (id) => {
+export const fetchPosts = (articleId) => {
     return (dispatch) => {
         dispatch(loadingPosts());
-        axios.post("/api/article/get-article", id)
+        axios.post("/api/manage/containers/articles/id", {articleId})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeCurrent(result.article, result.menu));
@@ -31,7 +31,7 @@ export const fetchPosts = (id) => {
 
 export const updateArticle = (data, props) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/article/update", data)
+        axios.post("/api/manage/containers/articles/update", data)
             .then((res)=>{
                 const result = res.data.data;
                 message.info(result.message);

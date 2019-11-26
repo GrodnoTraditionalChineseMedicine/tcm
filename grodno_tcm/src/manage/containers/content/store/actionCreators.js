@@ -12,7 +12,6 @@ export const getContent = () => {
         axios.get("/api/manage/containers/content")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("article res", res.data.data);*/
                 dispatch(changeContent(result.content))
             })
     }
