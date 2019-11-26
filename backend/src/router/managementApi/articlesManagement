@@ -1,0 +1,118 @@
+const express = require('express');
+const articleManagementRouter = express.Router();
+const sql = require('../../dao/articleManagementSql');
+const requestHelper = require('request-promise');
+const dbTool = require('../../dao/databaseConnection');
+const resObject = {
+  "success" : false,
+  "data" : {
+      "code" : 400,
+      "message" : "",
+      "articles" : []
+  }
+};
+const options = {
+    method: 'GET',
+    url: 'http://localhost:3001/api/manage/containers/articles',
+    json: true,
+};
+articleManagementRouter.get('/', (req, res)=>{
+    dbTool.query(sql.getAllRecordsWithoutSomeFields, (err, result )=>{
+        if(err){
+            resObject.data.message = err.toString();
+            res.json(resObject);
+            res.status(400).end();
+        }
+        else{
+            let articles = [];
+            for(let i = 0; i < result.length; i++){
+                var object = {
+                    "articleId" : "",
+                    "articleTitle" : "",
+                    "publishedTime" : "",
+                    "isShow" : ""
+                };
+                object.articleId = result[i].article_id;
+                object.articleTitle = result[i].article_title;
+                const published_date = new Date(result[i].published_time.toString());
+                object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                object.isShow = result[i].is_show;
+                articles.push(object);
+            }
+            resObject.success = true;
+            resObject.data.code = 200;
+            resObject.data.message = "Successfully get all records!!";
+            resObject.data.articles = articles;
+            res.json(resObject);
+            res.end();
+        }
+    });
+});
+articleManagementRouter.post('/add', (req, res)=>{
+    let articleObject = {
+        "articleId" : "",
+        "articleTitle" : "",
+        "articleRaw" : "",
+        "publishedTime" : "",
+        "isShow" : "",
+        "imgUrl" : "",
+        "menuCode" : ""
+    };
+    if(req.body.title !== undefined && req.body.raw !== undefined && req.body.menuCode !== undefined){
+        articleObject.articleTitle = req.body.title;
+        articleObject.articleRaw = req.body.raw;
+        if(req.body.url === undefined){
+            articleObject.imgUrl = null;
+        }
+        articleObject.imgUrl = req.body.url;
+        articleObject.menuCode = req.body.menuCode;
+        articleObject.isShow = 1;
+        articleObject.publishedTime = new Date();
+        dbTool.query(sql.insertRecord, [articleObject.articleTitle, articleObject.articleRaw, articleObject.publishedTime, articleObject.isShow, articleObject.imgUrl],(err)=>{
+            if(err){
+                resObject.data.message = "Failed when insert record into article table!! err info:" + err.toString();
+                res.json(resObject);
+                res.status(400).end();
+            }
+            else{
+                dbTool.query(sql.getMaxArticleId, (err, result)=>{
+                   if(err){
+                       resObject.data.message = "Failed when get maximum article id from article table, err info:" + err.toString();
+                       res.json(resObject);
+                       res.status(400).end();
+                   }
+                   else{
+                       articleObject.articleId = result[0].article_id;
+                       if(articleObject.articleId !== undefined){
+                           dbTool.query(sql.insertRelationTableRecord, [articleObject.menuCode, articleObject.articleId], (err, result)=>{
+                              if(err){
+                                  resObject.data.message = "Failed when insert record into rel_article_menu table, err info:" + err.toString();
+                                  res.json(resObject);
+                                  res.status(400).end();
+                              }
+                              else{
+                                    requestHelper(options).then(function (response) {
+                                        resObject.success = true;
+                                        resObject.data.code = 200;
+                                        resObject.data.message = "Insert records into article table and rel_article_menu table succeed!!";
+                                        resObject.data.articles = response.data.articles;
+                                        res.json(resObject);
+                                        res.status(200).end();
+                                    }
+                                    ).catch(function (err) {
+                                        resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
+                                        res.json(resObject);
+                                        res.status(400).end();
+                                    });
+                              }
+                           });
+                       }
+                   }
+                });
+            }
+        })
+    }
+});
+articleManagementRouter.post('/');
+
+module.exports = articleManagementRouter;

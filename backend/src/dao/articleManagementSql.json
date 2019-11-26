@@ -1,0 +1,11 @@
+{
+  "insertRecord" : "INSERT INTO sys_article(article_title, article_raw, published_time, is_show, imgUrl) VALUES(?, ?, ?, ?, ?);",
+  "insertRelationTableRecord" : "INSERT INTO rel_menu_article(menu_code, article_id) VALUES(?, ?);",
+  "getMaxArticleId" : "SELECT * FROM sys_article;",
+  "deleteRecord" : "DELETE FROM sys_article WHERE article_id = ?;",
+  "updateRecord" : "UPDATE sys_article \nSET article_title = ?, article_raw = ?, published_time = ?, imgUrl =?\nWHERE article_id = ?;",
+  "updateRelationTableMenuCode" : "UPDATE rel_menu_article \nSET menu_code = ?\nWHERE article_id =?;\n",
+  "getAllRecord" : "SELECT * FROM sys_article;",
+  "getAllRecordsWithoutSomeFields": "SELECT sys_article.article_id, sys_article.article_title, sys_article.published_time, sys_article.is_show FROM sys_article;",
+  "deleteRelationTableRecord" : "DELETE FROM rel_menu_article WHERE article_id = ?;"
+}

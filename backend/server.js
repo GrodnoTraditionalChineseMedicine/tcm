@@ -14,6 +14,7 @@ const learntcmRouter = require('./src/router/learntcmApi');
 const pediatricCourseRouter = require('./src/router/pediatricCourse');
 const menusManagementRouter = require('./src/router/managementApi/menusManagement');
 const roleManagementRouter = require('./src/router/managementApi/roleManagement');
+const articlesManagementRouter = require('./src/router/managementApi/articlesManagement');
 
 //third-party middleware using
 app.use(express.json());
@@ -31,6 +32,7 @@ app.use('/api/pediatric', pediatricCourseRouter);
 app.use('/api/manage',adminRouter);
 app.use('/api/manage/containers/content', menusManagementRouter);
 app.use('/api/manage/containers/roles', roleManagementRouter);
+app.use('/api/manage/containers/articles', articlesManagementRouter);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 
