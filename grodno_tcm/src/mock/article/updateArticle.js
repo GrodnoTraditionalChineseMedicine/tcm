@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/article/update','post',function(option){
+export default Mock.mock('/api/manage/containers/articles/update','post',function(option){
     console.log("mock article update",option.body);//可以删掉
     const postValue = {
         "articleId" : 7,
