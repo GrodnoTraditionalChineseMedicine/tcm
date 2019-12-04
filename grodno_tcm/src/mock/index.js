@@ -23,6 +23,9 @@ import * as addArticle from "./article/addArticle";
 import * as updateArticle from "./article/updateArticle";
 import * as deleteArticle from "./article/deleteArticle";
 import * as getAllCarousels from "./carousel/getAllCarousels";
+import * as addCarousel from "./carousel/addCarousel";
+import * as deleteCarousel from "./carousel/deleteCarousel";
+import * as updateCarousel from "./carousel/updateCarousel";
 
 export {
     data,
@@ -53,5 +56,8 @@ export {
     updateArticle,
     deleteArticle,
 
-    getAllCarousels
+    getAllCarousels,
+    addCarousel,
+    deleteCarousel,
+    updateCarousel
 };

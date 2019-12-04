@@ -45,17 +45,17 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
                                 getValueFromEvent: this.normFile,
                                 rules: [{required: true, message: '请上传轮播图!'}]
                             })(
-                                <Upload name="logo" action="/upload.do" listType="picture">
+                                <Upload name="logo" action="/api/upload/picture" listType="picture">
                                     <Button>
                                         <Icon type="上传" /> Click to upload
                                     </Button>
                                 </Upload>,
                             )}
                         </Form.Item>
-                        <Form.Item label="顺序" extra="数字越小展示的优先级越高">
-                            {getFieldDecorator('name', {
-                                rules: [{ required: true, message: '请输入角色名!' }],
-                            })(<Input />)}
+                        <Form.Item label="顺序" extra="数字越小展示的优先级越高(0-99)">
+                            {getFieldDecorator('order', {
+                                rules: [{ required: true, message: '请准确输入顺序!',pattern: new RegExp(/^[1-9]\d*$/, "g")}],
+                            })(<Input maxLength={2} />)}
                         </Form.Item>
                     </Form>
                 </Modal>
@@ -144,7 +144,7 @@ function countDown(filePath) {
         icon: null,
         width: 700,
         centered: true,
-        content: <ImageDetail><img src={filePath} alt/></ImageDetail>,
+        content: <ImageDetail><img src={filePath} alt="imageDetail"/></ImageDetail>,
         cancelText: "好的"
     });
 }
@@ -191,11 +191,11 @@ class CarouselManage extends Component {
 
 
     handleDelete = id => {
-        console.log(id)
+        this.props.deleteCarousel(id);
     };
 
     handleSave = row => {
-        console.log(row);
+        this.props.updateCarousel(row);
     };
 
     /* 新增函数 */
@@ -209,16 +209,23 @@ class CarouselManage extends Component {
 
     handleCreate = () => {
         const { form } = this.formRef.props;
-        const { addRole } = this.props;
         form.validateFields((err, values) => {
             if (err) {
                 return;
             }
-            /*const role = {
-                roleName: values.name
+            let url = null;
+            if((typeof values.upload[0].response) === "undefined"){
+                url = values.upload[0].url;
+            } else {
+                url = values.upload[0].response.data.url;
+            }
+            const value = {
+                fileType: 1,
+                filePath: url,
+                order: values.order
             };
-            addRole(role);*/
-            console.log(values);
+            this.props.addCarousel(value);
+            console.log("values",value);
             form.resetFields();
             this.setState({ visible: false });
         });
@@ -289,17 +296,16 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllCarousels(){
             dispatch(actionCreators.getAllCarousels())
-        }/*,
-        updateRole(role){
-            delete role.key;
-            dispatch(actionCreators.updateRole(role))
         },
-        deleteRole(id){
-            dispatch(actionCreators.deleteRole(id))
+        addCarousel(carousel){
+            dispatch(actionCreators.addCarousel(carousel))
         },
-        addRole(role){
-            dispatch(actionCreators.addRole(role))
-        }*/
+        updateCarousel(carousel){
+            dispatch(actionCreators.updateCarousel(carousel))
+        },
+        deleteCarousel(id){
+            dispatch(actionCreators.deleteCarousel(id));
+        }
     }
 };
 
