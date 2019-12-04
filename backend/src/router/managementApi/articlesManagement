@@ -16,6 +16,11 @@ const options = {
     url: 'http://localhost:3001/api/manage/containers/articles',
     json: true,
 };
+function parametersInvalid(res){
+    resObject.data.message = "Parameters are not valid!!1";
+    res.json(resObject);
+    res.status(400).end();
+}
 articleManagementRouter.get('/', (req, res)=>{
     dbTool.query(sql.getAllRecordsWithoutSomeFields, (err, result )=>{
         if(err){
@@ -112,7 +117,138 @@ articleManagementRouter.post('/add', (req, res)=>{
             }
         })
     }
+    else{
+        parametersInvalid(res);
+    }
 });
-articleManagementRouter.post('/');
+articleManagementRouter.post('/update', (req, res)=>{
+    let articleObject = {
+        "articleId" : "",
+        "articleTitle" : "",
+        "articleRaw" : "",
+        "publishedTime" : "",
+        "isShow" : "",
+        "imgUrl" : "",
+        "menuCode" : ""
+    };
+    if(req.body.title !== undefined && req.body.raw !== undefined && req.body.menuCode !== undefined && req.body.articleId !== undefined){
+        articleObject.articleTitle = req.body.title;
+        articleObject.articleRaw = req.body.raw;
+        articleObject.articleId = req.body.articleId;
+        if(req.body.url === undefined){
+            articleObject.imgUrl = null;
+        }
+        articleObject.imgUrl = req.body.url;
+        articleObject.menuCode = req.body.menuCode;
+        articleObject.publishedTime = new Date();
+        dbTool.query(sql.updateRecord, [articleObject.articleTitle, articleObject.articleRaw, articleObject.publishedTime, articleObject.imgUrl, articleObject.articleId],(err)=>{
+            if(err){
+                resObject.data.message = "Failed when update record within  article table!! err info:" + err.toString();
+                res.json(resObject);
+                res.status(400).end();
+            }
+            else{
+                if(articleObject.articleId !== undefined){
+                    dbTool.query(sql.updateRelationTableMenuCode, [articleObject.menuCode, articleObject.articleId], (err, result)=>{
+                        if(err){
+                            resObject.data.message = "Failed when update record within the rel_article_menu table, err info:" + err.toString();
+                            res.json(resObject);
+                            res.status(400).end();
+                        }
+                        else{
+                            requestHelper(options).then(function (response) {
+                                    resObject.success = true;
+                                    resObject.data.code = 200;
+                                    resObject.data.message = "Update records into article table and rel_article_menu table succeed!!";
+                                    resObject.data.articles = response.data.articles;
+                                    res.json(resObject);
+                                    res.status(200).end();
+                                }
+                            ).catch(function (err) {
+                                resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
+                                res.json(resObject);
+                                res.status(400).end();
+                            });
+                        }
+                    });
+                }
+            }
+        })
+    }
+    else{
+        parametersInvalid(res);
+    }
+});
+articleManagementRouter.post('/delete', (req, res)=>{
+    const articleId = req.body.articleId;
+    if(articleId !== undefined){
+        dbTool.query(sql.deleteRecord, articleId, (err)=>{
+           if(err){
+               resObject.data.message = "Failed when delete record from article table!! err info:" + err.toString();
+               res.json(resObject);
+               res.status(400).end();
+           }
+           else{
+               dbTool.query(sql.deleteRelationTableRecord, articleId, (err)=>{
+                   if(err){
+                       resObject.data.message = "Failed when delete record from article table!! err info:" + err.toString();
+                       res.json(resObject);
+                       res.status(400).end();
+                   }
+                   else{
+                       requestHelper(options).then(function (response) {
+                               resObject.success = true;
+                               resObject.data.code = 200;
+                               resObject.data.message = "Delete a record from article table and rel_article_menu table succeed!!";
+                               resObject.data.articles = response.data.articles;
+                               res.json(resObject);
+                               res.status(200).end();
+                           }
+                       ).catch(function (err) {
+                           resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
+                           res.json(resObject);
+                           res.status(400).end();
+                       });
+                   }
+               });
+           }
+        });
+    }
+    else{
+        parametersInvalid(res);
+    }
+});
+articleManagementRouter.post('/show', (req, res)=>{
+   const articleId = req.body.id;
+   const isShow = req.body.isShow === false ? 0 : 1;
+   console.log(articleId + "" + isShow);
+   if(articleId !== undefined && isShow !== undefined){
+       dbTool.query(sql.updateIsShowAttribute, [isShow, articleId], (err)=>{
+           if(err){
+               resObject.data.message = "Failed when update record into article table!! err info:" + err.toString();
+               res.json(resObject);
+               res.status(400).end();
+           }
+           else{
+               requestHelper(options).then(function (response) {
+                       resObject.success = true;
+                       resObject.data.code = 200;
+                       resObject.data.message = "Update a record into article table succeed!!";
+                       resObject.data.articles = response.data.articles;
+                       res.json(resObject);
+                       res.status(200).end();
+                   }
+               ).catch(function (err) {
+                   resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
+                   res.json(resObject);
+                   res.status(400).end();
+               });
+           }
+       });
+   }
+   else{
+       parametersInvalid(res);
+   }
+});
 
 module.exports = articleManagementRouter;
