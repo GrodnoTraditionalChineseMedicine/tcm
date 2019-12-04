@@ -85,7 +85,9 @@ class EditableCell extends React.Component {
                 return;
             }
             this.toggleEdit();
-            handleSave({ ...record, ...values });
+            if(record.order !== parseInt(values.order)) {
+                handleSave({...record, ...values});
+            }
         });
     };
 
@@ -99,11 +101,12 @@ class EditableCell extends React.Component {
                     rules: [
                         {
                             required: true,
-                            message: `${title} 必须填写。`,
+                            message: `${title} 必须填写且为1-99。`,
+                            pattern: new RegExp(/^[1-9]\d*$/, "g")
                         },
                     ],
                     initialValue: record[dataIndex],
-                })(<Input ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
+                })(<Input ref={node => (this.input = node)} maxLength={2} onPressEnter={this.save} onBlur={this.save} />)}
             </Form.Item>
         ) : (
             <div
