@@ -22,7 +22,14 @@ function parametersInvalid(res){
     res.status(400).end();
 }
 articleManagementRouter.get('/', (req, res)=>{
-    dbTool.query(sql.getAllRecordsWithoutSomeFields, (err, result )=>{
+    const code = req.query.code;
+    let getArtcilesSql = sql.getAllRecordsWithoutSomeFields;
+    let paramenters = '';
+    if(code !== undefined){
+      getArtcilesSql  = sql.getArticleByMenuCode;
+      paramenters = '^' + code;
+    }
+    dbTool.query(getArtcilesSql, paramenters, (err, result )=>{
         if(err){
             resObject.data.message = err.toString();
             res.json(resObject);
@@ -249,6 +256,72 @@ articleManagementRouter.post('/show', (req, res)=>{
    else{
        parametersInvalid(res);
    }
+});
+articleManagementRouter.post('/id', (req, res)=>{
+    const resObeject = {
+      "success" : false,
+      "data" :{
+          "code" : 400,
+          "article" : {
+              "articleId" : -1,
+              "articleTitle" : null,
+              "articleImg" : null,
+              "articleRow" : null,
+              "publishedTime" : null,
+              "isShow" : null
+          },
+          "menu" :{
+              "menuCode" : -1,
+              "menuName" : null,
+              "parentCode" : null,
+              "level" : null,
+              "isShow" : null,
+              "isModify" : null
+          }
+      }
+    };
+    const articleId = req.body.articleId;
+    if(articleId !== undefined){
+        dbTool.query(sql.getArticleById, articleId, (err, reslut)=>{
+            if(err){
+                resObject.data.message = "Failed when get records from article table!! err info:" + err.toString();
+                res.json(resObject);
+                res.status(400).end();
+            }
+            else{
+                resObeject.data.article.articleId = articleId;
+                resObeject.data.article.articleTitle = reslut[0].article_title;
+                resObeject.data.article.articleImg = reslut[0].imgUrl;
+                resObeject.data.article.articleRow = reslut[0].article_raw;
+                const published_date = new Date(reslut[0].published_time.toString());
+                resObeject.data.article.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                resObeject.data.article.isShow = reslut[0].is_show;
+
+                dbTool.query(sql.getMenuInfo, articleId, (err, result)=>{
+                    if(err || result.length == 0){
+                        resObject.data.message = "Failed when get record from menu table!! err info:" ;
+                        res.json(resObject);
+                        res.status(400).end();
+                    }
+                    else{
+                        resObeject.data.menu.menuName = result[0].menu_name;
+                        resObeject.data.menu.menuCode = result[0].menu_code;
+                        resObeject.data.menu.parentCode = result[0].parent_code;
+                        resObeject.data.menu.level = result[0].level;
+                        resObeject.data.menu.isShow = result[0].is_show;
+                        resObeject.data.menu.isModify = result[0].is_modify;
+                        resObeject.data.code = 200;
+                        resObeject.success = true;
+                        res.json(resObeject);
+                        res.status(200).end();
+                    }
+                });
+            }
+        });
+    }
+    else{
+        parametersInvalid(res);
+    }
 });
 
 module.exports = articleManagementRouter;
