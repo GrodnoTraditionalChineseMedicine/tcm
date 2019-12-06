@@ -32,7 +32,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
             return (
                 <Modal
                     visible={visible}
-                    title="新增角色"
+                    title="新增轮播图"
                     okText="保存"
                     cancelText="取消"
                     onCancel={onCancel}

@@ -35,7 +35,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
             return (
                 <Modal
                     visible={visible}
-                    title="新增角色"
+                    title="新增目录"
                     okText="保存"
                     onCancel={onCancel}
                     onOk={onCreate}
@@ -97,7 +97,6 @@ const TitlePicCreateForm = Form.create({ name: 'form_in_pic_modal' })(
                         }
                     ];
                 }
-
             }
             return (
                 <Modal

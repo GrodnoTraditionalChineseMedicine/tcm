@@ -164,7 +164,7 @@ class ArticleManage extends Component {
                     <strong>提示：</strong>默认显示所有文章，点击左侧菜单，右侧文章列表发生改变。
                 </ArticleHelpInfo>
                 <SiderMenu>
-                    <Link to="/manage/article/add" target="_blank"><Button className="add-button" type="primary">新增文章</Button></Link>
+                    <Link to="/manage/article/add" target="_blank"><Button className="add-button" type="primary">写文章</Button></Link>
                     {
                         !isEmpty ?
                             <Menu

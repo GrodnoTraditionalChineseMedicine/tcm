@@ -7,15 +7,22 @@ import Home from "../pages/home";
 import HospitalIntro from "../pages/hosintro";
 import CenterIntro from "../pages/cenintro";
 import LearnTcm from "../pages/learntcm";
-import RichEditor from "../manage/containers/addArticle";
 import Pediatric from "../pages/pediatric";
 import ContactUs from "../pages/contact";
 import PrivacyPolicy from "../pages/privicy";
 import ArticleDetail from "../pages/article";
 
+import zhCN from 'antd/es/locale/zh_CN';
+import 'moment/locale/zh-cn';
+
+import moment from "moment";
+import {ConfigProvider} from "antd";
+
+moment.locale('cn');
+
 function PublicLayout(props) {
     return (
-        <div>
+        <ConfigProvider locale={zhCN}>
             <Header/>
             <Switch>
                 <Route path="/" exact component={Home}/>
@@ -28,7 +35,7 @@ function PublicLayout(props) {
                 <Route path="/article/detail/:id" exact component={ArticleDetail}/>
             </Switch>
             <Footer/>
-        </div>
+        </ConfigProvider>
     );
 }
 

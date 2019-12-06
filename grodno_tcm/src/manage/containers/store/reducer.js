@@ -4,6 +4,7 @@ import { reducer as contentReducer } from "../content/store";
 import { reducer as articleReducer } from "../article/store";
 import { reducer as updateArticleReducer } from "../updateArticle/store";
 import { reducer as carouselReducer } from "../carousel/store";
+import { reducer as staffReducer } from "../staff/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -14,7 +15,8 @@ const reducer = combineReducers({
     content: contentReducer,
     article: articleReducer,
     updateArticle: updateArticleReducer,
-    carousel: carouselReducer
+    carousel: carouselReducer,
+    staff: staffReducer
 });
 
 export default reducer;

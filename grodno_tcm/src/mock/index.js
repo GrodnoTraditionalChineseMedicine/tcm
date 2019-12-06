@@ -26,6 +26,10 @@ import * as getAllCarousels from "./carousel/getAllCarousels";
 import * as addCarousel from "./carousel/addCarousel";
 import * as deleteCarousel from "./carousel/deleteCarousel";
 import * as updateCarousel from "./carousel/updateCarousel";
+import * as getAllStaffs from "./staff/getAllStaffs";
+import * as addStaff from "./staff/addStaff";
+import * as deleteStaff from "./staff/deleteStaff";
+import * as updateStaff from "./staff/updateStaff";
 
 export {
     data,
@@ -59,5 +63,10 @@ export {
     getAllCarousels,
     addCarousel,
     deleteCarousel,
-    updateCarousel
+    updateCarousel,
+
+    getAllStaffs,
+    addStaff,
+    deleteStaff,
+    updateStaff
 };
