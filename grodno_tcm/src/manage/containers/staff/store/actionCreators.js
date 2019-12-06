@@ -60,7 +60,7 @@ export const deleteStaff = (employeeId) => {
 
 export const updateStaff = (staff) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/carousels/update", staff)
+        axios.post("/api/manage/containers/staffs/update", staff)
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(staffUpdate(staff));

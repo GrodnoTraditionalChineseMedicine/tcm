@@ -72,13 +72,13 @@ class StaffCreateModal extends React.Component {
                             {getFieldDecorator('birthday')(<DatePicker/>)}
                         </Form.Item>
                         <Form.Item label="电话号码">
-                            {getFieldDecorator('phone')(<Input/>)}
+                            {getFieldDecorator('phoneNum')(<Input/>)}
                         </Form.Item>
                         <Form.Item label="住址">
                             {getFieldDecorator('address')(<Input/>)}
                         </Form.Item>
                         <Form.Item label="其他信息" extra="医生需填写俄语版的医生简介">
-                            {getFieldDecorator('description')(<TextArea rows={4}/>)}
+                            {getFieldDecorator('employeeDescription')(<TextArea rows={4}/>)}
                         </Form.Item>
                         <Form.Item label="上传职工照片" extra="职工照最好为1:1尺寸照片。">
                             {getFieldDecorator('upload', {
@@ -151,7 +151,7 @@ class StaffUpdateModal extends React.Component {
                         <Form.Item label="所属角色" hasFeedback>
                             {getFieldDecorator('roleId', {
                                 rules: [{ required: true, message: '请选择这个职工的角色!' }],
-                                initialValue: currentStaff.roleName
+                                initialValue: currentStaff.roleId
                             })(
                                 <Select placeholder="员工角色">
                                     {rolesOption.map((item)=>{
@@ -179,7 +179,7 @@ class StaffUpdateModal extends React.Component {
                                 })(<DatePicker/>)}
                             </Form.Item>
                             <Form.Item label="电话号码">
-                                {getFieldDecorator('phone',{
+                                {getFieldDecorator('phoneNum',{
                                     initialValue: typeof currentStaff.phoneNum === "undefined" ? null : currentStaff.phoneNum
                                 })(<Input/>)}
                             </Form.Item>
@@ -189,7 +189,7 @@ class StaffUpdateModal extends React.Component {
                                 })(<Input/>)}
                             </Form.Item>
                             <Form.Item label="其他信息" extra="医生需填写俄语版的医生简介">
-                                {getFieldDecorator('description',{
+                                {getFieldDecorator('employeeDescription',{
                                     initialValue: typeof currentStaff.employeeDescription === "undefined" ? null : currentStaff.employeeDescription
                                 })(<TextArea rows={4}/>)}
                             </Form.Item>
@@ -345,6 +345,7 @@ class StaffManage extends Component {
 
     handleUpdateCreate = () => {
         const { form } = this.updateFormRef.props;
+        const { currentStaff } = this.state;
         form.validateFields((err, values) => {
             if (err) {
                 return;
@@ -370,13 +371,10 @@ class StaffManage extends Component {
             if (values.hasOwnProperty("birthday")){
                 values.birthday = values.birthday.format('YYYY-MM-DD');
             }
-            if (values.hasOwnProperty("phone")){
-                values.phone = values.prefix + "" + values.phone;
-            }
-           /* delete values.prefix;
-            this.props.addStaff(values);*/
+            values.employeeId = currentStaff.employeeId;
+            this.props.updateStaff(values);
             form.resetFields();
-            this.setState({ visible: false });
+            this.setState({ updateVisible: false });
         });
     };
 
@@ -442,6 +440,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteStaff(staffId){
             dispatch(actionCreators.deleteStaff(staffId));
+        },
+        updateStaff(staff){
+            dispatch(actionCreators.updateStaff(staff));
         }
     }
 };

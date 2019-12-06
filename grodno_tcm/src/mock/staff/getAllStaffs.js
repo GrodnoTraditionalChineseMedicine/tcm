@@ -8,7 +8,7 @@ export default Mock.mock('/api/manage/containers/staffs','get',{
         staffs: [{
             employeeId: 1,
             roleId: 1,
-            roleName: "医生",
+            roleName: "超级管理员",
             avatarUrl: "https://i.loli.net/2019/12/05/GNs71wD3JSnHCha.png",
             name: "罗杏函",
             sex: 1,
@@ -18,7 +18,7 @@ export default Mock.mock('/api/manage/containers/staffs','get',{
             employeeDescription: "一些信息信息信息"
         },{
             employeeId: 2,
-            roleId: 1,
+            roleId: 3,
             roleName: "医生",
             avatarUrl: "https://i.loli.net/2019/12/05/dethJa6M3XrVjRL.jpg",
             name: "何恩江",
@@ -26,7 +26,7 @@ export default Mock.mock('/api/manage/containers/staffs','get',{
             employeeDescription: "一些信息信息信息"
         },{
             employeeId: 3,
-            roleId: 2,
+            roleId: 5,
             roleName: "翻译",
             avatarUrl: "https://i.loli.net/2019/12/05/GNs71wD3JSnHCha.png",
             name: "测试",

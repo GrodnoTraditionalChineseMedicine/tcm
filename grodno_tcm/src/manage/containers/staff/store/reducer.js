@@ -15,10 +15,11 @@ export default (state=defaultState, action) => {
             return state.set("staffs", state.get("staffs").filter((item) => {
                 return item.employeeId !== action.employeeId;
             }));
-        /*case actionTypes.UPDATE_CAROUSELS:
-            return state.set("carousels", state.get("carousels").map((item) => {
-                return item.fileId === action.carousel.fileId ? {...item, order: action.carousel.order} : item;
-            }));*/
+        case actionTypes.UPDATE_STAFF:
+            return state.set("staffs", state.get("staffs").map((item) => {
+                return item.employeeId === action.staff.employeeId ?
+                    item = action.staff : item;
+            }));
         default:
             return state;
     }
