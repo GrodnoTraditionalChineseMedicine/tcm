@@ -346,6 +346,7 @@ class StaffManage extends Component {
     handleUpdateCreate = () => {
         const { form } = this.updateFormRef.props;
         const { currentStaff } = this.state;
+        const { roles } =this.props;
         form.validateFields((err, values) => {
             if (err) {
                 return;
@@ -371,6 +372,11 @@ class StaffManage extends Component {
             if (values.hasOwnProperty("birthday")){
                 values.birthday = values.birthday.format('YYYY-MM-DD');
             }
+            roles.map((item)=>{
+                if(item.roleId === values.roleId){
+                    values.roleName = item.roleName;
+                }
+            });
             values.employeeId = currentStaff.employeeId;
             this.props.updateStaff(values);
             form.resetFields();
