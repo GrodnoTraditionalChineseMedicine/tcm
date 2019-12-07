@@ -2,6 +2,7 @@ import { Table, Input, Button, Popconfirm, Form, Modal } from 'antd';
 import * as React from "react";
 import {actionCreators} from "./store";
 import {connect} from "react-redux";
+import {LinkDelete} from "../../index/style";
 
 const EditableContext = React.createContext();
 
@@ -140,7 +141,9 @@ class EditableTable extends React.Component {
                 render: (text, record) =>
                     this.props.roles.length >= 1 ? (
                         <Popconfirm title="确认删除吗?" onConfirm={() => this.handleDelete(record.roleId)}>
-                            <a>删除</a>
+                            <LinkDelete>
+                                删除
+                            </LinkDelete>
                         </Popconfirm>
                     ) : null,
             },

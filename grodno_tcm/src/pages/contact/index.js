@@ -7,7 +7,7 @@ import {
     ContactMainArea,
     SendMessageArea
 } from "./style";
-import {Form, Icon, Input, Button} from "antd";
+import {Form, Input, Button} from "antd";
 
 class ContactUs extends Component {
     handleSubmit = (e) => {

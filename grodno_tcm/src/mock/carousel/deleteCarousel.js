@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/carousels/delete','post',function(option){
+Mock.mock('/api/manage/containers/carousels/delete','post',function(option){
     console.log("mock carousel delete",option.body);
-    const postValue = {"fileId":1};
+    /*const postValue = {"fileId":1};*/
     return Mock.mock({
         success: true,
         data: {
@@ -11,4 +11,4 @@ export default Mock.mock('/api/manage/containers/carousels/delete','post',functi
             message: "成功删除！"
         }
     })
-})
+});

@@ -1,8 +1,8 @@
 import Mock from "mockjs";
 
-export default Mock.mock(RegExp('/api/manage/containers/articles' + ".*") ,'get',function(option) {
+Mock.mock(RegExp('/api/manage/containers/articles' + ".*") ,'get',function(option) {
     console.log("mock articles get by code",option.url);
-    // "/api/manage/containers/articles?code=001" 这里是后台api 需要返回所有的数据 无论isShow为0还是1
+    //"/api/manage/containers/articles?code=001" 这里是后台api 需要返回所有的数据 无论isShow为0还是1
     return Mock.mock({
         success: true,
         data: {
@@ -30,4 +30,4 @@ export default Mock.mock(RegExp('/api/manage/containers/articles' + ".*") ,'get'
             }]
         }
     })
-})
+});

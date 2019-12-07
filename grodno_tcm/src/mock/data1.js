@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/login','post',{
+Mock.mock('/api/manage/login','post',{
     success: true,
     data: {
         code: 200,
@@ -14,4 +14,4 @@ export default Mock.mock('/api/manage/login','post',{
             imgUrl: "https://avatars1.githubusercontent.com/u/30335361?s=460&v=4"
         }
     }
-})
+});

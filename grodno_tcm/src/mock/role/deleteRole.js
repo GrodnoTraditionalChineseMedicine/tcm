@@ -1,8 +1,8 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/role/delete','post',function(option){
-    const postValue = {"roleId":1};
+Mock.mock('/api/manage/containers/role/delete','post',function(option){
+    /*const postValue = {"roleId":1};*/
     console.log("mock role delete",option.body);
     return Mock.mock({
         success: true,
@@ -47,4 +47,4 @@ export default Mock.mock('/api/manage/containers/role/delete','post',function(op
             count: 11
         }
     })
-})
+});

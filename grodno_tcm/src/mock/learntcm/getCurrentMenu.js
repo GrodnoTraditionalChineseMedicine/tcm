@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/learntcm/current','post',function(option){
+Mock.mock('/api/learntcm/current','post',function(option){
     console.log("menu find by menuCode",option.body);
-    const postValue = {"menuCode":"001"};
+    /*const postValue = {"menuCode":"001"};*/
     //根据menu的Code来查找相关的imgUrl如果当前MenuCode含有imgUrl则返回 如果没有则找到父节点的imgUrl(需要递归到父节点imgUrl不为空) 默认四个父节点都含有imgUrl
     return Mock.mock({
         success: true,
@@ -18,4 +18,4 @@ export default Mock.mock('/api/learntcm/current','post',function(option){
             }
         }
     })
-})
+});

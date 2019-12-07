@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/upload/picture','post',function(option){
+Mock.mock('/api/upload/picture','post',function(option){
     return Mock.mock({
         success: true,
         message: "上传成功!",
@@ -19,4 +19,4 @@ export default Mock.mock('/api/upload/picture','post',function(option){
             status: "error"
         }
     */
-})
+});

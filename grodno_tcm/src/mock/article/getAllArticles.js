@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/articles','get',{
+Mock.mock('/api/manage/containers/articles','get',{
     //这里不用返回articleRow 和 imgUrl 因为是返回所有的文章 如果row里数据太多会导致加载问题 而这里是根据时间的先后顺序返回 最后编辑的在前面
     success: true,
     data: {
@@ -63,4 +63,4 @@ export default Mock.mock('/api/manage/containers/articles','get',{
             isShow: 1
         }]
     }
-})
+});

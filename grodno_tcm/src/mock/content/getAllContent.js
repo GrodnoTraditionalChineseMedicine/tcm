@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/content','get',{
+Mock.mock('/api/manage/containers/content','get',{
     /*和menus差不多*/
     success: true,
     data: {
@@ -218,4 +218,4 @@ export default Mock.mock('/api/manage/containers/content','get',{
             }]
         }]
     }
-})
+});

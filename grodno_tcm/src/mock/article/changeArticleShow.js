@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/articles/show','post',function(option){
+Mock.mock('/api/manage/containers/articles/show','post',function(option){
     console.log("mock article change show",option.body);//改变isShow时，父目录改变，子目录会跟着父目录改变的值而改变，如001的isShow变为0则001001......的isShow都为0
-    const postValue = {"id":1,"isShow":false};
+    /*const postValue = {"id":1,"isShow":false};*/
     return Mock.mock({
         success: true,
         data: {
@@ -67,4 +67,4 @@ export default Mock.mock('/api/manage/containers/articles/show','post',function(
             }]
         }
     })
-})
+});

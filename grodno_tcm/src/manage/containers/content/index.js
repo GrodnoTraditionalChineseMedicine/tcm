@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Divider, Form, Input, Modal, Popconfirm, Table, Icon, Upload, Cascader} from "antd";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
+import {LinkDelete, LinkHidden, LinkShow} from "../../index/style";
 
 const EditableContext = React.createContext();
 
@@ -247,15 +248,15 @@ class ContentManage extends React.Component {
                     this.props.content.length >= 1 ? (
                         <span>
                     <Popconfirm title="确认隐藏吗?隐藏后该目录所有文章将隐藏！" onConfirm={() => this.handleChangeShow(record.menuCode, record.isShow === 1)}>
-                        <a disabled={record.isShow !== 1}>隐藏</a>
+                        <LinkHidden disabled={record.isShow !== 1}>隐藏</LinkHidden>
                     </Popconfirm>
                     <Divider type="vertical" />
                     <Popconfirm title="确认显示吗?显示后该目录所有文章将展示！" onConfirm={() => this.handleChangeShow(record.menuCode, record.isShow === 1)}>
-                        <a disabled={record.isShow === 1}>显示</a>
+                        <LinkShow disabled={record.isShow === 1}>显示</LinkShow>
                     </Popconfirm>
                     <Divider type="vertical" />
                     <Popconfirm title="确认删除吗?删除会导致该目录和子目录全部删除！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.menuCode)}>
-                        <a disabled={record.isModify === 0}>删除</a>
+                        <LinkDelete disabled={record.isModify === 0}>删除</LinkDelete>
                     </Popconfirm>
                     <Divider type="vertical" />
                     <Button size="small" type={typeof(record.imgUrl) === "undefined" ? "primary" : null} onClick={()=>this.handleShow(record)}>{typeof(record.imgUrl) === "undefined" ? "添加题图" : "修改题图"}</Button>

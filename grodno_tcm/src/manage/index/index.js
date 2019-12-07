@@ -23,7 +23,7 @@ class Index extends Component {
 
     render() {
         const { routes } = this.props;// +
-        const { from } = this.props.location.state || { from: { pathname: "/manage" } };
+/*        const { from } = this.props.location.state || { from: { pathname: "/manage" } };*/
         return (
             <HomeWrapper>
                 <Layout hasSider style={{minHeight: '100vh'}}>

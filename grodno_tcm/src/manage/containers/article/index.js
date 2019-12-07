@@ -12,6 +12,7 @@ import {
     ArticleHelpInfo,
     ArticleTitle
 } from "./style";
+import {LinkDelete, LinkHidden, LinkShow} from "../../index/style";
 
 const { SubMenu } = Menu;
 
@@ -142,15 +143,15 @@ class ArticleManage extends Component {
                     this.props.content.length >= 1 ? (
                     <span>
                         <Popconfirm title="确认隐藏吗?隐藏后该文章将在前台隐藏！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
-                            <a disabled={record.isShow !== 1}>隐藏</a>
+                            <LinkHidden disabled={record.isShow !== 1}>隐藏</LinkHidden>
                         </Popconfirm>
                         <Divider type="vertical" />
                         <Popconfirm title="确认显示吗?显示后该文章将在前台展示！" onConfirm={() => this.handleChangeShow(record.articleId, record.isShow === 1)}>
-                            <a disabled={record.isShow === 1}>显示</a>
+                            <LinkShow disabled={record.isShow === 1}>显示</LinkShow>
                         </Popconfirm>
                         <Divider type="vertical" />
                         <Popconfirm title="确认删除吗?删除会导致该文章不会显示！如无特殊情况可以选择隐藏或修改！" onConfirm={() => this.handleDelete(record.articleId)}>
-                            <a>删除</a>
+                            <LinkDelete>删除</LinkDelete>
                         </Popconfirm>
                         <Divider type="vertical" />
                         <Link to={`/manage/article/update/${record.articleId}`} target="_blank"><Icon type="edit" /></Link>

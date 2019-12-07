@@ -38,3 +38,35 @@ export const HomeWrapper = styled.div`
       float: right;
     }
 `;
+
+export const LinkDelete = styled.a`
+    color: #ff4757;
+    cursor: pointer;
+    &:hover{
+      opacity: .7;
+    }
+`;
+
+export const LinkUpdate = styled.a`
+    color: #1e90ff;
+    cursor: pointer;
+    &:hover{
+      opacity: .7;
+    }
+`;
+
+export const LinkHidden = styled.a`
+    color: #a4b0be;
+    cursor: pointer;
+    &:hover{
+      opacity: .7;
+    }
+`;
+
+export const LinkShow = styled.a`
+    color: #eccc68;
+    cursor: pointer;
+    &:hover{
+      opacity: .7;
+    }
+`;

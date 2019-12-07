@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/pediatric/courses','get',{
+Mock.mock('/api/pediatric/courses','get',{
     success: true,
     data: {
         code: 200,
@@ -56,4 +56,4 @@ export default Mock.mock('/api/pediatric/courses','get',{
             publishedTime: "2019-03-25"
         }]
     }
-})
+});

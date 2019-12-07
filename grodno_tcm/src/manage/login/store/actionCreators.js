@@ -7,20 +7,20 @@ export const changeLogout = () => ({
     currentUser: {}
 });
 
-export const login = (values) => {
+/*export const login = (values) => {
     return (dispatch) => {
         axios.get("/api/manage/login?username=" + values.username + "&password=" + values.password)
             .then((res)=>{
                 const result = res.data.data;
-                console.log("res", res.data.data);
-                /*if (result.isLogged) {
+                console.log("res", result);
+                /!*if (result.isLogged) {
                     dispatch(changeLogin(result.currentUser));
                 } else {
                     alert('登录失败！');
-                }*/
+                }*!/
             })
     }
-};
+};*/
 
 export const handleLogin = (values) =>{
     fetchPosts('/api/manage/login', actionTypes.LOGIN_ACTION, 'loginData', values);

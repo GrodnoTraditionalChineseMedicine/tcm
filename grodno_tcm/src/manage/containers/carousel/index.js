@@ -7,6 +7,7 @@ import {
     CarouselImage,
     ImageDetail
 } from "./style";
+import {LinkDelete} from "../../index/style";
 
 const EditableContext = React.createContext();
 
@@ -147,7 +148,7 @@ function countDown(filePath) {
         icon: null,
         width: 700,
         centered: true,
-        content: <ImageDetail><img src={filePath} alt="imageDetail"/></ImageDetail>,
+        content: <ImageDetail><img src={filePath} alt="theDetail"/></ImageDetail>,
         cancelText: "好的"
     });
 }
@@ -167,7 +168,7 @@ class CarouselManage extends Component {
                 render: (text, record) =>
                     this.props.carousels.length >= 1 ? (
                         <CarouselImage onClick={()=>countDown(record.filePath)}>
-                            <img src={record.filePath} alt="image"/>
+                            <img src={record.filePath} alt="缩略图"/>
                         </CarouselImage>
                     ) : null,
             },
@@ -185,7 +186,7 @@ class CarouselManage extends Component {
                 render: (text, record) =>
                     this.props.carousels.length >= 1 ? (
                         <Popconfirm title="确认删除吗?" onConfirm={() => this.handleDelete(record.fileId)}>
-                            <a>删除</a>
+                            <LinkDelete>删除</LinkDelete>
                         </Popconfirm>
                     ) : null,
             },

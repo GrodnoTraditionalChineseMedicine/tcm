@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/content/update','post',function(option){
+Mock.mock('/api/manage/containers/content/update','post',function(option){
     console.log("mock content update",option.body);//可以删掉
-    const postValue = {"menuCode":"001","menuName":"测试测试修改","level":"1","imgUrl":"https://i.loli.net/2019/11/16/mfbAaXW6gntFd3G.jpg","isShow":1,"isModify":0}//这是我传过来的值
+    //const postValue = {"menuCode":"001","menuName":"测试测试修改","level":"1","imgUrl":"https://i.loli.net/2019/11/16/mfbAaXW6gntFd3G.jpg","isShow":1,"isModify":0}//这是我传过来的值
     return Mock.mock({
         success: true,
         data: {
@@ -222,4 +222,4 @@ export default Mock.mock('/api/manage/containers/content/update','post',function
             }]
         }
     })
-})
+});

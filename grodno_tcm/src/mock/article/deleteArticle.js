@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/articles/delete','post',function(option){
+Mock.mock('/api/manage/containers/articles/delete','post',function(option){
     console.log("mock article delete",option.body);
-    const postValue = {"articleId":10};
+   /* const postValue = {"articleId":10};*/
     //注意 删除会导致子目录一并删除 如删除001004 则001004001 001004002等都会删除
     return Mock.mock({
         success: true,
@@ -43,4 +43,4 @@ export default Mock.mock('/api/manage/containers/articles/delete','post',functio
             }]
         }
     })
-})
+});

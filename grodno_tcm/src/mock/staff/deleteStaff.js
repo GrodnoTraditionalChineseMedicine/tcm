@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/staffs/delete','post',function(option){
+Mock.mock('/api/manage/containers/staffs/delete','post',function(option){
     console.log("mock staff delete",option.body);
-    const postValue = {"employeeId":2};
+    /*const postValue = {"employeeId":2};*/
     return Mock.mock({
         success: true,
         data: {
@@ -11,4 +11,4 @@ export default Mock.mock('/api/manage/containers/staffs/delete','post',function(
             message: "成功删除！"
         }
     })
-})
+});

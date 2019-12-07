@@ -21,7 +21,7 @@ class ArticleDetail extends Component {
             if(typeof article.articleImg === "undefined"){
                 articleImg = null;
             } else {
-                articleImg = <img className="title-img" src={article.articleImg} alt="article image"/>;
+                articleImg = <img className="title-img" src={article.articleImg} alt="文章题图"/>;
             }
             editorState = BraftEditor.createEditorState(article.articleRow).toHTML();
             console.log(editorState);

@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/carousels','get',{
+Mock.mock('/api/manage/containers/carousels','get',{
     success: true,
     data: {
         code: 200,
@@ -27,4 +27,4 @@ export default Mock.mock('/api/manage/containers/carousels','get',{
             order: 4
         }]
     }
-})
+});

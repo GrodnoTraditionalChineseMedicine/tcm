@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/roles','get',{
+Mock.mock('/api/manage/containers/roles','get',{
     success: true,
     data: {
         code: 200,
@@ -26,4 +26,4 @@ export default Mock.mock('/api/manage/containers/roles','get',{
         }],
         count: 6
     }
-})
+});

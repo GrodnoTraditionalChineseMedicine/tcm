@@ -4,7 +4,6 @@ import Index from "../manage/index";
 import React from 'react';
 import { RenderRoutes } from '../router/utils';
 
-import Dashboard from "../manage/containers/dashboard";
 import CarouselManage from "../manage/containers/carousel";
 import StaffManage from "../manage/containers/staff";
 import ContentManage from "../manage/containers/content";

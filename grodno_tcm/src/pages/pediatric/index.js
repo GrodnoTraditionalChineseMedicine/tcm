@@ -1,4 +1,4 @@
-import React, {Component, useState, useCallback } from 'react';
+import React, {Component} from 'react';
 import { Divider, Row, Col } from 'antd';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
@@ -16,7 +16,6 @@ import {
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import { photos } from "./photos";
-import {changeOpenState} from "./store/actionCreators";
 
 class Pediatric extends Component {
     componentDidMount() {

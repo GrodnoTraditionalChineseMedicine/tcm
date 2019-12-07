@@ -97,9 +97,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         login(values){
             dispatch(actionCreators.fetchPosts('/api/manage/login', actionTypes.LOGIN_ACTION, 'loginData', values));
-        },
-        axiosTest(values){
-            dispatch(actionCreators.login(values));
         }
     }
 };

@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/manage/containers/staffs','get',{
+Mock.mock('/api/manage/containers/staffs','get',{
     success: true,
     data: {
         code: 200,
@@ -37,4 +37,4 @@ export default Mock.mock('/api/manage/containers/staffs','get',{
             employeeDescription: "一些信息信息一些一些信息信息信息信息信息信息信息"
         }]
     }
-})
+});

@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/home/moments','get',{
+Mock.mock('/api/home/moments','get',{
     /*和menus差不多*/
     success: true,
     data: {
@@ -17,4 +17,4 @@ export default Mock.mock('/api/home/moments','get',{
             time: "2019/04/12"
         }]
     }
-})
+});

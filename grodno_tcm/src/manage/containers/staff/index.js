@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {StaffExtraFormItem} from "./style";
 import moment from "moment";
+import {LinkDelete} from "../../index/style";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -242,6 +243,7 @@ class StaffManage extends Component {
                         case 0: sex = "女"; break;
                         case 1: sex = "男"; break;
                         case 2: sex = "保密"; break;
+                        default: sex = "未填写"; break;
                     }
                     return sex;
                 }
@@ -274,7 +276,7 @@ class StaffManage extends Component {
                     this.props.staffs.length >= 1 ? (
                         <span>
                             <Popconfirm title="确认删除吗?" onConfirm={() => this.handleDelete(record.employeeId)}>
-                                <a>删除</a>
+                                <LinkDelete>删除</LinkDelete>
                             </Popconfirm>
                             <Divider type="vertical" />
                             <Button size="small" type="primary" onClick={()=>this.handleShow(record)}>修改职工</Button>
@@ -372,10 +374,11 @@ class StaffManage extends Component {
             if (values.hasOwnProperty("birthday")){
                 values.birthday = values.birthday.format('YYYY-MM-DD');
             }
-            roles.map((item)=>{
-                if(item.roleId === values.roleId){
+            roles.map((item) => {
+                if (item.roleId === values.roleId) {
                     values.roleName = item.roleName;
                 }
+                return item.roleId;
             });
             values.employeeId = currentStaff.employeeId;
             this.props.updateStaff(values);

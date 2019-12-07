@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-export default Mock.mock('/api/learntcm/menus/articles?code=003001','get',{
+Mock.mock('/api/learntcm/menus/articles?code=003001','get',{
     success: true,
     data: {
         code: 200,
@@ -21,4 +21,4 @@ export default Mock.mock('/api/learntcm/menus/articles?code=003001','get',{
             publishTime: "2019-07-31"
         }]
     }
-})
+});
