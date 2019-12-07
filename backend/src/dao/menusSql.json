@@ -1,4 +1,5 @@
 {
   "getAllmenus" : "SELECT * FROM sys_menu Where is_show = 1;",
-  "getAllMenusNoMatterIsShow" : "SELECT * FROM sys_menu;"
+  "getAllMenusNoMatterIsShow" : "SELECT * FROM sys_menu;",
+  "getCurrentImgUrl" : "SELECT sys_menu.menu_code, sys_menu.imgUrl\nFROM sys_menu\nWHERE imgUrl IS NOT null;"
 }

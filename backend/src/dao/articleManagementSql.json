@@ -1,7 +1,7 @@
 {
   "insertRecord" : "INSERT INTO sys_article(article_title, article_raw, published_time, is_show, imgUrl) VALUES(?, ?, ?, ?, ?);",
   "insertRelationTableRecord" : "INSERT INTO rel_menu_article(menu_code, article_id) VALUES(?, ?);",
-  "getMaxArticleId" : "SELECT * FROM sys_article;",
+  "getMaxArticleId" : "select max(article_id) AS article_id from sys_article;",
   "deleteRecord" : "DELETE FROM sys_article WHERE article_id = ?;",
   "updateRecord" : "UPDATE sys_article \nSET article_title = ?, article_raw = ?, published_time = ?, imgUrl =?\nWHERE article_id = ?;",
   "updateRelationTableMenuCode" : "UPDATE rel_menu_article \nSET menu_code = ?\nWHERE article_id =?;\n",

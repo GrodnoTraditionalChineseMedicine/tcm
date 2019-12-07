@@ -5,6 +5,7 @@ const getAllArticlesObject = require('../jsonObject/getArticles');
 const dbTool = require('../dao/databaseConnection');
 const getAllArticlesSql = require('../dao/getAllArticlesSql');
 const getAllArticlesByMenusCodeSql = require('../dao/getAllArticlesByMenusCodeSql');
+const CurrentImgUrl = require('../dao/menusSql');
 const menusRouter = require('./menus');
 learntcmRouter.use('/menus', menusRouter);
 learntcmRouter.get('/menus/articles',(req,res)=>{
@@ -75,6 +76,33 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
             }
         });
     }
+});
+learntcmRouter.post('/current', (req, res)=>{
+    const CurrentImgUrlSql = CurrentImgUrl.getCurrentImgUrl;
+    const menuCode = req.body.code;
+    dbTool.query(CurrentImgUrlSql, (err, reslut)=>{
+        if(err || menuCode === undefined){
+
+        }
+        else{
+            let res = [];
+            for(let i = 0; i < reslut.length; i++){
+                let object = {
+                    "menuCode" : '',
+                    "imgUrl" : '',
+                };
+                object.menuCode = reslut[i].menu_code;
+                object.imgUrl = reslut[i].imgUrl;
+                res.push(object);
+            }
+
+            let tep = menuCode;
+            let i = 0;
+            while(tep !== ''){
+                if(res[i].menuCode = tep)1
+            }
+        }
+    })
 });
 
 

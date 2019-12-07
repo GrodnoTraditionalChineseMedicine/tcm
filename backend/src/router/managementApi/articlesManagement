@@ -3,7 +3,7 @@ const articleManagementRouter = express.Router();
 const sql = require('../../dao/articleManagementSql');
 const requestHelper = require('request-promise');
 const dbTool = require('../../dao/databaseConnection');
-const resObject = {
+let resObject = {
   "success" : false,
   "data" : {
       "code" : 400,

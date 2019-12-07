@@ -6,6 +6,7 @@ const port = 3001;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 //api business logic
 const adminRouter = require('./src/router/adminApi');
@@ -15,6 +16,8 @@ const pediatricCourseRouter = require('./src/router/pediatricCourse');
 const menusManagementRouter = require('./src/router/managementApi/menusManagement');
 const roleManagementRouter = require('./src/router/managementApi/roleManagement');
 const articlesManagementRouter = require('./src/router/managementApi/articlesManagement');
+const carouselManagementRouter = require('./src/router/managementApi/carouseManagement');
+const uploadFile = require('./src/router/uploadImg');
 
 //third-party middleware using
 app.use(express.json());
@@ -22,7 +25,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use("/public",express.static('./public'));
 //middleware using
 //前台系统Api
 app.use('/api/email', emailRouter);
@@ -33,6 +39,8 @@ app.use('/api/manage',adminRouter);
 app.use('/api/manage/containers/content', menusManagementRouter);
 app.use('/api/manage/containers/roles', roleManagementRouter);
 app.use('/api/manage/containers/articles', articlesManagementRouter);
+app.use('/api/manage/containers/carouses', carouselManagementRouter);
+app.use('/api/upload/files', uploadFile);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
 
