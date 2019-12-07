@@ -17,6 +17,7 @@ const menusManagementRouter = require('./src/router/managementApi/menusManagemen
 const roleManagementRouter = require('./src/router/managementApi/roleManagement');
 const articlesManagementRouter = require('./src/router/managementApi/articlesManagement');
 const carouselManagementRouter = require('./src/router/managementApi/carouseManagement');
+const employeeManagementRouter = require('./src/router/managementApi/staffManagement');
 const uploadFile = require('./src/router/uploadImg');
 
 //third-party middleware using
@@ -40,6 +41,7 @@ app.use('/api/manage/containers/content', menusManagementRouter);
 app.use('/api/manage/containers/roles', roleManagementRouter);
 app.use('/api/manage/containers/articles', articlesManagementRouter);
 app.use('/api/manage/containers/carouses', carouselManagementRouter);
+app.use('/api/manage/containers/staffs', employeeManagementRouter);
 app.use('/api/upload/files', uploadFile);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
