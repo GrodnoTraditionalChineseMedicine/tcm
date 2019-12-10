@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
-//running port
-const port = 3001;
 //third-party middleware
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -18,8 +15,9 @@ const roleManagementRouter = require('./src/router/managementApi/roleManagement'
 const articlesManagementRouter = require('./src/router/managementApi/articlesManagement');
 const carouselManagementRouter = require('./src/router/managementApi/carouseManagement');
 const employeeManagementRouter = require('./src/router/managementApi/staffManagement');
+const momentsManagementRouter = require('./src/router/managementApi/momentManagement');
 const uploadFile = require('./src/router/uploadImg');
-
+const uploadVideo = require('./src/router/uploadVideos.js');
 //third-party middleware using
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -36,15 +34,39 @@ app.use('/api/email', emailRouter);
 app.use('/api/learntcm',learntcmRouter);
 app.use('/api/pediatric', pediatricCourseRouter);
 //后台管理系统
+app.use("/", express.static("./build"));
 app.use('/api/manage',adminRouter);
 app.use('/api/manage/containers/content', menusManagementRouter);
 app.use('/api/manage/containers/roles', roleManagementRouter);
 app.use('/api/manage/containers/articles', articlesManagementRouter);
-app.use('/api/manage/containers/carouses', carouselManagementRouter);
+app.use('/api/manage/containers/carousels', carouselManagementRouter);
 app.use('/api/manage/containers/staffs', employeeManagementRouter);
-app.use('/api/upload/files', uploadFile);
+app.use('/api/manage/containers/moments', momentsManagementRouter);
+app.use('/api/upload/picture', uploadFile);
+app.use('/api/upload/videos', uploadVideo);
 
-app.listen(port, () => console.log(`app listening on port ${port}`));
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    //next(createError(404));
+    if(req.url.startsWith('/api/')||req.url.startsWith('/static/')){
+        return next;
+    }
+    else{
+        return res.sendFile(path.resolve('build/index.html'));
+    }
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+    //set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+});
+
 
 module.exports = app;
 

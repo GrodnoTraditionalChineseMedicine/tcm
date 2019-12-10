@@ -24,13 +24,10 @@ router.post('/',(req,res)=>{
     form_update.parse(req)
         .on ('fileBegin', function(name, file){
             //根据参数的类型，将图片存储到不同的路径下
-            file.path = form_update.uploadDir + "/images/"  + getNowFormatDate()+".jpg";
+            file.path = form_update.uploadDir + "/videos/"  + getNowFormatDate()+".mp4";
         })
         .on('file', (name, file) => {
-            res.status(200).json({ data: {
-                    name: name.toString(),
-                    url: '/'+file.path
-                }});
+            res.status(200).json({"path": file.path});
         })
         .on('end', () => {
             res.end();

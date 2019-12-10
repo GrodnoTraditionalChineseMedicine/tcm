@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dbTool = require('../../dao/databaseConnection');
-const managementSql = require('../../dao/staffManagementSql');
+const managementSql = require('../../dao/momentsManagementSql');
 function parametersInvalid(res){
     resObject.data.message = "Parameters are not valid!!1";
     res.json(resObject);
@@ -12,12 +12,12 @@ let resObject = {
     "data" : {
         "code" : 400,
         "message" : "",
-        "staffs" : []
+        "moments" : []
     }
 };
 router.get('/', (req, res)=>{
-    let getEmployeeSql = managementSql.getAllRecords;
-    dbTool.query(getEmployeeSql, (err, result )=>{
+    let getMomentsSql = managementSql.getAllRecords;
+    dbTool.query(getMomentsSql, (err, result )=>{
         if(err){
             resObject.data.message = err.toString();
             res.json(resObject);
@@ -48,12 +48,12 @@ router.get('/', (req, res)=>{
                 object.birthday = result[i].date_of_birth;
                 object.address = result[i].address;
                 object.employeeDescription = result[i].employee_description;
-                 employees.push(object);
+                employees.push(object);
             }
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.staffs = employees;
+            resObject.data.staff = employees;
             res.json(resObject);
             res.end();
         }

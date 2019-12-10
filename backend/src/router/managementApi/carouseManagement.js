@@ -12,7 +12,7 @@ let resObject = {
     "data" : {
         "code" : 400,
         "message" : "",
-        "carousel" : []
+        "carousels" : []
     }
 }
 router.get('/', (req, res)=>{
@@ -41,7 +41,7 @@ router.get('/', (req, res)=>{
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.carousel = carouses;
+            resObject.data.carousels = carouses;
             res.json(resObject);
             res.end();
         }
