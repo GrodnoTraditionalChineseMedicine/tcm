@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-Mock.mock('/api/manage/containers/role/delete','post',function(option){
+Mock.mock('/api/manage/containers/roles/delete','post',function(option){
     /*const postValue = {"roleId":1};*/
     console.log("mock role delete",option.body);
     return Mock.mock({

@@ -20,7 +20,7 @@ export const getAllRoles = () => {
 
 export const deleteRole = (roleId) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/delete", {roleId})
+        axios.post("/api/manage/containers/roles/delete", {roleId})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeRoles(result.roles, result.count));
@@ -31,7 +31,7 @@ export const deleteRole = (roleId) => {
 
 export const updateRole = (role) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/update", role)
+        axios.post("/api/manage/containers/roles/update", role)
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeRoles(result.roles, result.count));
@@ -42,7 +42,7 @@ export const updateRole = (role) => {
 
 export const addRole = (role) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/role/add", role)
+        axios.post("/api/manage/containers/roles/add", role)
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeRoles(result.roles, result.count));

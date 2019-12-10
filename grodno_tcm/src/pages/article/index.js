@@ -24,7 +24,6 @@ class ArticleDetail extends Component {
                 articleImg = <img className="title-img" src={article.articleImg} alt="文章题图"/>;
             }
             editorState = BraftEditor.createEditorState(article.articleRow).toHTML();
-            console.log(editorState);
         }
         return (
             <ArticleDetailWrapper>

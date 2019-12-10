@@ -9,7 +9,7 @@ export const changeCurrent = (article, menu) => ({
 
 export const getArticleById = (articleId) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/articles/id", articleId)
+        axios.post("/api/manage/containers/articles/id", {articleId})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(changeCurrent(result.article, result.menu));

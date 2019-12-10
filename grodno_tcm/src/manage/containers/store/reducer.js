@@ -5,6 +5,7 @@ import { reducer as articleReducer } from "../article/store";
 import { reducer as updateArticleReducer } from "../updateArticle/store";
 import { reducer as carouselReducer } from "../carousel/store";
 import { reducer as staffReducer } from "../staff/store";
+import { reducer as momentReducer } from "../moment/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -16,7 +17,8 @@ const reducer = combineReducers({
     article: articleReducer,
     updateArticle: updateArticleReducer,
     carousel: carouselReducer,
-    staff: staffReducer
+    staff: staffReducer,
+    moment: momentReducer
 });
 
 export default reducer;

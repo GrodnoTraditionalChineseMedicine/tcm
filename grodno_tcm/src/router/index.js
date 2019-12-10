@@ -6,6 +6,7 @@ import { RenderRoutes } from '../router/utils';
 
 import CarouselManage from "../manage/containers/carousel";
 import StaffManage from "../manage/containers/staff";
+import MomentManage from "../manage/containers/moment";
 import ContentManage from "../manage/containers/content";
 import LearnTCM from "../manage/containers/learn";
 import ArticleManage from "../manage/containers/article";
@@ -24,6 +25,7 @@ const Icon = () => <h3>Icon</h3>;
 export const menus = [    // 菜单相关路由
     { path: '/manage/index/carousel', name: '轮播图管理', icon: 'file-image', component: CarouselManage },
     { path: '/manage/index/staff', name: '职工管理', icon: 'idcard', component: StaffManage },
+    { path: '/manage/index/moment', name: '公告管理', icon: 'profile', component: MomentManage },
     { path: '/manage/index/learn', name: '了解中医', icon: 'read', component: LearnTCM, routes: [
             {path: '/manage/index/learn/menu', name: '菜单管理', icon: 'menu', component: ContentManage },
             {path: '/manage/index/learn/articles', name: '文章管理', icon: 'book', component: ArticleManage }

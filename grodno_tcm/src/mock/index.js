@@ -10,7 +10,7 @@ import * as updateRole from "./role/updateRole";
 import * as addRole from "./role/addRole";
 import * as getAllContent from "./content/getAllContent";
 import * as getCurrentMenu from "./learntcm/getCurrentMenu";
-import * as getAllMoments from "./home/getAllMoments";
+import * as getAllHomeMoments from "./home/getAllHomeMoments";
 import * as changeContentShow from "./content/changeContentShow";
 import * as updateContent from "./content/updateContent";
 import * as deleteContent from "./content/deleteContent";
@@ -30,6 +30,11 @@ import * as getAllStaffs from "./staff/getAllStaffs";
 import * as addStaff from "./staff/addStaff";
 import * as deleteStaff from "./staff/deleteStaff";
 import * as updateStaff from "./staff/updateStaff";
+import * as getAllMoments from "./moment/getAllMoments"
+import * as getMomentImages from "./moment/getMomentImages";
+import * as addMoment from "./moment/addMoment";
+import * as updateMoment from "./moment/updateMoment";
+import * as deleteMoment from "./moment/deleteMoment";
 
 export {
     data,
@@ -37,7 +42,7 @@ export {
     menus,
     menuData1,
     menuData,
-    getAllMoments,
+    getAllHomeMoments,
     getCurrentMenu,
     pediatricCourse,
 
@@ -68,5 +73,11 @@ export {
     getAllStaffs,
     addStaff,
     deleteStaff,
-    updateStaff
+    updateStaff,
+
+    getAllMoments,
+    getMomentImages,
+    addMoment,
+    updateMoment,
+    deleteMoment
 };

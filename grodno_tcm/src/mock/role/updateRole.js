@@ -1,7 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-Mock.mock('/api/manage/containers/role/update','post',function(option){
+Mock.mock('/api/manage/containers/roles/update','post',function(option){
     console.log("mock role update",option.body);//可以删掉
     /*const postValue = {"roleId":1,"roleName":"超级管理员"};*/
     return Mock.mock({
