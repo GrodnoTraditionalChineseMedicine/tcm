@@ -158,7 +158,7 @@ class MomentManage extends Component {
     };
 
     handleGetImage = (momentId) => {
-        axios.post("/api/manage/containers/moments/images", momentId)
+        axios.post("/api/manage/containers/moments/images", {momentId})
             .then((res)=>{
                 const result = res.data.data;
                 this.setState({ images: result.images }, this.countDown);
@@ -251,7 +251,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         getAllMoments(){
             dispatch(actionCreators.getAllMoments())
