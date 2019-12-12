@@ -11,15 +11,11 @@ Mock.mock('/api/manage/containers/moments/add','post',function(option){
     "images":[
         {
             "filePath":"https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg",
-            "fileType":3,
-            "order":1,
-            "uploadTime":"2019-12-11 04:26:27"
+            "order":1
         },
         {
             "filePath":"https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg",
-            "fileType":3,
-            "order":2,
-            "uploadTime":"2019-12-11 04:26:27"
+            "order":2
         }]
     }*/
     //如果没上传图片则images不存在

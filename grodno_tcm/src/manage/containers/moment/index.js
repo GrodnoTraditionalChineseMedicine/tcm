@@ -194,7 +194,7 @@ class MomentManage extends Component {
                 if (values.upload.length !== 0) {
                     values.upload.map((item, index)=>{
                         if (typeof item.response.data !== "undefined")
-                            images.push({filePath:item.response.data.url, fileType: 3, order:index + 1, uploadTime: getCurrentDate()});
+                            images.push({filePath:item.response.data.url, order:index + 1});
                     })
                 }
             }
