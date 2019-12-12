@@ -61,21 +61,17 @@ router.get('/', (req, res)=>{
 });
 router.post('/add',(req,res)=>{
     let object = {
-        employeeId: null,
-        roleId: req.body.roleId,
-        roleName: null,
-        avatarUrl: req.body.avatarUrl,
-        name: req.body.name,
-        sex: req.body.sex,
-        phoneNum: req.body.phoneNum,
-        birthday: req.body.birthday,
-        address: req.body.address,
-        employeeDescription: req.body.employeeDescription
+        "momentId" : -1,
+        "momentTitle":req.body.momentTitle,
+        "momentContent":req.body.momentContent,
+        "publishedTime":new Date(),
+        "isShow":req.body.isShow,
+        "images":req.body.images
     };
-    dbTool.query(managementSql.addRecord, [object.roleId, object.avatarUrl, object.name, object.sex, object.phoneNum, object.birthday, object.address, object.employeeDescription], (err)=>{
+    dbTool.query(managementSql.addRecord, [object.momentTitle, object.momentContent, object.publishedTime, object.isShow], (err)=>{
         if(err){
             console.log(err);
-            resObject.data.message = "Failed when insert record into employee table!! err info:" + err.toString();
+            resObject.data.message = "Failed when insert record into moment table!! err info:" + err.toString();
             res.json(resObject);
             res.status(400).end();
         }
@@ -87,7 +83,7 @@ router.post('/add',(req,res)=>{
                     res.status(400).end();
                 }
                 else{
-                    object.employeeId = result[0].employee_id;
+                    object.momentId = result[0].moment_id;
                     dbTool.query(managementSql.getRoleName, object.roleId, (err, result)=>{
                         if(err){
                             resObject.data.message = "Failed when get role name from role table!! err info:" + err.toString();
