@@ -59,6 +59,7 @@ class AddArticle extends React.Component {
                 if (submitData.url === null) {
                     delete submitData.url;
                 }
+                console.log(submitData);
                 updateArticle(submitData, this.props);
             }
         })

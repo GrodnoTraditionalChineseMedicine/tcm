@@ -225,7 +225,7 @@ class MomentManage extends Component {
         return (
             <MomentWrapper>
                 <Button onClick={this.showModal} type="primary" style={{ marginBottom: 16 }}>
-                    添加图片
+                    添加公告
                 </Button>
                 <CollectionCreateForm
                     wrappedComponentRef={this.saveFormRef}
