@@ -27,11 +27,11 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                     var article = {
                         "articleId": "",
                         "articleTitle": "",
-                        "articleRow": "",
+                        "imgUrl": "",
                         "publishTime": ""
                     }
                     article.articleId = result[i].article_id;
-                    article.articleRow = result[i].article_raw;
+                    article.imgUrl = result[i].imgUrl;
                     article.articleTitle = result[i].article_title;
                     //将datetime转化成date形式的字符串
                     const published_date = new Date(result[i].published_time.toString());

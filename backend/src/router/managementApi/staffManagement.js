@@ -45,7 +45,8 @@ router.get('/', (req, res)=>{
                 object.name = result[i].name;
                 object.sex = result[i].sex;
                 object.phoneNum = result[i].phone_num;
-                object.birthday = result[i].date_of_birth;
+                const date_of_birth = new Date(result[i].date_of_birth.toString());
+                object.birthday = date_of_birth.getFullYear() + '-' + date_of_birth.getMonth() + '-' + date_of_birth.getDate();
                 object.address = result[i].address;
                 object.employeeDescription = result[i].employee_description;
                  employees.push(object);
@@ -72,6 +73,11 @@ router.post('/add',(req,res)=>{
         address: req.body.address,
         employeeDescription: req.body.employeeDescription
     };
+    const year = object.birthday.substr(0,4);
+    const month = object.birthday.substr(5,2);
+    const day = object.birthday.substr(8,2);
+    const birthDay = new Date(year, month, day, 0, 0, 0, 0);
+    object.birthday = birthDay;
     dbTool.query(managementSql.addRecord, [object.roleId, object.avatarUrl, object.name, object.sex, object.phoneNum, object.birthday, object.address, object.employeeDescription], (err)=>{
         if(err){
             console.log(err);

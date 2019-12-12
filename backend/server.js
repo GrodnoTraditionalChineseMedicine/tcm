@@ -3,6 +3,7 @@ const app = express();
 //third-party middleware
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+
 const path = require('path');
 
 //api business logic
@@ -19,10 +20,9 @@ const momentsManagementRouter = require('./src/router/managementApi/momentManage
 const uploadFile = require('./src/router/uploadImg');
 const uploadVideo = require('./src/router/uploadVideos.js');
 //third-party middleware using
-app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -66,7 +66,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
 
 module.exports = app;
 

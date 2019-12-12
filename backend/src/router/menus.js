@@ -4,12 +4,21 @@ const sqlJson = require('../dao/menusSql');
 const dbTool = require('../dao/databaseConnection');
 const menusObject = require('../jsonObject/meunsApi');
 function treeData(cloneData){
-    console.log('data:'+ cloneData);
-    return cloneData.filter(father=>{
-        let branchArr = cloneData.filter(child=>father.menuCode == child.parentCode);   //返回每一项的子级数组
-        branchArr.length>0 ? father.submenu = branchArr : '';  //如果存在子级，则给父级添加一个children属性，并赋值
-        return father.parentCode=='000';      //返回第一层
+    cloneData.forEach(element => {
+        let parentId = element.parentCode;
+        if(parentId !== '000'){
+            cloneData.forEach(ele => {
+                if(ele.menuCode === parentId){ //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
+                    if(!ele.submenu){
+                        ele.submenu = [];
+                    }
+                    ele.submenu.push(element);
+                }
+            });
+        }
     });
+    cloneData = cloneData.filter(ele => ele.parentCode === '000'); //这一步是过滤，按树展开，将多余的数组剔除；
+    return cloneData;
 }
 menusRouter.get('/', (req, res)=>{
     let success,code ;
@@ -68,11 +77,11 @@ menusRouter.get('/', (req, res)=>{
                 }
             }
             //console.log(menus);
-            var data = [];
-            data = treeData(menus);
+            var treeMenus = [];
+            treeMenus = treeData(menus);
             menusObject.success = true;
             menusObject.data.code = 200;
-            menusObject.data.menus = menus;
+            menusObject.data.menus = treeMenus;
             res.json(menusObject);
             res.end();
         }
