@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/static/js/main.25aa10eb.chunk.js",
+    "main.js.map": "/static/js/main.25aa10eb.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.b6857d1e.chunk.css": "/static/css/2.b6857d1e.chunk.css",
+    "static/js/2.4a22e16b.chunk.js": "/static/js/2.4a22e16b.chunk.js",
+    "static/js/2.4a22e16b.chunk.js.map": "/static/js/2.4a22e16b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bd7273279772b27e3535582d31f1454b.js": "/precache-manifest.bd7273279772b27e3535582d31f1454b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.b6857d1e.chunk.css.map": "/static/css/2.b6857d1e.chunk.css.map",
+    "static/media/3.jpg": "/static/media/3.746d3972.jpg",
+    "static/media/FishingBoat.mp4": "/static/media/FishingBoat.94a2fc06.mp4",
+    "static/media/contact.png": "/static/media/contact.31a54c82.png",
+    "static/media/gszyy.jpg": "/static/media/gszyy.f32401a5.jpg",
+    "static/media/home.jpg": "/static/media/home.c9158004.jpg",
+    "static/media/learntcm.jpg": "/static/media/learntcm.1982674c.jpg",
+    "static/media/login.png": "/static/media/login.c6bb67d7.png",
+    "static/media/logo.png": "/static/media/logo.3048834e.png",
+    "static/media/privacy.png": "/static/media/privacy.49d34d5e.png",
+    "static/media/pure_logo.png": "/static/media/pure_logo.1871fa14.png"
+  }
+}
