@@ -24,36 +24,66 @@ router.get('/', (req, res)=>{
             res.status(400).end();
         }
         else{
-            let employees = [];
+            let moments = [];
             for(let i = 0; i < result.length; i++){
                 let object = {
-                    employeeId: null,
-                    roleId: null,
-                    roleName: null,
-                    avatarUrl: null,
-                    name: null,
-                    sex: null,
-                    phoneNum: null,
-                    birthday: null,
-                    address: null,
-                    employeeDescription: null
-                };
-                object.employeeId = result[i].employee_id;
-                object.roleId = result[i].role_id;
-                object.roleName = result[i].role_name;
-                object.avatarUrl = result[i].avatar_url;
-                object.name = result[i].name;
-                object.sex = result[i].sex;
-                object.phoneNum = result[i].phone_num;
-                object.birthday = result[i].date_of_birth;
-                object.address = result[i].address;
-                object.employeeDescription = result[i].employee_description;
-                employees.push(object);
+                    momentId: 2,
+                    momentTitle: null,
+                    momentContent: null,
+                    publishedTime: null,
+                    isShow: null
+                }
+                object.momentId = result[i].moment_id;
+                object.momentTitle = result[i].moment_title;
+                object.momentContent = result[i].moment_content;
+                object.publishedTime = result[i].published_time;
+                object.isShow = result[i].is_show;
+                moments.push(object);
             }
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.staff = employees;
+            resObject.data.moments = moments;
+            res.json(resObject);
+            res.end();
+        }
+    });
+});
+router.post('/images', (req, res)=>{
+    let resObject = {
+        "success" : false,
+        "data" : {
+            "code" : 400,
+            "message" : "",
+            "images" : []
+        }
+    };
+    let getImagesSql = managementSql.getImagesSql;
+    let moment_id = req.body.momentId;
+    console.log(req.body.momentId);
+    dbTool.query(getImagesSql, moment_id,(err, result )=>{
+        if(err){
+            resObject.data.message = err;
+            res.json(resObject);
+            res.status(400).end();
+        }
+        else{
+            let images = [];
+            for(let i = 0; i < result.length; i++){
+                let object = {
+                    fileId: 5,
+                    filePath: "https://i.loli.net/2019/11/26/LuAv9rtz1g3Xq8C.jpg",
+                    order: 1
+                };
+                object.fileId = result[i].rel_moment_file_id;
+                object.filePath = result[i].file_path;
+                object.order = result[i].order;
+                images.push(object);
+            }
+            resObject.success = true;
+            resObject.data.code = 200;
+            resObject.data.message = "Successfully get all records!!";
+            resObject.data.imagesi = images;
             res.json(resObject);
             res.end();
         }
@@ -68,6 +98,7 @@ router.post('/add',(req,res)=>{
         "isShow":req.body.isShow,
         "images":req.body.images
     };
+
     dbTool.query(managementSql.addRecord, [object.momentTitle, object.momentContent, object.publishedTime, object.isShow], (err)=>{
         if(err){
             console.log(err);
@@ -78,49 +109,64 @@ router.post('/add',(req,res)=>{
         else{
             dbTool.query(managementSql.getMaxId, (err, result)=>{
                 if(err){
-                    resObject.data.message = "Failed when get max file id from file table!! err info:" + err.toString();
+                    resObject.data.message = "Failed when get max file id from moment table!! err info:" + err.toString();
                     res.json(resObject);
                     res.status(400).end();
                 }
                 else{
-                    object.momentId = result[0].moment_id;
-                    dbTool.query(managementSql.getRoleName, object.roleId, (err, result)=>{
-                        if(err){
-                            resObject.data.message = "Failed when get role name from role table!! err info:" + err.toString();
-                            res.json(resObject);
-                            res.status(400).end();
-                        }
-                        else{
-                            object.roleName = result[0].role_name;
-                            resObject.success = true;
-                            resObject.data.code = 200;
-                            resObject.data.message = "Insert records into employee table succeed!!";
-                            resObject.data.staff = object;
-                            res.json(resObject);
-                            res.end();
-                        }
-                    });
+                     object.momentId = result[0].moment_id;
+                     let values = [];
+                     for( let i = 0; i < object.images.length; i++){
+                         values.push([object.momentId, object.images[i].filePath, object.images[i].order]);
+                     }
+                     dbTool.query(managementSql.insertImage,[values], (err, result)=>{
+                         if(err){
+                             console.log(err);
+                             resObject.data.message = "Failed when insert all record into rel_moment_imag table!! " ;
+                             res.json(resObject);
+                             res.status(400).end();
+                         }
+                         else{
+                             resObject.success = true;
+                             resObject.data.code = 200;
+                             resObject.data.message = "Insert records into moment and images table succeed!!";
+                             resObject.data.moment = object;
+                             res.json(resObject);
+                             console.log(resObject);
+                             res.end();
+                         }
+                     });
                 }
             });
         }
     });
 });
 router.post('/delete', (req, res)=>{
-    const employeeId = req.body.employeeId;
-    if(employeeId !== undefined){
-        dbTool.query(managementSql.deleteRecord, employeeId, (err)=>{
+    const momentId = req.body.momentId;
+    if(momentId !== undefined){
+        dbTool.query(managementSql.deleteRecord, momentId, (err)=>{
             if(err){
-                resObject.data.message = "Failed when delete record from employee table!! err info:" + err.toString();
+                resObject.data.message = "Failed when delete record from moment table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
             }
             else{
-                resObject.success = true;
-                resObject.data.code = 200;
-                resObject.data.message = "Delete a record from employee table succeed!!";
-                resObject.data.staff = null;
-                res.json(resObject);
-                res.status(200).end();
+                dbTool.query(managementSql.deleteImgRecord, momentId, (err)=>{
+                    if(err){
+                        resObject.data.message = "Failed when delete record from image table!! err info:" + err.toString();
+                        res.json(resObject);
+                        res.status(400).end();
+                    }
+                    else{
+                        resObject.success = true;
+                        resObject.data.code = 200;
+                        resObject.data.message = "Delete a record from moment table succeed!!";
+                        resObject.data.moments = null;
+                        res.json(resObject);
+                        res.status(200).end();
+                    }
+                });
+
             }
         });
     }
@@ -129,42 +175,27 @@ router.post('/delete', (req, res)=>{
     }
 });
 router.post('/update', (req, res)=>{
-    let object = {
-        employeeId: null,
-        roleId: null,
-        roleName: null,
-        avatarUrl: null,
-        name: null,
-        sex: null,
-        phoneNum: null,
-        birthday: null,
-        address: null,
-        employeeDescription: null
+    let object=  {
+        "momentId":req.body.momentId,
+        "momentTitle":req.body.momentTitle,
+        "momentContent":req.body.momentContent,
+        "publishedTime":new Date(),
+        "isShow":req.body.isShow
     };
-    if(req.body.employeeId !== undefined){
-        object.employeeId = req.body.employeeId;
-        object.roleId = req.body.roleId;
-        object.roleName = req.body.roleName;
-        object.avatarUrl = req.body.avatarUrl;
-        object.name = req.body.name;
-        object.sex = req.body.sex;
-        object.phoneNum = req.body.phoneNum;
-        object.birthday = req.body.birthday;
-        object.address = req.body.address;
-        object.employeeDescription = req.body.employeeDescription;
-        dbTool.query(managementSql.updateRecord, [object.roleId, object.avatarUrl, object.name, object.sex,
-            object.phoneNum, object.birthday, object.address, object.employeeDescription, object.employeeId],(err)=>{
+    if(req.body.momentId !== undefined){
+        dbTool.query(managementSql.updateRecord, [object.momentTitle, object.momentContent, object.publishedTime, object.isShow,
+            object.momentId],(err)=>{
             if(err){
                 console.log(err);
-                resObject.data.message = "Failed when update record within employee table!! err info:" + err;
+                resObject.data.message = "Failed when update record within moment table!! err info:" + err;
                 res.json(resObject);
                 res.status(400).end();
             }
             else{
                 resObject.success = true;
                 resObject.data.code = 200;
-                resObject.data.message = "Update records into file table and rel_article_menu table succeed!!";
-                resObject.data.staff = object;
+                resObject.data.message = "Update records into moment table succeed!!";
+                resObject.data.moments = object;
                 res.json(resObject);
                 res.status(200).end();
             }

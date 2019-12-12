@@ -4,8 +4,8 @@
   "description": "backend server side",
   "main": "server.js",
   "scripts": {
-    "test": "%NODE_DEBUG_OPTION% server.js ",
-    "start": "node ./bin/www"
+    "test": " node --inspect ./bin/www",
+    "start": "node server.js"
   },
   "author": "Hoen",
   "license": "ISC",

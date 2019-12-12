@@ -3,7 +3,7 @@ const app = express();
 //third-party middleware
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const port = 3001;
 const path = require('path');
 
 //api business logic
