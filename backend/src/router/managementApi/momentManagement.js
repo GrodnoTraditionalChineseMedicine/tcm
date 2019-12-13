@@ -83,7 +83,7 @@ router.post('/images', (req, res)=>{
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.imagesi = images;
+            resObject.data.images = images;
             res.json(resObject);
             res.end();
         }
