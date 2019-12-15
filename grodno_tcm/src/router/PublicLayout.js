@@ -11,6 +11,8 @@ import Pediatric from "../pages/pediatric";
 import ContactUs from "../pages/contact";
 import PrivacyPolicy from "../pages/privicy";
 import ArticleDetail from "../pages/article";
+import PediatricCourseDetail from "../pages/course";
+import NoMatch from "../pages/nomatch";
 
 import zhCN from 'antd/es/locale/zh_CN';
 import 'moment/locale/zh-cn';
@@ -33,6 +35,8 @@ function PublicLayout(props) {
                 <Route path="/contact" exact component={ContactUs}/>
                 <Route path="/privacy" exact component={PrivacyPolicy}/>
                 <Route path="/article/detail/:id" exact component={ArticleDetail}/>
+                <Route path="/pediatric/courses/detail/:id" exact component={PediatricCourseDetail}/>
+                <Route component={NoMatch}/>
             </Switch>
             <Footer/>
         </ConfigProvider>

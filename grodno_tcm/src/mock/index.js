@@ -36,6 +36,16 @@ import * as addMoment from "./moment/addMoment";
 import * as updateMoment from "./moment/updateMoment";
 import * as deleteMoment from "./moment/deleteMoment";
 
+import * as getAllPediatricCourses from "./pediatric/getAllPediatricCourses";
+import * as getAllPediatricImages from "./pediatric/getAllPediatricImages";
+import * as changeCourseShow from "./pediatric/changeCourseShow";
+import * as deleteCourse from "./pediatric/deleteCourse";
+import * as addImages from "./pediatric/addImages";
+import * as deleteImage from "./pediatric/deleteImage";
+import * as getCourseById from "./pediatric/getCourseById";
+import * as addCourse from "./pediatric/addCourse";
+import * as updateCourse from "./pediatric/updateCourse";
+
 export {
     data,
     pictureUpload,
@@ -79,5 +89,15 @@ export {
     getMomentImages,
     addMoment,
     updateMoment,
-    deleteMoment
+    deleteMoment,
+
+    getAllPediatricCourses,
+    getAllPediatricImages,
+    changeCourseShow,
+    deleteCourse,
+    addImages,
+    deleteImage,
+    getCourseById,
+    addCourse,
+    updateCourse
 };

@@ -157,8 +157,7 @@ class CarouselManage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false,
-            imgVisible: false,
+            visible: false
         };
         this.columns = [
             {
@@ -204,7 +203,7 @@ class CarouselManage extends Component {
 
     /* 新增函数 */
     showModal = () => {
-        this.setState({ visible: true, imgVisible: false});
+        this.setState({ visible: true });
     };
 
     handleCancel = () => {

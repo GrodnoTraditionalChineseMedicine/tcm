@@ -16,6 +16,7 @@ import {
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import { photos } from "./photos";
+/*import {getPediatricImages} from "../../common/util/ImagesUtil";*/
 
 class Pediatric extends Component {
     componentDidMount() {
@@ -96,6 +97,11 @@ class Pediatric extends Component {
                     <PediatricTitle>治疗图片</PediatricTitle>
                     <Divider/>
                     <PediatricGallery>
+                        {/*let formatImages = [];
+                        if (typeof images.length !== "undefined"){
+                            if (images.length !== 0)
+                            formatImages = getPediatricImages(images);
+                        }*/}
                         <Gallery photos={photos} onClick={openLightbox}/>
                         <ModalGateway>
                             { modalIsOpen ? (

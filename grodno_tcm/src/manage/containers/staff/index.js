@@ -176,7 +176,7 @@ class StaffUpdateModal extends React.Component {
                         <StaffExtraFormItem style={{display: this.state.isUploadShow ? "block": "none"}}>
                             <Form.Item label="生日">
                                 {getFieldDecorator('birthday',{
-                                    initialValue: typeof currentStaff.birthday === "undefined" ? null : moment( currentStaff.birthday, 'YYYY:MM:DD')
+                                    initialValue: typeof currentStaff.birthday === "undefined" ? null : moment( currentStaff.birthday, 'YYYY-MM-DD')
                                 })(<DatePicker/>)}
                             </Form.Item>
                             <Form.Item label="电话号码">

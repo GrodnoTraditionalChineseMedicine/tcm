@@ -1,7 +1,7 @@
 import 'braft-editor/dist/index.css'
 import React from 'react'
 import BraftEditor from 'braft-editor'
-import {Form, Input, Button, Upload, Icon, Cascader} from 'antd'
+import {Form, Input, Button, Upload, Icon, DatePicker} from 'antd'
 import { withRouter } from "react-router-dom";
 import {
     ArticleAddWrapper,
@@ -10,8 +10,8 @@ import {
     DeleteIcon
 } from "./style";
 import {connect} from "react-redux";
-import {actionCreators as contentAC} from "../content/store";
 import {actionCreators} from "./store";
+import {getCurrentDate} from "../../../common/util/Date";
 
 function getBase64(img, callback) {
     const reader = new FileReader();
@@ -19,53 +19,42 @@ function getBase64(img, callback) {
     reader.readAsDataURL(img);
 }
 
-function displayRender(label) {
-    return label[label.length - 1];
-}
-let options = [];
-
-class AddArticle extends React.Component {
+class AddPediatricCourse extends React.Component {
     state = {
         loading: false,
-        url: null,
-        editorState: null
+        url: null
     };
     componentDidMount () {
-        let id = this.props.match.params.id;
-        this.props.fetchPosts(id);
-        const { getAllContent} = this.props;
-        getAllContent();
-        // 异步设置编辑器内容
-        /*setTimeout(() => {
-            this.props.form.setFieldsValue({
-                content: BraftEditor.createEditorState(null)
-            })
-        }, 1000);*/
-
+        this.props.form.setFieldsValue({
+            content: BraftEditor.createEditorState('<p>Hello <b>World!</b></p>')
+        });
     }
 
     handleSubmit = (event) => {
-        const { imageUrl, updateArticle, article } = this.props;
         event.preventDefault();
         this.props.form.validateFields((error, values) => {
             if (!error) {
+                const { createCourse } = this.props;
                 const submitData = {
-                    articleId: article.articleId,
                     title: values.title,
-                    raw: values.content.toRAW(), // or values.content.toHTML()
-                    url: imageUrl,
-                    menuCode: values.residence[values.residence.length - 1]
+                    content: values.content.toRAW(), // or values.content.toHTML()
+                    imgUrl: this.state.url,
+                    lecturer: values.lecturer,
+                    address: values.address,
+                    lectureTime: values.lectureTime.format('YYYY-MM-DD HH:mm:ss'),
+                    publishedTime: getCurrentDate(),
+                    isShow: 1
                 };
-                if (submitData.url === null) {
-                    delete submitData.url;
+                if (submitData.imgUrl === null) {
+                    delete submitData.imgUrl;
                 }
-                updateArticle(submitData, this.props);
+                console.log(submitData);
+                createCourse(submitData, this.props);
             }
         })
     };
 
     handleChange = info => {
-        const { changeImageUrl } = this.props;
         if (info.file.status === 'uploading') {
             this.setState({ loading: true });
             return;
@@ -75,39 +64,27 @@ class AddArticle extends React.Component {
             getBase64(info.file.originFileObj, imageUrl =>
                 this.setState({
                     imageUrl,
-                    loading: false
-                })
+                    loading: false,
+                    url: info.file.response.data.url
+                }),
             );
-            changeImageUrl(info.file.response.data.url);
         }
     };
 
     handleDelete = () => {
-        this.props.changeImageUrl(null);
+        this.setState({
+            imageUrl: null,
+            url: null
+        });
     };
     render () {
         const { getFieldDecorator } = this.props.form;
-        const { content, article, menu, imageUrl } = this.props;
-        options = content;
-        let op = JSON.parse(JSON.stringify(options).replace(/menuCode/g,"value"));
-        op = JSON.parse(JSON.stringify(op).replace(/menuName/g,"label"));
-        op = JSON.parse(JSON.stringify(op).replace(/submenu/g,"children"));
         const uploadButton = (
             <div className="upload-button">
                 <Icon type={this.state.loading ? 'loading' : 'camera'} />
             </div>
         );
-        let tree = [];
-        let code;
-        if (article !== null && menu != null) {
-            code = menu.menuCode;
-            tree.unshift(code);
-            while (code.length > 3){
-                code = code.substr(0,code.length-3);
-                tree.unshift(code);
-            }
-        }
-
+        const { imageUrl } = this.state;
         return (
             <ArticleAddWrapper>
                 <AddInfo>
@@ -127,33 +104,46 @@ class AddArticle extends React.Component {
                                 {imageUrl ? <DeleteIcon onClick={this.handleDelete}><Icon type="delete" />删除图片</DeleteIcon> : null}
                             </TitleImgUpload>
                         </Form.Item>
-                        <Form.Item label="所属目录">
-                            {getFieldDecorator('residence', {
-                                initialValue: tree,
-                                rules: [
-                                    { type: 'array', required: true, message: '请务必选择一个目录' },
-                                ],
-                            })(<Cascader
-                                options={op}
-                                expandTrigger="hover"
-                                displayRender={displayRender}
-                            />,)}
-                        </Form.Item>
-                        <Form.Item label="文章标题">
-                            {getFieldDecorator('title', {
-                                initialValue: article === null ? "加载中" : article.articleTitle,
+                        <Form.Item label="讲师">
+                            {getFieldDecorator('lecturer', {
                                 rules: [{
                                     required: true,
-                                    message: '请输入标题'
-                                }],
-
+                                    message: '请输入讲师姓名',
+                                }]
                             })(
-                                <Input size="large"  placeholder="请输入标题"/>
+                                <Input placeholder="请输入讲师"/>
                             )}
                         </Form.Item>
-                        <Form.Item label="文章正文">
+                        <Form.Item label="上课时间">
+                            {getFieldDecorator('lectureTime',{
+                                rules: [{
+                                    required: true,
+                                    message: '请选择上课时间',
+                                }]
+                            })(<DatePicker showTime placeholder="上课时间"/>)}
+                        </Form.Item>
+                        <Form.Item label="上课地址">
+                            {getFieldDecorator('address', {
+                                rules: [{
+                                    required: true,
+                                    message: '请输入上课地址',
+                                }]
+                            })(
+                                <Input placeholder="请输入上课地址"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item label="标题">
+                            {getFieldDecorator('title', {
+                                rules: [{
+                                    required: true,
+                                    message: '请输入标题',
+                                }],
+                            })(
+                                <Input size="large" placeholder="请输入标题"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item label="正文">
                             {getFieldDecorator('content', {
-                                initialValue: article === null ? null : BraftEditor.createEditorState(article.articleRow),
                                 validateTrigger: 'onBlur',
                                 rules: [{
                                     required: true,
@@ -184,30 +174,18 @@ class AddArticle extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        content: state.get("containers").get("content").get("content"),
-        article: state.get("containers").get("updateArticle").get("article"),
-        menu: state.get("containers").get("updateArticle").get("menu"),
-        imageUrl: state.get("containers").get("updateArticle").get("imageUrl")
+
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllContent(){
-            dispatch(contentAC.getContent());
-        },
-        fetchPosts(id){
-            dispatch(actionCreators.fetchPosts(id))
-        },
-        changeImageUrl(url){
-            dispatch(actionCreators.changeImageUrl(url))
-        },
-        updateArticle(data, props){
-            dispatch(actionCreators.updateArticle(data, props));
+        createCourse(data, props){
+            dispatch(actionCreators.addPediatricCourse(data, props));
         }
     }
 };
 
-const EditableFormRow = Form.create()(AddArticle);
+const EditableFormRow = Form.create()(AddPediatricCourse);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditableFormRow));

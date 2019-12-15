@@ -5,7 +5,7 @@ export const CarouselWrapper = styled.div`
 `;
 
 export const CarouselImage = styled.div`
-    height: 100px;
+    height: 60px;
     img{
       height: 100%;
       transition: .3s;

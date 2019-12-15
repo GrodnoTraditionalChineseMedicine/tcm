@@ -195,6 +195,7 @@ class MomentManage extends Component {
                     values.upload.map((item, index)=>{
                         if (typeof item.response.data !== "undefined")
                             images.push({filePath:item.response.data.url, order:index + 1});
+                        return index;
                     })
                 }
             }

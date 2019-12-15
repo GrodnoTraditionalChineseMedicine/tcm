@@ -6,6 +6,8 @@ import { reducer as updateArticleReducer } from "../updateArticle/store";
 import { reducer as carouselReducer } from "../carousel/store";
 import { reducer as staffReducer } from "../staff/store";
 import { reducer as momentReducer } from "../moment/store";
+import { reducer as pediatricReducer } from "../pediatric/store";
+import { reducer as updateCourseReducer } from "../updateCourse/store";
 
 /*
     使用combineReducer对reducer进行管理
@@ -18,7 +20,9 @@ const reducer = combineReducers({
     updateArticle: updateArticleReducer,
     carousel: carouselReducer,
     staff: staffReducer,
-    moment: momentReducer
+    moment: momentReducer,
+    pediatric: pediatricReducer,
+    updateCourse: updateCourseReducer
 });
 
 export default reducer;

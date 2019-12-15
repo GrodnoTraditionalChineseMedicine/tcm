@@ -8,7 +8,7 @@ import { reducer as pediatricReducer } from "../pages/pediatric/store";
 import { reducer as localesReducer } from "../locales/store";
 import { reducer as containerReducer } from "../manage/containers/store";
 import { reducer as articleReducer } from "../pages/article/store";
-
+import { reducer as courseReducer } from "../pages/course/store";
 /*
     使用combineReducer对reducer进行管理
     以避免所有reducer下载一个文件造成不好维护
@@ -20,6 +20,7 @@ const reducer = combineReducers({
     manage: manageReducer,
     learntcm: learnTcmReducer,
     article: articleReducer,
+    course: courseReducer,
     pediatric: pediatricReducer,
     locales: localesReducer,
     containers: containerReducer

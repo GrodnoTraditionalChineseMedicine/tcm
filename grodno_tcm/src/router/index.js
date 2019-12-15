@@ -13,6 +13,8 @@ import ArticleManage from "../manage/containers/article";
 import ArticleAdd from "../manage/containers/addArticle";
 import ArticleUpdate from "../manage/containers/updateArticle";
 import PediatricMassageManagement from "../manage/containers/pediatric";
+import CourseAdd from "../manage/containers/addCourse";
+import CourseUpdate from "../manage/containers/updateCourse";
 import RoleManagement from "../manage/containers/role";
 
 const Ui = ({routes}) => (<div>
@@ -47,6 +49,8 @@ export const main = [
         }},
     { path: '/manage/article/add', exact: true, name: "新增文章", component: ArticleAdd},
     { path: '/manage/article/update/:id', exact: true, name: "修改文章", component: ArticleUpdate},
+    { path: '/manage/pediatric/course/add', exact: true, name: "新增课程", component: CourseAdd},
+    { path: '/manage/pediatric/course/update/:id', exact: true, name: "修改课程", component: CourseUpdate},
     { path: '/manage', exact: true,  name: '首页', Redirect: '/manage/index'},
     { path: '/manage/index', name: '首页', component: Index, routes: menus}
 ];
