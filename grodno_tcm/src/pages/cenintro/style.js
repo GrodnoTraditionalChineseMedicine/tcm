@@ -79,19 +79,20 @@ export const DoctorInfo = styled.div`
     vertical-align: middle;
     padding: 0 25px 0 25px;
     position: relative;
-    font-size: 15px;
+    font-size: 14px;
     .name{
-      font-size: 18px;
+      font-size: 16px;
       color: #444444;
       font-weight: 600;
     }
     .job-title{
-      font-size: 14px;
+      font-size: 12px;
       color: #646464;
-      margin: 5px 0;
+      margin: 3px 0;
+      padding: 0;
     }
     .introduction{
-      font-size: 15px;
+      font-size: 14px;
       color: #1a1a1a;
       margin-top: 5px;
     }

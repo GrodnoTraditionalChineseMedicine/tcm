@@ -6,6 +6,11 @@ export const changeMoments = (moments) => ({
     moments: moments
 });
 
+export const changeCarousels = (carousels) => ({
+    type: actionTypes.CHANGE_CAROUSELS,
+    carousels
+});
+
 export const getAllMomentNews = () => {
     return (dispatch) => {
         axios.get("/api/home/moments").then((res)=>{
@@ -15,4 +20,12 @@ export const getAllMomentNews = () => {
     }
 };
 
+export const getAllCarousels = () => {
+    return (dispatch) => {
+        axios.get("/api/manage/containers/carousels").then((res)=>{
+            const result = res.data.data;
+            dispatch(changeCarousels(result.carousels))
+        })
+    }
+};
 

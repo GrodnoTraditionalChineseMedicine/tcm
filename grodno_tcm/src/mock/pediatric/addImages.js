@@ -1,9 +1,9 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
-Mock.mock('/api/manage/containers/carousels/images-add','post',function(option){
+Mock.mock('/api/manage/containers/pediatric/images-add','post',function(option){
     console.log("mock moment add",option.body);//可以删掉
-    /*const postValue = [{
+    /*const postValue = "files":[{
         "fileType":2,
         "filePath":"https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg",
         "uploadTime":"2019-12-15 03:13:43"

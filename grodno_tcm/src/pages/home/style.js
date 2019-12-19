@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import PicTest from "../../statics/picture/home.jpg";
-
 
 export const HomeWrapper = styled.div`
     position: relative;
@@ -15,10 +13,6 @@ export const HomeWrapper = styled.div`
 export const HomeCarouselWrapper = styled.div`
     width: 100%;
     margin: 0 auto;
-    div{
-      background: url(${PicTest}) no-repeat center/100%;
-/*      background-size: 100% 100%;*/
-    }
     
     .ant-carousel .slick-slide {
       text-align: center;
@@ -30,6 +24,14 @@ export const HomeCarouselWrapper = styled.div`
     
     .ant-carousel .slick-slide h3 {
       color: #fff;
+    }
+`;
+
+export const CarouselItem = styled.div`
+    height: 100%;
+    background: url(${props=>props.imgUrl}) no-repeat center/100%;
+    h3{
+      opacity: 0;
     }
 `;
 
@@ -211,6 +213,7 @@ export const MapContactInfo = styled.div`
     }
     .iconfont{
       font-size: 30px;
+      color: #C39B67;
     }
     .title{
       font-size: 16px;   

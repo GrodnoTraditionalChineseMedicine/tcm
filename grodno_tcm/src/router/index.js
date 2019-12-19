@@ -1,9 +1,6 @@
 import Login from "../manage/login";
 import Index from "../manage/index";
 
-import React from 'react';
-import { RenderRoutes } from '../router/utils';
-
 import CarouselManage from "../manage/containers/carousel";
 import StaffManage from "../manage/containers/staff";
 import MomentManage from "../manage/containers/moment";
@@ -17,13 +14,11 @@ import CourseAdd from "../manage/containers/addCourse";
 import CourseUpdate from "../manage/containers/updateCourse";
 import RoleManagement from "../manage/containers/role";
 
-const Ui = ({routes}) => (<div>
+/*const Ui = ({routes}) => (<div>
     <h3>Ui
     </h3>
     <RenderRoutes routes={routes}/>
-</div>);
-const Button = () => <h3>Button</h3>;
-const Icon = () => <h3>Icon</h3>;
+</div>);*/
 export const menus = [    // 菜单相关路由
     { path: '/manage/index/carousel', name: '轮播图管理', icon: 'file-image', component: CarouselManage },
     { path: '/manage/index/staff', name: '职工管理', icon: 'idcard', component: StaffManage },
@@ -36,10 +31,6 @@ export const menus = [    // 菜单相关路由
       path: '/manage/index/pediatric', name: '小儿推拿管理', icon: 'smile', component: PediatricMassageManagement
     },{
         path: '/manage/index/role', name: '角色管理', icon: 'team', component: RoleManagement
-    },{ path: '/manage/index/UI', name: 'UI', icon:'video-camera', component: Ui , routes: [
-            {path: '/manage/index/UI/button', name: '按钮', icon: 'video-camera', component: Button },
-            {path: '/manage/index/UI/Icon', name: '图标', icon: 'video-camera', component: Icon }
-        ]
     }
 ];
 

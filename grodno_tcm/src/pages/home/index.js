@@ -3,6 +3,7 @@ import {Carousel, Divider, Row, Col, Button} from "antd";
 import {
     HomeWrapper,
     HomeCarouselWrapper,
+    CarouselItem,
     DynamicAnnounceWrapper,
     DynamicArea,
     DynamicList,
@@ -29,23 +30,14 @@ import {actionCreators as headAC} from "../../common/header/store";
 
 class Home extends Component {
     render() {
-        const { moments, handleChangeKey } = this.props;
+        const { moments, carousels, handleChangeKey } = this.props;
         return (
             <HomeWrapper>
                 <HomeCarouselWrapper>
                     <Carousel autoplay dotPosition="right">
-                        <div>
-                            <h3>1</h3>
-                        </div>
-                        <div>
-                            <h3>2</h3>
-                        </div>
-                        <div>
-                            <h3>3</h3>
-                        </div>
-                        <div>
-                            <h3>4</h3>
-                        </div>
+                        {carousels.map((item)=>{
+                            return <CarouselItem key={item.fileId} imgUrl={item.filePath}><h3>1 </h3></CarouselItem>
+                        })}
                     </Carousel>
                 </HomeCarouselWrapper>
                 <DynamicAnnounceWrapper>
@@ -54,13 +46,13 @@ class Home extends Component {
                             <h3>最新公告</h3>
                             {moments.map((item, index)=>{
                                 return (
-                                    <MomentItem key={index}>
+                                    <MomentItem key={item.momentId}>
                                         <ItemNumber>
                                             <p>{ "0" + (index + 1)}</p>
                                         </ItemNumber>
                                         <ItemInfo background={index===0?"#f07c82":"#93b5cf"}>
-                                            <h2>{item.title}</h2>
-                                            <p>{item.time}</p>
+                                            <h2>{item.momentTitle}</h2>
+                                            <p>{item.publishedTime}</p>
                                         </ItemInfo>
                                     </MomentItem>
                                 )
@@ -138,14 +130,16 @@ class Home extends Component {
         );
     }
     componentDidMount() {
-        const { getAllMomentNews } = this.props;
-        getAllMomentNews()
+        const { getAllMomentNews, getAllCarousels } = this.props;
+        getAllMomentNews();
+        getAllCarousels();
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        moments: state.get("home").get("moments")
+        moments: state.get("home").get("moments"),
+        carousels: state.get("home").get("carousels")
     };
 };
 
@@ -153,6 +147,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllMomentNews(){
             dispatch(actionCreators.getAllMomentNews());
+        },
+        getAllCarousels(){
+            dispatch(actionCreators.getAllCarousels())
         },
         handleChangeKey(e){
             console.log(e);

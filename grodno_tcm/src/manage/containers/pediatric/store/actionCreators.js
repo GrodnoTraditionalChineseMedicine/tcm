@@ -78,7 +78,7 @@ export const deleteCourse = (courseId) => {
 
 export const addImages = (files) => {
     return (dispatch) => {
-        axios.post("/api/manage/containers/carousels/images-add", files)
+        axios.post("/api/manage/containers/pediatric/images-add", {files})
             .then((res)=>{
                 const result = res.data.data;
                 dispatch(imagesAdd(result.images));

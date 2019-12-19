@@ -46,6 +46,8 @@ import * as getCourseById from "./pediatric/getCourseById";
 import * as addCourse from "./pediatric/addCourse";
 import * as updateCourse from "./pediatric/updateCourse";
 
+import * as getAllDoctors from "./cenintro/getAllDoctors";
+
 export {
     data,
     pictureUpload,
@@ -99,5 +101,7 @@ export {
     deleteImage,
     getCourseById,
     addCourse,
-    updateCourse
+    updateCourse,
+
+    getAllDoctors
 };
