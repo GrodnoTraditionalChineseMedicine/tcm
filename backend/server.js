@@ -17,6 +17,7 @@ const articlesManagementRouter = require('./src/router/managementApi/articlesMan
 const carouselManagementRouter = require('./src/router/managementApi/carouseManagement');
 const employeeManagementRouter = require('./src/router/managementApi/staffManagement');
 const momentsManagementRouter = require('./src/router/managementApi/momentManagement');
+const pediatricManagementRouter = require('./src/router/managementApi/pediatricManagement');
 const uploadFile = require('./src/router/uploadImg');
 const uploadVideo = require('./src/router/uploadVideos.js');
 //third-party middleware using
@@ -25,8 +26,9 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('.html', require('ejs').__express);
+app.set('views', path.join(__dirname, 'public/views'));
+app.set('view engine', 'html');
 app.use("/public",express.static('./public'));
 //middleware using
 //前台系统Api
@@ -42,6 +44,7 @@ app.use('/api/manage/containers/articles', articlesManagementRouter);
 app.use('/api/manage/containers/carousels', carouselManagementRouter);
 app.use('/api/manage/containers/staffs', employeeManagementRouter);
 app.use('/api/manage/containers/moments', momentsManagementRouter);
+app.use('/api/manage/containers/pediatric', pediatricManagementRouter);
 app.use('/api/upload/picture', uploadFile);
 app.use('/api/upload/videos', uploadVideo);
 
@@ -66,6 +69,8 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
+app.listen(3001,function () {
+   console.log('app runing on port 3001');
+});
 module.exports = app;
 

@@ -6,5 +6,5 @@
   "deleteRecord" : "DELETE FROM sys_moment WHERE moment_id = ?;",
   "deleteImgRecord" : "DELETE FROM sys_moment WHERE moment_id = ?;",
   "getAllRecords" : "SELECT moment_id,moment_title, moment_content, published_time, is_show\nFROM sys_moment\nORDER BY published_time;",
-  "updateRecord" : "UPDATE sys_moment\nSET moment_id = ?, moment_title = ?, moment_content = ?, published_time = ?, is_show = ?\nWHERE moment_id = ?;"
+  "updateRecord" : "UPDATE sys_moment\nSET  moment_title = ?, moment_content = ?, published_time = ?, is_show = ?\nWHERE moment_id = ?;"
 }
