@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import avator from "../../statics/picture/avator.jpg";
 import Hospital from "../../statics/picture/gszyy.jpg";
 import {withRouter} from "react-router-dom";
 import {

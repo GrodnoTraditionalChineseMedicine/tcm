@@ -1,6 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
+//这两个文件是之前的名字叫 menuData 改到这个目录的
 Mock.mock('/api/learntcm/menus/articles?code=003001','get',{
     success: true,
     data: {

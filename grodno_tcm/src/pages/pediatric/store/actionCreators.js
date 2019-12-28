@@ -6,6 +6,11 @@ export const changeCourses = (courses) => ({
     courses
 });
 
+export const changeImages = (images) => ({
+    type: actionTypes.CHANGE_IMAGES_ACTION,
+    images
+});
+
 export const changeOpenState = (modalIsOpen) => ({
     type: actionTypes.CHANGE_OPEN_STATE_ACTION,
     modalIsOpen
@@ -21,8 +26,17 @@ export const getPediatricCourses = () => {
         axios.get("/api/pediatric/courses")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("article res", res.data.data);*/
                 dispatch(changeCourses(result.courses))
+            })
+    }
+};
+
+export const getPediatricImages = () => {
+    return (dispatch) => {
+        axios.get("/api/manage/containers/pediatric/images")
+            .then((res)=>{
+                const result = res.data.data;
+                dispatch(changeImages(result.images))
             })
     }
 };

@@ -26,7 +26,7 @@ export default (state=defaultState, action) => {
                 return item.fileId !== action.fileId;
             }));
         case actionTypes.ADD_IMAGES:
-            return state.set("images", state.get("images").concat(action.images));
+            return state.set("images", action.images);
         /*case actionTypes.UPDATE_MOMENTS:
             return state.set("moments", state.get("moments").map((item) => {
                 return item.momentId === action.moment.momentId ?

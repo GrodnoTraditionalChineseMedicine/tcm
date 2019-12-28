@@ -6,7 +6,7 @@ export function getPediatricImages(images) {
         img.src = url;
 
         //新增一个image
-        let newImage={src: "", width: 0, height: 0};
+        let newImage={src: "", width: 1, height: 1};
         newImage.src = url;
 
         // 判断是否有缓存
@@ -26,7 +26,8 @@ export function getPediatricImages(images) {
                 newImage.height = img.height / r;
             }
         }
-        formatImages.push(newImage)
+        formatImages.push(newImage);
+        return url;
     });
     return formatImages;
 }

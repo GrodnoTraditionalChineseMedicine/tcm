@@ -36,7 +36,7 @@ class Home extends Component {
                 <HomeCarouselWrapper>
                     <Carousel autoplay dotPosition="right">
                         {carousels.map((item)=>{
-                            return <CarouselItem key={item.fileId} imgUrl={item.filePath}><h3>1 </h3></CarouselItem>
+                            return <CarouselItem key={item.fileId} imgUrl={item.filePath}><h3>{item.fileId}</h3></CarouselItem>
                         })}
                     </Carousel>
                 </HomeCarouselWrapper>

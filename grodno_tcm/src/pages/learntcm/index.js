@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import { Menu, List, Avatar} from 'antd';
+import { Menu, List} from 'antd';
 import {
     LearnTcmWrapper,
     LearnTcmImg,
     LearnTcmContent,
     SiderMenu,
-    ContentList
+    ContentList,
+    ArticleItemImg
 } from './style';
 import {actionCreators} from "./store";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 const { SubMenu } = Menu;
 
@@ -36,7 +38,8 @@ class LearnTcm extends Component {
         isEmpty = menus.size === 0;
         return (
             <LearnTcmWrapper>
-                <LearnTcmImg imgUrl={currentMenu === null ? null : currentMenu.imgUrl}/>
+                <LearnTcmImg imgUrl={currentMenu === null ? null :
+                    (typeof currentMenu.imgUrl === "undefined" ? null : currentMenu.imgUrl)}/>
                 <LearnTcmContent>
                     <SiderMenu>
                     {
@@ -55,11 +58,12 @@ class LearnTcm extends Component {
                         itemLayout="horizontal"
                         dataSource={articles}
                         renderItem={item => (
-                            <List.Item>
+                            <List.Item key={item.articleId}>
+                                {typeof (item.imgUrl) === "undefined" ? null :
+                                    <ArticleItemImg imgUrl={item.imgUrl} />
+                                }
                                 <List.Item.Meta
-                                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                    title={<a href="https://ant.design">{item.articleTitle}</a>}
-                                    description={item.articleRow}
+                                    title={<Link to={`/article/detail/${item.articleId}`} target="_blank">{item.articleTitle}</Link>}
                                 />
                                 <div>{item.publishTime}</div>
                             </List.Item>

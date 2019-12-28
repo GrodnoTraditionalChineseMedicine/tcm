@@ -48,8 +48,11 @@ export const FlUs = styled.div`
       color: #ecf0f1;
       font-size: 1.7em;
       margin-right: 15px;
+      transition: .5s;
     }
-    
+    .iconfont:hover{
+      color: #C39B67;
+    }
 `;
 
 export const CtUs = styled.div`
@@ -66,5 +69,9 @@ export const FooterRight = styled.div`
     .link-content{
       color: #ecf0f1;
       font-weight: bold;
+      transition: .5s;
+    }
+    .link-content:hover{
+      color: #C39B67;
     }
 `;

@@ -11,21 +11,27 @@ import {
     InfoArea,
     PediatricCourseArea,
     CourseItem,
+    ItemImage,
     PediatricGallery
 } from './style';
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
-import { photos } from "./photos";
-/*import {getPediatricImages} from "../../common/util/ImagesUtil";*/
+import {getPediatricImages} from "../../common/util/ImagesUtil";
+import {Link} from "react-router-dom";
 
 class Pediatric extends Component {
     componentDidMount() {
-        const {getAllCourses} = this.props;
+        const {getAllCourses, getAllImages} = this.props;
         getAllCourses();
+        getAllImages();
     }
 
     render() {
-        const {courses, modalIsOpen, currentImage, openLightbox, closeLightbox} = this.props;
+        const {courses, images, modalIsOpen, currentImage, openLightbox, closeLightbox} = this.props;
+        let finalImages = [];
+        if (typeof images !== "undefined") {
+            finalImages = getPediatricImages(images);
+        }
         return (
             <PediatricWrapper>
                 <PediatricHeadImg/>
@@ -81,13 +87,15 @@ class Pediatric extends Component {
                                 courses.map((item)=>{
                                     return (
                                         <Col span={6} key={item.get("courseId")}>
-                                            <CourseItem>
-                                                <img className="course-img" alt={item.get("title")} src="https://i.loli.net/2019/11/07/92M5asNqKSdJmR4.png"/>
-                                                <h4>{item.get("title")}</h4>
-                                                <p className="lecturee">{item.get("lecturee")}</p>
-                                                <p className="address">{item.get("address")}</p>
-                                                <p className="lecture-time">{item.get("lectureTime")}</p>
-                                            </CourseItem>
+                                            <Link to={`/pediatric/courses/detail/${item.get("courseId")}`} target="_blank">
+                                                <CourseItem>
+                                                    <ItemImage imgUrl={typeof item.get("imgUrl") === "undefined" ? "https://i.loli.net/2019/11/07/92M5asNqKSdJmR4.png" : item.get("imgUrl")}/>
+                                                    <h4>{item.get("title")}</h4>
+                                                    <p className="lecturee">{item.get("lecturee")}</p>
+                                                    <p className="address">{item.get("address")}</p>
+                                                    <p className="lecture-time">{item.get("lectureTime")}</p>
+                                                </CourseItem>
+                                            </Link>
                                         </Col>
                                     )
                                 })
@@ -97,18 +105,13 @@ class Pediatric extends Component {
                     <PediatricTitle>治疗图片</PediatricTitle>
                     <Divider/>
                     <PediatricGallery>
-                        {/*let formatImages = [];
-                        if (typeof images.length !== "undefined"){
-                            if (images.length !== 0)
-                            formatImages = getPediatricImages(images);
-                        }*/}
-                        <Gallery photos={photos} onClick={openLightbox}/>
+                        <Gallery photos={finalImages} direction="row" onClick={openLightbox}/>
                         <ModalGateway>
                             { modalIsOpen ? (
                                 <Modal onClose={closeLightbox}>
                                     <Carousel
                                         currentIndex={currentImage}
-                                        views={photos.map(x => ({
+                                        views={finalImages.map(x => ({
                                             ...x,
                                             srcset: x.srcSet,
                                             caption: x.title
@@ -127,6 +130,7 @@ class Pediatric extends Component {
 const mapStateToProps = (state) => {
     return {
         courses: state.get("pediatric").get("courses"),
+        images: state.get("pediatric").get("images"),
         currentImage: state.get("pediatric").get("currentImage"),
         modalIsOpen: state.get("pediatric").get("modalIsOpen")
     };
@@ -136,6 +140,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllCourses(){
             dispatch(actionCreators.getPediatricCourses())
+        },
+        getAllImages(){
+            dispatch(actionCreators.getPediatricImages())
         },
         openLightbox(event, { photo, index }){
             dispatch(actionCreators.changeCurrentIndex(index));

@@ -47,11 +47,16 @@ export const ContentList = styled.div`
       display: table-cell;
       padding: 10px;
       background: #fff;
-      border-radius: 10px;
-/*      box-shadow: 2px 2px 8px #888888;*/
+      border-radius: 10px
       width: 70%;
 `;
 
+export const ArticleItemImg = styled.div`
+    height: 80px;
+    width: 145px;
+    margin-right: 10px;
+    background: url("${props => props.imgUrl !== null ? props.imgUrl : LearnTcm}") no-repeat center/100%;
+`;
 
 /*export const HospitalIntroImg = styled.div`
     width: 100%;

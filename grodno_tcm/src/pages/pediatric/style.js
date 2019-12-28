@@ -85,6 +85,12 @@ export const CourseItem = styled.div`
     }
 `;
 
+export const ItemImage = styled.div`
+    width: 100%;
+    height: 150px;
+    background: url("${props => props.imgUrl}") no-repeat center/100%;
+`;
+
 export const PediatricGallery = styled.div`
 
 `;

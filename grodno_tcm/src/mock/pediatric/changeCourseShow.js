@@ -1,6 +1,7 @@
 // 使用 Mock
 import Mock from 'mockjs'
 
+//暂时废除
 Mock.mock('/api/manage/containers/pediatric/show','post',function(option){
     console.log("mock pediatric change course show",option.body);//改变isShow时，父目录改变，子目录会跟着父目录改变的值而改变，如001的isShow变为0则001001......的isShow都为0
     /*const postValue = {

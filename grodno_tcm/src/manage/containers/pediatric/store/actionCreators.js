@@ -56,7 +56,7 @@ export const changeCourseIsShow = (course) => {
     return (dispatch) => {
         dispatch(courseShowChange(course));
 
-        axios.post("/api/manage/containers/pediatric/show", course)
+        axios.post("/api/manage/containers/pediatric/course-update", course)
             .then((res)=>{
                 const result = res.data.data;
                 message.info(result.message);

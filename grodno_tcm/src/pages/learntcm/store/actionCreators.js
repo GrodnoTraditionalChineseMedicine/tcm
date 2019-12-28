@@ -21,7 +21,6 @@ export const getAllMenus = () => {
         axios.get("/api/learntcm/menus")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("res", res.data.data);*/
                 dispatch(changeMenus(result.menus))
             })
     }
@@ -32,7 +31,6 @@ export const getAllArticles = () => {
         axios.get("/api/learntcm/menus/articles")
             .then((res)=>{
                 const result = res.data.data;
-                /*console.log("article res", res.data.data);*/
                 dispatch(changeArticles(result.article))
             })
     }

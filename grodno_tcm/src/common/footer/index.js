@@ -15,8 +15,8 @@ function Footer() {
                 <FooterContact>
                     <FlUs>
                         <h3>{/*FOLLOW US*/}<FormattedMessage id="components.footer.follow" defaultMessage="关注我们"/></h3>
-                        <span className="iconfont">&#xf25e;</span>
-                        <span className="iconfont">&#xe68c;</span>
+                        <a className="link" href="https://vk.com/id525362060" target="_blank"><span className="iconfont">&#xf25e;</span></a>
+                        <a className="link" href="https://www.instagram.com/chinese_medicine_center/" target="_blank"><span className="iconfont">&#xe68c;</span></a>
                     </FlUs>
                     <CtUs>
                         <h3>{/*CONTACT US*/}<FormattedMessage id="components.footer.contact" defaultMessage="联系我们"/></h3>

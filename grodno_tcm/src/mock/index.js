@@ -1,9 +1,9 @@
 import * as data from "./data1";
 import * as pictureUpload from "./pictureUpload";
 import * as menus from "./menus";
-import * as menuData1 from "./menuData1";
-import * as menuData from "./menuData";
-import * as pediatricCourse from "./pediatricCourse";
+import * as menuData1 from "./learntcm/getAllArticlesByCode";
+import * as menuData from "./learntcm/getAllArticles";
+import * as pediatricCourse from "./pediatricFrontSystem/getAllPediatricIsShowCourses";
 import * as getAllRoles from "./role/getAllRoles";
 import * as deleteRole from "./role/deleteRole";
 import * as updateRole from "./role/updateRole";
