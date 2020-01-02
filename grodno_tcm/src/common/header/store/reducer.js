@@ -5,7 +5,6 @@ const defaultState = fromJS({
     isHide: false,
     isTop: true,
     selectedKey: "/"
-
 });
 
 export default (state = defaultState, action) => {

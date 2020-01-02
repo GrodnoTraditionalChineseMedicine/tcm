@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {actionCreators, actionTypes} from "./store";
+import {actionCreators as manageAC} from "../store";
 import {
-    Form, Icon, Input, Button, Checkbox,
+    Form, Icon, Input, Button, Checkbox, notification
 } from 'antd';
 import {
     LoginWrapper,
@@ -23,21 +24,29 @@ class Login extends Component{
             }
         });
     };
+    openNotification = () => {
+        notification.open({
+            message: '请联系管理员',
+            description:
+                '后台密码属于唯一信息，如果忘记密码，请联系管理员处理，邮箱：xinghanluo@gmail.com',
+            icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
+        });
+    };
 
     render() {
         const { getFieldDecorator } = this.props.form;
         let { loginData }  = this.props;
 
         const { from } = this.props.location.state || { from: { pathname: "/manage" } };
-        if (typeof loginData === 'object' && loginData.get("code") === 200) {
-            sessionStorage.setItem('isAuthenticated', true);
-        } else {
-            sessionStorage.setItem('isAuthenticated', false);
+        if (typeof loginData === 'object' && loginData.code === 200) {
+            localStorage.setItem('isAuthenticated', true);
+            localStorage.setItem('currentUser', JSON.stringify(loginData.currentUser));
         }
-        let isAuthenticated  = sessionStorage.getItem('isAuthenticated');
+        let isAuthenticated  = localStorage.getItem('isAuthenticated');
         // 判断是否登录，
         if (isAuthenticated === "true") {
             from.pathname = from.pathname === '/manage/login' ? '/manage' :  from.pathname;
+            this.props.changeAuth(true);
             return <Redirect to={from} />;
         } else {
             return (
@@ -68,11 +77,11 @@ class Login extends Component{
                                 <Form.Item>
                                     {getFieldDecorator('remember', {
                                         valuePropName: 'checked',
-                                        initialValue: false,
+                                        initialValue: true,
                                     })(
                                         <Checkbox>记住我</Checkbox>
                                     )}
-                                    <a className="login-form-forgot" href="/">忘记密码</a><br/>
+                                    <span className="login-form-forgot" onClick={this.openNotification}>忘记密码</span><br/>
                                     <Button type="primary" htmlType="submit" className="login-form-button">
                                         登录
                                     </Button>
@@ -86,6 +95,8 @@ class Login extends Component{
     }
 }
 
+
+
 const mapStateToProps = (state) => {
     return {
         loginData: state.get("login").get("loginData"),
@@ -97,6 +108,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         login(values){
             dispatch(actionCreators.fetchPosts('/api/manage/login', actionTypes.LOGIN_ACTION, 'loginData', values));
+        },
+        changeAuth(isAuthenticated){
+            dispatch(manageAC.changeIsAuthenticated(isAuthenticated))
         }
     }
 };

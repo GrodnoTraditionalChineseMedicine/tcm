@@ -13,6 +13,8 @@ export default (state = defaultState, action) => {
             return state.set("slidecollapsed",!state.get("slidecollapsed"));
         case actionTypes.GET_ROUTER_CONFIG:
             return state.set("routerConfig", myRouterConfig);
+        case actionTypes.CHANGE_AUTHENTICATED:
+            return state.set("isAuthenticated", action.isAuthenticated);
         default:
             return state;
     }

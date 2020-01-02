@@ -27,11 +27,9 @@ export const menus = [    // 菜单相关路由
             {path: '/manage/index/learn/menu', name: '菜单管理', icon: 'menu', component: ContentManage },
             {path: '/manage/index/learn/articles', name: '文章管理', icon: 'book', component: ArticleManage }
         ]
-    },{
-      path: '/manage/index/pediatric', name: '小儿推拿管理', icon: 'smile', component: PediatricMassageManagement
-    },{
-        path: '/manage/index/role', name: '角色管理', icon: 'team', component: RoleManagement
-    }
+    },
+    {path: '/manage/index/pediatric', name: '小儿推拿管理', icon: 'smile', component: PediatricMassageManagement},
+    {path: '/manage/index/role', name: '角色管理', icon: 'team', component: RoleManagement}
 ];
 
 export const main = [

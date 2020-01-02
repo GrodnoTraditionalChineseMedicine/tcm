@@ -9,4 +9,9 @@ export const getRouterConfig = (routerConfig) => ({
     routerConfig: routerConfig
 });
 
+export const changeIsAuthenticated = (isAuthenticated) => ({
+    type: actionTypes.CHANGE_AUTHENTICATED,
+    isAuthenticated
+});
+
 

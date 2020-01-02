@@ -8,8 +8,12 @@ export const RouteWithSubRoutes = route => (
         path={route.path}
         exact={route.exact}
         render={props =>{
-            var isAuthenticated  = sessionStorage.getItem('isAuthenticated')
+            let isAuthenticated  = localStorage.getItem('isAuthenticated');
+/*            console.log("是否登录验证", isAuthenticated);
+            console.log("Route.meta值得类型是否等于object", typeof (route.meta) === 'object', "route.meta等于多少",route.meta);
+            console.log(!(typeof route.meta === 'object' && route.meta.isAuth) && !isAuthenticated);*/
             if ( !(typeof route.meta === 'object' && route.meta.isAuth) && !isAuthenticated ) {
+                console.log("Meta", route);
                 return <Redirect
                     to={{
                         pathname: "/manage/login",
@@ -17,6 +21,14 @@ export const RouteWithSubRoutes = route => (
                     }}
                 />
             }
+            /*if ( !(typeof route.meta === 'object' && route.meta.isAuth) && !isAuthenticated ) {
+                return <Redirect
+                    to={{
+                        pathname: "/manage/login",
+                        state: { from: props.location }
+                    }}
+                />
+            }*/
             return (
                 route &&( route.Redirect ? (<Redirect to={route.Redirect}/>) :  // +-
                     (<route.component {...props} routes={route.routes} />))

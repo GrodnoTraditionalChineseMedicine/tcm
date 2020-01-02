@@ -18,7 +18,7 @@ class MySlider extends Component {
                 collapsed={ slidecollapsed } // +-
             >
                 <div className="logo" />
-                <div onClick={getRouterConfig}>
+                <div onClick={() => getRouterConfig}>
                     <Menu theme="dark" mode="inline" inlineCollapsed={slidecollapsed} defaultSelectedKeys={['/manage/index/UI']}>
                         {slideMenu(menusConfig)}
                     </Menu>

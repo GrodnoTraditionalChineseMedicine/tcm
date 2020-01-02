@@ -67,4 +67,11 @@ export const FormWrapper = styled.div`
     font-size: 20px;
     color: #777;
   }
+  .login-form-forgot{
+    border: none;
+    background: none;
+    width: auto;
+    color: #1890FF;
+    cursor: pointer;
+  }
 `;

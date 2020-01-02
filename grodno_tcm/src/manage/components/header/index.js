@@ -3,30 +3,39 @@ import { connect  } from 'react-redux'
 import {actionCreators} from "../../store";
 import {filterData} from "../../utils";
 import {Layout, Icon, Menu, Dropdown, Avatar} from 'antd';
+import {Redirect} from "react-router-dom";
 const { Header } = Layout;
 
 class MyHeader extends Component {
     constructor(props){
         super(props);
         this.state = {
-            onSlidecollapsed: this.props.onSlidecollapsed
+            onSlidecollapsed: this.props.onSlidecollapsed,
+            isAuthenticated: true
         };
     }
+
     toggle = () => {
         this.state.onSlidecollapsed()
     };
-    logout = (e) => { // +
+
+    logout = () => { // +
         /*this.props.onLogout({});*/  // 退出登录， 如果是正常项目中， 应该会传递一些数据过去，这里没有用户数据， 因此传递个空对象
-        sessionStorage.removeItem('isAuthenticated');  // 发出退出请求后， 直接退出， 无需等待后台返回响应。
+        localStorage.removeItem('isAuthenticated');  // 发出退出请求后， 直接退出， 无需等待后台返回响应.
+        localStorage.removeItem('currentUser');
         this.setState({
-            isAuthenticated: "false" // 判断是否登录
+            isAuthenticated: false // 判断是否登录
         });
     };
 
 
     render() {
-        let { slidecollapsed, loginData } = this.props;
+        let { slidecollapsed } = this.props;
         slidecollapsed = filterData(slidecollapsed, 'slidecollapsed');
+        if (!this.state.isAuthenticated ) {
+            return <Redirect to="/manage/login" />;
+        }
+        let currentUser  = JSON.parse(localStorage.getItem('currentUser'));
         const menu = (
             <Menu>
                 <Menu.Item key="0">
@@ -53,7 +62,7 @@ class MyHeader extends Component {
                     onClick={this.toggle}
                 />
                 <Dropdown overlay={menu}>
-                    <Avatar size="large" src={loginData === "暂无数据" ? "" : loginData.get("currentUser").get("imgUrl")}/>
+                    <Avatar size="large" src={currentUser === null ? null : currentUser.imgUrl}/>
                 </Dropdown>
             </Header>
         )
@@ -62,8 +71,7 @@ class MyHeader extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        slidecollapsed: state.get("manage").get("slidecollapsed"),
-        loginData: state.get("login").get("loginData")
+        slidecollapsed: state.get("manage").get("slidecollapsed")
     };
 };
 

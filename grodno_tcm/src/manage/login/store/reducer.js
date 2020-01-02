@@ -10,12 +10,12 @@ const defaultState = fromJS({
 export default (state=defaultState, action) => {
     switch (action.type) {
         case actionTypes.LOGIN_ACTION:
-            return state.set("loginData", fromJS(action.loginData));
+            return state.set("loginData", action.loginData);
            /* return {...state, ...action};*/
         case actionTypes.CHANGE_LOGOUT:
             return state.merge({
                 isLogged: action.isLogged,
-                currentUser: fromJS(action.currentUser)
+                currentUser: action.currentUser
             });
         default:
             return state;
