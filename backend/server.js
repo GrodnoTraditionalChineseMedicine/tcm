@@ -19,7 +19,8 @@ const employeeManagementRouter = require('./src/router/managementApi/staffManage
 const momentsManagementRouter = require('./src/router/managementApi/momentManagement');
 const pediatricManagementRouter = require('./src/router/managementApi/pediatricManagement');
 const uploadFile = require('./src/router/uploadImg');
-const uploadVideo = require('./src/router/uploadVideos.js');
+const uploadVideo = require('./src/router/uploadVideos');
+const doctersRouter = require('./src/router/doctors');
 //third-party middleware using
 // app.use(express.json());
 app.use(bodyParser.json({limit: '50mb'}));
@@ -47,6 +48,7 @@ app.use('/api/manage/containers/moments', momentsManagementRouter);
 app.use('/api/manage/containers/pediatric', pediatricManagementRouter);
 app.use('/api/upload/picture', uploadFile);
 app.use('/api/upload/videos', uploadVideo);
+app.use('/api/center-intro/doctors', doctersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,3 @@
+{
+  "getAllDoctors": "\nSELECT * FROM sys_employee \nWHERE role_id = 5;"
+}
