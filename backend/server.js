@@ -20,7 +20,9 @@ const momentsManagementRouter = require('./src/router/managementApi/momentManage
 const pediatricManagementRouter = require('./src/router/managementApi/pediatricManagement');
 const uploadFile = require('./src/router/uploadImg');
 const uploadVideo = require('./src/router/uploadVideos');
-const doctersRouter = require('./src/router/doctors');
+const doctorsRouter = require('./src/router/doctors');
+const getIsShowMoments = require('./src/router/getAllHomeMoments');
+const getIsShowPediatric = require('./src/router/getAllPediatricIsShowCourses')
 //third-party middleware using
 // app.use(express.json());
 app.use(bodyParser.json({limit: '50mb'}));
@@ -36,6 +38,9 @@ app.use("/public",express.static('./public'));
 app.use('/api/email', emailRouter);
 app.use('/api/learntcm',learntcmRouter);
 app.use('/api/pediatric', pediatricCourseRouter);
+app.use('/api/center-intro/doctors', doctorsRouter);
+app.use('/api/home/moment', getIsShowMoments);
+app.use('/api/pediatric/isshowcourses', getIsShowPediatric);
 //后台管理系统
 app.use("/", express.static("./build"));
 app.use('/api/manage',adminRouter);
@@ -48,8 +53,6 @@ app.use('/api/manage/containers/moments', momentsManagementRouter);
 app.use('/api/manage/containers/pediatric', pediatricManagementRouter);
 app.use('/api/upload/picture', uploadFile);
 app.use('/api/upload/videos', uploadVideo);
-app.use('/api/center-intro/doctors', doctersRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     //next(createError(404));
