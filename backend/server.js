@@ -22,7 +22,8 @@ const uploadFile = require('./src/router/uploadImg');
 const uploadVideo = require('./src/router/uploadVideos');
 const doctorsRouter = require('./src/router/doctors');
 const getIsShowMoments = require('./src/router/getAllHomeMoments');
-const getIsShowPediatric = require('./src/router/getAllPediatricIsShowCourses')
+const getIsShowPediatric = require('./src/router/getAllPediatricIsShowCourses');
+const loginApi = require('./src/router/managementApi/loginApi');
 //third-party middleware using
 // app.use(express.json());
 app.use(bodyParser.json({limit: '50mb'}));
@@ -35,6 +36,7 @@ app.set('view engine', 'html');
 app.use("/public",express.static('./public'));
 //middleware using
 //前台系统Api
+app.use('/api/manage/login', loginApi);
 app.use('/api/email', emailRouter);
 app.use('/api/learntcm',learntcmRouter);
 app.use('/api/pediatric', pediatricCourseRouter);
