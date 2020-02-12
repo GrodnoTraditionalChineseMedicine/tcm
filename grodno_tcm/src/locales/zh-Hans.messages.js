@@ -10,6 +10,14 @@ const Cn = {
     'components.footer.help': '帮助',
     'components.footer.account': '账号',
     'components.footer.privacy': '隐私政策',
+    'home.contact.address.title':'地址：',
+    'home.contact.address.content':'г.Гродно ул. Даватара 23',
+    'home.contact.telephone.title':'电话：',
+    'home.contact.telephone.content':'+375 (29) 307-06-40',
+    'home.contact.time.title':'工作时间：',
+    'home.contact.time.content':'Пн-Пт: 8:00-23:00 сб 9.00-21.00 вс 11.00 до 20.00',
+    'home.contact.email.title':'电子邮箱：',
+    'home.contact.email.content':'xinghanluo@gmail.com',
     'privacy.version.time':'版本生效日期：2019-11-09',
     'privacy.version.head': '<p>Grodno TCM Center （以及下文提到的“我们”、“我们的”或“本app”）是由主体公司甘肃省中医院格罗德诺中医中心提供的网络产品。' +
         '<br/>产品名称：Grodno TCM Center<br/>产品类别：网站</p><p>网址：www.grodnotcmc.com</p>' +

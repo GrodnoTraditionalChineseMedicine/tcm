@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Hospital from "../../statics/picture/gszyy.jpg";
 import {withRouter} from "react-router-dom";
 import {
     CenterIntroWrapper,
+    CenterIntroImg,
     CenterIntroInfo,
     Title,
     CenterIntro,
@@ -15,6 +15,7 @@ import {
 } from './style';
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
+import {Divider} from "antd";
 
 class HospitalIntro extends Component {
     componentDidMount() {
@@ -25,9 +26,11 @@ class HospitalIntro extends Component {
         const { doctors } = this.props;
         return (
             <CenterIntroWrapper>
+                <CenterIntroImg/>
                 <CenterIntroInfo>
                     <CenterIntro>
-                        <Title>CENTER INTRODUCTION</Title>
+                        <Title>中心介绍</Title>
+                        <Divider/>
                         <IntroWordInfo>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
                             Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
@@ -35,12 +38,10 @@ class HospitalIntro extends Component {
                             mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus
                             sapien nunc eget.
                         </IntroWordInfo>
-                        <IntroImgInfo>
-                            <img alt="center's img" src={Hospital}/>
-                        </IntroImgInfo>
                     </CenterIntro>
                     <CenterDoctor>
-                        <Title>OUR DOCTORS</Title>
+                        <Title>我们的医生</Title>
+                        <Divider/>
                         {doctors.map((item)=>{
                             return (
                                 <DoctorItem key={item.employeeId}>

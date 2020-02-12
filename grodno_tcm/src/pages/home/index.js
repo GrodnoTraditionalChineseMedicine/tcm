@@ -27,6 +27,7 @@ import homeVideo from "../../statics/video/FishingBoat.mp4";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {actionCreators as headAC} from "../../common/header/store";
+import {FormattedMessage} from "react-intl";
 
 class Home extends Component {
     render() {
@@ -98,29 +99,29 @@ class Home extends Component {
                             <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                 <Col span={3}><span className="iconfont">&#xe625;</span></Col>
                                 <Col span={21}>
-                                    <span className="title">Адрес:</span><br/>
-                                    <span className="detail">г.Гродно ул. Даватара 23</span>
+                                    <span className="title"><FormattedMessage id="home.contact.address.title" defaultMessage="Адрес:"/></span><br/>
+                                    <span className="detail"><FormattedMessage id="home.contact.address.content" defaultMessage="г.Гродно ул. Даватара 23"/></span>
                                 </Col>
                             </Row>
                             <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                 <Col span={3}><span className="iconfont">&#xe61b;</span></Col>
                                 <Col span={21}>
-                                    <span className="title">Телефоны:</span><br/>
-                                    <span className="detail">+375 (29) 307-06-40</span>
+                                    <span className="title"><FormattedMessage id="home.contact.telephone.title" defaultMessage="Телефоны:"/></span><br/>
+                                    <span className="detail"><FormattedMessage id="home.contact.telephone.content" defaultMessage="+375 (29) 307-06-40"/></span>
                                 </Col>
                             </Row>
                             <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                 <Col span={3}><span className="iconfont">&#xe600;</span></Col>
                                 <Col span={21}>
-                                    <span className="title">Рабочее время:</span><br/>
-                                    <span className="detail">Пн-Пт: 8:00-23:00 сб 9.00-21.00 вс 11.00 до 20.00</span>
+                                    <span className="title"><FormattedMessage id="home.contact.time.title" defaultMessage="Рабочее время:"/></span><br/>
+                                    <span className="detail"><FormattedMessage id="home.contact.time.content" defaultMessage="Пн-Пт: 8:00-23:00 сб 9.00-21.00 вс 11.00 до 20.00"/></span>
                                 </Col>
                             </Row>
                             <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                 <Col span={3}><span className="iconfont">&#xe617;</span></Col>
                                 <Col span={21}>
-                                    <span className="title">Email:</span><br/>
-                                    <span className="detail">xinghanluo@gmail.com</span>
+                                    <span className="title"><FormattedMessage id="home.contact.email.title" defaultMessage="Эл. адрес:"/></span><br/>
+                                    <span className="detail"><FormattedMessage id="home.contact.email.content" defaultMessage="xinghanluo@gmail.com"/></span>
                                 </Col>
                             </Row>
                         </MapContactInfo>

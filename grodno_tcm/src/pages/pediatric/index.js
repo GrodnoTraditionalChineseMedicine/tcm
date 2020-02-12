@@ -91,7 +91,7 @@ class Pediatric extends Component {
                                                 <CourseItem>
                                                     <ItemImage imgUrl={typeof item.get("imgUrl") === "undefined" ? "https://i.loli.net/2019/11/07/92M5asNqKSdJmR4.png" : item.get("imgUrl")}/>
                                                     <h4>{item.get("title")}</h4>
-                                                    <p className="lecturee">{item.get("lecturee")}</p>
+                                                    <p className="lecturer">{item.get("lecturer")}</p>
                                                     <p className="address">{item.get("address")}</p>
                                                     <p className="lecture-time">{item.get("lectureTime")}</p>
                                                 </CourseItem>

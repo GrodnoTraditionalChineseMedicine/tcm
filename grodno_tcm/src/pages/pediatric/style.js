@@ -71,7 +71,7 @@ export const CourseItem = styled.div`
         margin: 0;
         font-size: 12px;
     }
-    .lecturee{
+    .lecturer{
         font-weight: 600;
         text-align: center;
     }
