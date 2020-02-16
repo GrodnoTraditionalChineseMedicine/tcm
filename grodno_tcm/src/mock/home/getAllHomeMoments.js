@@ -14,7 +14,7 @@ Mock.mock('/api/home/moments','get',{
             publishedTime: "2019-11-12 12:10:31",
             images: [{
                 fileId: 5,
-                filePath: "https://i.loli.net/2019/11/26/LuAv9rtz1g3Xq8C.jpg",
+                filePath: "https://i.loli.net/2019/11/26/F5qSHxIVdnagleK.jpg",
                 order: 1
             },{
                 fileId: 1,
@@ -45,7 +45,16 @@ Mock.mock('/api/home/moments','get',{
             momentTitle: "我院举行“医院开放日”活动",
             momentContent: "1月22日，我院举行首次“医院开放日”活动，吸引了包括人大代表、群团组织、企事业单位员工和高校学生在内的30" +
                 "余名各界人士踊跃参与。这是我院秉持“开门办院、开放办院，办成没有‘围墙’的医院”理念，坚持自我加压、自我完善、自我提升，面向社会大众“开门纳谏”推出的又一项创新举措。院长赖卫国、院领导聂宇波、杨明福、李韶今、杨敏和相关职能科室负责人出席当天召开的座谈会，并与参加人员热烈交流。",
-            publishedTime: "2019-03-11 12:10:31"
+            publishedTime: "2019-03-11 12:10:31",
+            images: [{
+                fileId: 5,
+                filePath: "https://i.loli.net/2019/11/17/pudaovbTefSJsDx.jpg",
+                order: 1
+            },{
+                fileId: 1,
+                filePath: "https://i.loli.net/2019/11/26/F5qSHxIVdnagleK.jpg",
+                order: 2
+            }]
         }]
     }
 });

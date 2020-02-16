@@ -12,7 +12,8 @@ import {
     PediatricCourseArea,
     CourseItem,
     ItemImage,
-    PediatricGallery
+    PediatricGallery,
+    ItemContent
 } from './style';
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
@@ -86,14 +87,17 @@ class Pediatric extends Component {
                             {
                                 courses.map((item)=>{
                                     return (
-                                        <Col span={6} key={item.get("courseId")}>
+                                        <Col span={8} key={item.get("courseId")}>
                                             <Link to={`/pediatric/courses/detail/${item.get("courseId")}`} target="_blank">
                                                 <CourseItem>
-                                                    <ItemImage imgUrl={typeof item.get("imgUrl") === "undefined" ? "https://i.loli.net/2019/11/07/92M5asNqKSdJmR4.png" : item.get("imgUrl")}/>
-                                                    <h4>{item.get("title")}</h4>
-                                                    <p className="lecturer">{item.get("lecturer")}</p>
-                                                    <p className="address">{item.get("address")}</p>
-                                                    <p className="lecture-time">{item.get("lectureTime")}</p>
+                                                    <ItemImage imgUrl={typeof item.get("imgUrl") === "undefined" ? "https://i.loli.net/2019/11/07/92M5asNqKSdJmR4.png" : item.get("imgUrl")}>
+                                                        <ItemContent>
+                                                            <h2>{item.get("title")}</h2>
+                                                            <p className="lecturer">{item.get("lecturer")}</p>
+                                                            <p className="lecture-time"><strong>Время: </strong>{item.get("lectureTime")}</p>
+                                                            <p className="address"><strong>Адрес: </strong>{item.get("address")}</p>
+                                                        </ItemContent>
+                                                    </ItemImage>
                                                 </CourseItem>
                                             </Link>
                                         </Col>

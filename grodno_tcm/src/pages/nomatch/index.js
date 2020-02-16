@@ -15,7 +15,7 @@ function HospitalIntro() {
             <NoMatchDiv>
                 <NoMatchContent>
                     <NoFoundImage>
-                        <img src={NoFound} alt="No Found Image"/>
+                        <img src={NoFound} alt="No Found"/>
                     </NoFoundImage>
                     <NoFoundText>
                         <h1>页面不存在</h1>

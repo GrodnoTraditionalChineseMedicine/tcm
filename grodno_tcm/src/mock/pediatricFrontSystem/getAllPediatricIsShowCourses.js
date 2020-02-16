@@ -17,7 +17,7 @@ Mock.mock('/api/pediatric/courses','get',{
             isShow: 1
         },{
             courseId: 2,
-            title: "第2节课眼保健操2",
+            title: "Детский массаж Первый класс",
             imgUrl: "https://pic.huke88.com/video/cover/2018-12-12/DA7FCF6B-D683-526B-CDEE-E2631F662CEC.jpg!/fw/500/compress/true/format/jpg",
             address: "甘肃省中医院格罗德诺分院",
             lectureTime: "2019-12-05 13:00:00",

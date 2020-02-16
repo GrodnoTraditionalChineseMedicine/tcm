@@ -7,7 +7,6 @@ import {
     Title,
     CenterIntro,
     IntroWordInfo,
-    IntroImgInfo,
     CenterDoctor,
     DoctorItem,
     DoctorImg,

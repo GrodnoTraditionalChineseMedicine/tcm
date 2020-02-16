@@ -7,14 +7,18 @@ import {
     ContactMainArea,
     SendMessageArea
 } from "./style";
-import {Form, Input, Button} from "antd";
+import {Form, Input, Button, Modal} from "antd";
 
 class ContactUs extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("Start Send Email!")
+                console.log("Start Send Email!");
+                Modal.success({
+                    content: '谢谢您的反馈，我们会尽快通过邮件回复您！',
+                });
+                this.props.form.resetFields();
             }
         });
     };
@@ -56,7 +60,7 @@ class ContactUs extends Component {
                                         </Form.Item>
                                         <Form.Item>
                                             <Button type="primary" htmlType="submit">
-                                                SUBMIT
+                                                提交
                                             </Button>
                                         </Form.Item>
                                     </Form>
