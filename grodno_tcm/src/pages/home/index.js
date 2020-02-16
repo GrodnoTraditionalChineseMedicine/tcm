@@ -23,10 +23,8 @@ import {
     HomeContent, MedicalWayContent, MedicalIcon, MedicalTitle,
 } from './style';
 import "video-react/dist/video-react.css";
-import {Player} from "video-react";
 import {Link, withRouter} from "react-router-dom";
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
-import homeVideo from "../../statics/video/FishingBoat.mp4";
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {actionCreators as headAC} from "../../common/header/store";
