@@ -4,6 +4,7 @@ import Header from "../common/header";
 import Footer from "../common/footer";
 
 import Home from "../pages/home";
+import Moment from "../pages/moment";
 import HospitalIntro from "../pages/hosintro";
 import CenterIntro from "../pages/cenintro";
 import LearnTcm from "../pages/learntcm";
@@ -36,6 +37,7 @@ function PublicLayout(props) {
                 <Route path="/privacy" exact component={PrivacyPolicy}/>
                 <Route path="/article/detail/:id" exact component={ArticleDetail}/>
                 <Route path="/pediatric/courses/detail/:id" exact component={PediatricCourseDetail}/>
+                <Route path="/moment/detail/:id" exact component={Moment}/>
                 <Route component={NoMatch}/>
             </Switch>
             <Footer/>

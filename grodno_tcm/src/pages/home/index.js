@@ -1,30 +1,32 @@
 import React, {Component} from "react";
-import {Carousel, Divider, Row, Col, Button} from "antd";
+import {Button, Carousel, Col, Divider, Icon, Row} from "antd";
 import {
-    HomeWrapper,
-    HomeCarouselWrapper,
     CarouselItem,
     DynamicAnnounceWrapper,
     DynamicArea,
-    MomentItem,
-    MomentImage,
-    MomentContent,
-    HomeButton,
-    HomeVideoWrapper,
-    TuinaWrapper,
-    TuinaArea,
-    TuinaIntro,
-    TuinaImg,
+    HomeCarouselWrapper,
+    HomeContent,
     HomeMapWrapper,
-    MapContainer,
+    HomeVideoWrapper,
+    HomeWrapper,
     MapContactInfo,
-    MedicalWayList,
+    MapContainer,
+    MedicalIcon,
     MedicalItem,
-    HomeContent, MedicalWayContent, MedicalIcon, MedicalTitle,
+    MedicalTitle,
+    MedicalWayContent,
+    MedicalWayList,
+    MomentContent,
+    MomentImage,
+    MomentItem,
+    TuinaArea,
+    TuinaImg,
+    TuinaIntro,
+    TuinaWrapper,
 } from './style';
 import "video-react/dist/video-react.css";
 import {Link, withRouter} from "react-router-dom";
-import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import {Map, Placemark, YMaps} from 'react-yandex-maps';
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {actionCreators as headAC} from "../../common/header/store";
@@ -41,9 +43,30 @@ const opts = {
     }
 };
 
+let totalPage = 0;
+let momentsTemp;
+
+let pagination = function(pageSize, currentPage, arr) {
+    let skipNum = (currentPage - 1) * pageSize;
+    return (skipNum + pageSize >= arr.length) ? arr.slice(skipNum, arr.length) : arr.slice(skipNum, skipNum + pageSize);
+};
+
 class Home extends Component {
+    state = {
+        pageSize: 3,
+        currentPage: 1,
+    };
+    nextPage = () => {
+        this.setState({currentPage: this.state.currentPage + 1});
+    };
+    prePage = () => {
+        this.setState({currentPage: this.state.currentPage - 1});
+    };
+
     render() {
         const { moments, carousels, handleChangeKey } = this.props;
+        totalPage = Math.floor((moments.length + this.state.pageSize - 1) / this.state.pageSize);
+        momentsTemp = pagination(this.state.pageSize, this.state.currentPage, moments);
         return (
             <HomeWrapper>
                 <HomeCarouselWrapper>
@@ -97,18 +120,18 @@ class Home extends Component {
                         </MedicalWayList>
                     </MedicalWayContent>
                     <DynamicAnnounceWrapper>
+                        {this.state.currentPage <= 1 ? <Icon type="left" style={{visibility: "hidden"}} onClick={this.prePage}/> : <Icon type="left" onClick={this.prePage}/>}
                         <DynamicArea>
                             <Row>
-                                {moments.map((item)=>{
-                                    let length = moments.length;
+                                {momentsTemp.map((item)=>{
                                     return (
-                                        <Col key={item.momentId} span={24 / length}>
+                                        <Col key={item.momentId} span={8}>
                                             <MomentItem>
                                                 <MomentImage imgUrl={item.images[0].filePath}/>
                                                 <MomentContent>
                                                     <h2>{item.momentTitle}</h2>
                                                     <p>{item.momentContent}</p>
-                                                    <div><HomeButton>了解</HomeButton></div>
+                                                    <div><Link to={`/moment/detail/${item.momentId}`} target="_blank" className="home-button">了解</Link></div>
                                                 </MomentContent>
                                             </MomentItem>
                                         </Col>
@@ -116,6 +139,8 @@ class Home extends Component {
                                 })}
                             </Row>
                         </DynamicArea>
+                        {this.state.currentPage >= totalPage ? <Icon type="right" style={{visibility: "hidden"}} onClick={this.nextPage}/> : <Icon type="right" onClick={this.nextPage}/>}
+
                     </DynamicAnnounceWrapper>
                     <HomeVideoWrapper>
                         <YouTube

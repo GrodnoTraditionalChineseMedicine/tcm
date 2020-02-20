@@ -71,6 +71,16 @@ export const MedicalTitle = styled.h3`
 
 export const DynamicAnnounceWrapper = styled.div`
     width: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .anticon{
+        font-size: 38px;
+        color: #333;
+        cursor: pointer;
+        opacity: 0.7;
+    }
 `;
 
 export const DynamicArea = styled.div`
@@ -78,6 +88,12 @@ export const DynamicArea = styled.div`
     min-width: 1120px;
     padding: 0 20px;
     margin: 0 auto;
+    text-align: right;
+    a{
+        color: #1a1a1a;
+        font-size: 18px;
+        font-weight: 600;
+    }
 `;
 
 export const MomentItem = styled.div`
@@ -131,20 +147,20 @@ export const MomentContent = styled.div`
         line-height: 16px;
         font-weight: 400;
     }
-`;
-
-export const HomeButton = styled.a`
-    background-color: #1890ff;
-    border-radius: 0;
-    border: 1px solid #1890ff;
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 6px 14px;
-    transition: all .25s ease;
-    cursor: pointer;
-    &:hover{
-        background: #fff;
+    .home-button{
+        background-color: #1890ff;
+        border-radius: 0;
+        border: 1px solid #1890ff;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 6px 14px;
+        transition: all .25s ease;
+        cursor: pointer;
+        &:hover{
+            background: #fff;
+            color: #1890ff;
+        }
     }
 `;
 
