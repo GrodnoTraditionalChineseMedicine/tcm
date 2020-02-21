@@ -41,7 +41,7 @@ app.use('/api/email', emailRouter);
 app.use('/api/learntcm',learntcmRouter);
 app.use('/api/pediatric', pediatricCourseRouter);
 app.use('/api/center-intro/doctors', doctorsRouter);
-app.use('/api/home/moments', getIsShowMoments);//返回imges
+app.use('/api/home/moments', getIsShowMoments);
 app.use('/api/pediatric/isshowcourses', getIsShowPediatric);
 //后台管理系统
 app.use("/", express.static("./build"));

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": " node --inspect server.js",
     "start": "concurrently \"cd backend && node server.js\" \"cd grodno_tcm && npm start\""
   },
   "keywords": [],

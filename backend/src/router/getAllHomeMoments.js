@@ -6,6 +6,12 @@ const optionsForGetAllContents = {
     url: 'http://localhost:3001/api/manage/containers/moments',
     json: true
 };
+const optionsForGetImagesByMomentId = {
+    method: 'POST',
+    url: 'http://localhost:3001/api/manage/containers/moments/images',
+    body: {momentId: -1},
+    json: true
+};
 let resObject = {
     "success" : false,
     "data" : {
@@ -17,17 +23,30 @@ let resObject = {
 router.get('/', (req, res)=>{
     requestHelper(optionsForGetAllContents)
         .then(function (response) {
+            resObject.success = true;
+            resObject.data.code = 200;
+            resObject.data.message = "Successfully get all valid records";
             // Request was successful, use the response object at will
             for(let i = 0; i < response.data.moments.length; i++){
                 if(response.data.moments[i].isShow === 1) {
-                    resObject.data.moments.push(response.data.moments[i]);
+                    let momentWithImagesObject = response.data.moments[i];
+                    optionsForGetImagesByMomentId.body.momentId = response.data.moments[i].momentId;
+                    requestHelper(optionsForGetImagesByMomentId)
+                        .then(function (response2) {
+                            // Request was successful, use the response object at will
+                            momentWithImagesObject.images = response2.data.images;
+                            resObject.data.moments.push(momentWithImagesObject);
+                            if(resObject.data.moments.length === response.data.moments.length){
+                                res.json(resObject);
+                                res.end();
+                            }
+                        })
+                        .catch(function (err) {
+                            res.json(err);
+                            res.end();
+                        });
                 }
             }
-            resObject.success = true;
-            resObject.data.code = 200;
-            resObject.data.message = "Successfully get all valid records"
-            res.json(resObject);
-            res.end();
         })
         .catch(function (err) {
             res.json(resObject);
