@@ -56,8 +56,8 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                 getAllArticlesObject.success = true;
                 getAllArticlesObject.data.code = 200;
                 const articles = [];
-                for(var i = 0; i < result.length; i++) {
-                    var article = {
+                for(let i = 0; i < result.length; i++) {
+                    let article = {
                         "articleId": "",
                         "articleTitle": "",
                         "articleRow": "",
