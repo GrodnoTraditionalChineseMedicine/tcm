@@ -59,7 +59,7 @@ class LearnTcm extends Component {
                         dataSource={articles}
                         renderItem={item => (
                             <List.Item key={item.articleId}>
-                                {typeof (item.imgUrl) === "undefined" ? null :
+                                {(typeof (item.imgUrl) === "undefined" || item.imgUrl === null )? null :
                                     <ArticleItemImg imgUrl={item.imgUrl} />
                                 }
                                 <List.Item.Meta

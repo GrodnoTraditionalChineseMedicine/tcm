@@ -20,7 +20,7 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
     // eslint-disable-next-line
     class extends React.Component {
         onChange = value=> {
-          console.log(value)
+          //console.log(value)
         };
         normFile = e => {
             let fileList = [...e.fileList];
@@ -30,9 +30,9 @@ const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
         render() {
             const { visible, onCancel, onCreate, form } = this.props;
             const { getFieldDecorator } = form;
-            let op = JSON.parse(JSON.stringify(options).replace(/menuCode/g,"value"));
-            op = JSON.parse(JSON.stringify(op).replace(/menuName/g,"label"));
-            op = JSON.parse(JSON.stringify(op).replace(/submenu/g,"children"));
+            let op = JSON.parse(JSON.stringify(options).replace(/menuCode/g, "value"));
+            op = JSON.parse(JSON.stringify(op).replace(/menuName/g, "label"));
+            op = JSON.parse(JSON.stringify(op).replace(/submenu/g, "children"));
             return (
                 <Modal
                     visible={visible}
@@ -87,7 +87,7 @@ const TitlePicCreateForm = Form.create({ name: 'form_in_pic_modal' })(
             const { getFieldDecorator } = form;
             let fl = [];
             if(currentMenu !== null) {
-                if (typeof (currentMenu.imgUrl) !== "undefined") {
+                if (typeof (currentMenu.imgUrl) !== "undefined" && currentMenu.imgUrl !== null) {
                     fl = [
                         {
                             uid: '-1',
@@ -211,14 +211,13 @@ class EditableCell extends React.Component {
     }
 }
 
-
 class ContentManage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
             picVisible: false,
-            currentMenu: null
+            currentMenu: null,
         };
         this.columns = [
             {
@@ -259,7 +258,7 @@ class ContentManage extends React.Component {
                         <LinkDelete disabled={record.isModify === 0}>删除</LinkDelete>
                     </Popconfirm>
                     <Divider type="vertical" />
-                    <Button size="small" type={typeof(record.imgUrl) === "undefined" ? "primary" : null} onClick={()=>this.handleShow(record)}>{typeof(record.imgUrl) === "undefined" ? "添加题图" : "修改题图"}</Button>
+                    <Button size="small" type={(typeof(record.imgUrl) === "undefined" || record.imgUrl === null) ? "primary" : null} onClick={()=>this.handleShow(record)}>{(typeof(record.imgUrl) === "undefined" || record.imgUrl === null) ? "添加题图" : "修改题图"}</Button>
                 </span>
                     ) : null,
             }
@@ -307,7 +306,6 @@ class ContentManage extends React.Component {
                 return;
             }
             let url = null;
-            console.log(values);
             if (typeof values.upload !== "undefined"){
                 if((typeof values.upload[0].response) === "undefined"){
                     url = values.upload[0].url;
@@ -319,7 +317,6 @@ class ContentManage extends React.Component {
             }
             values.residence = values.residence[values.residence.length - 1];
             delete values.upload;
-            console.log("value", values);
             addContent(values);
             form.resetFields();
             this.setState({ visible: false });
@@ -350,7 +347,7 @@ class ContentManage extends React.Component {
             let current = this.state.currentMenu;
             current.imgUrl = url;
             delete current.submenu;
-            console.log("currentMenu", current);
+            //console.log("currentMenu", current);
             updateContent(current);
             form.resetFields();
             this.setState({ picVisible: false });
@@ -372,7 +369,7 @@ class ContentManage extends React.Component {
 
     render(){
         const { content } = this.props;
-        options = content;
+        options = (content === null || typeof content === "undefined") ? null : content;
         const components = {
             body: {
                 row: EditableFormRow,
@@ -396,6 +393,7 @@ class ContentManage extends React.Component {
         });
         return (
             <div>
+                {console.log("渲染测试",content)}
                 <Button onClick={this.showModal} type="primary" style={{ marginBottom: 5 }}>
                     新增目录
                 </Button>
@@ -405,6 +403,7 @@ class ContentManage extends React.Component {
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
                 />
+
                 <TitlePicCreateForm
                     wrappedComponentRef={this.savePicFormRef}
                     visible={this.state.picVisible}
@@ -412,14 +411,15 @@ class ContentManage extends React.Component {
                     onCreate={this.handlePicCreate}
                     currentMenu={this.state.currentMenu}
                 />
-                <Table
+                {this.state.loading ? "Loading" : <Table
                     bordered
                     columns={columns}
                     components={components}
                     childrenColumnName="submenu"
-                    dataSource={Array.from(content)}
+                    dataSource={(content === null || typeof content === "undefined") ? null : Array.from(content)}
                     rowKey="menuCode"
                 />
+                }
             </div>
         )
     }

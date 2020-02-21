@@ -22,7 +22,9 @@ class PediatricCourse extends Component {
     }
     render() {
         const { course } = this.props;
-        let isNull = (course === null);
+        if (course === null) return null;
+        console.log(course);
+        let isNull = course === null;
         let imgUrl;
         let editorState;
         if (!isNull){

@@ -18,7 +18,7 @@ class ArticleDetail extends Component {
         let articleImg;
         let editorState;
         if (!isNull){
-            if(typeof article.articleImg === "undefined"){
+            if(typeof article.articleImg === "undefined" || article.articleImg === null){
                 articleImg = null;
             } else {
                 articleImg = <img className="title-img" src={article.articleImg} alt="文章题图"/>;
