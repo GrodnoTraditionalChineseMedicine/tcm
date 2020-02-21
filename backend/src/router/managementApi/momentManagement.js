@@ -166,7 +166,6 @@ router.post('/delete', (req, res)=>{
                         res.status(200).end();
                     }
                 });
-
             }
         });
     }

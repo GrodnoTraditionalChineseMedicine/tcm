@@ -321,7 +321,7 @@ pediatricManagementRouter.post('/course-id', (req, res)=>{
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.courses = object;
+            resObject.data.course = object;
             res.json(resObject);
             res.end();
         }
