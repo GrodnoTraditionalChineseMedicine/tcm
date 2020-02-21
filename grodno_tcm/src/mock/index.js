@@ -35,6 +35,7 @@ import * as getMomentImages from "./moment/getMomentImages";
 import * as addMoment from "./moment/addMoment";
 import * as updateMoment from "./moment/updateMoment";
 import * as deleteMoment from "./moment/deleteMoment";
+import * as getMomentById from "./moment/getMomentById";
 
 import * as getAllPediatricCourses from "./pediatric/getAllPediatricCourses";
 import * as getAllPediatricImages from "./pediatric/getAllPediatricImages";
@@ -92,6 +93,7 @@ export {
     addMoment,
     updateMoment,
     deleteMoment,
+    getMomentById,
 
     getAllPediatricCourses,
     getAllPediatricImages,

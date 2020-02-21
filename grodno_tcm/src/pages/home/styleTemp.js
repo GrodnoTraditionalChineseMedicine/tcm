@@ -35,139 +35,95 @@ export const CarouselItem = styled.div`
     }
 `;
 
-export const HomeContent = styled.div`
-    width: 100%;
-    background: #fff;
-`;
-
-export const MedicalWayContent = styled.div`
-    padding: 10px 0;
-`;
-
-export const MedicalWayList = styled.div`
-    width: 95%;
-    padding: 30px 20px;
-    margin: 10px auto;
-`;
-
-export const MedicalItem = styled.div`
-    text-align: center;
-    line-height: 1.2;
-    color: #1f1f1f;
-`;
-
-export const MedicalIcon = styled.div`
-    .iconfont{
-      font-size: 48px;
-      font-weight: 400;
-    }
-`;
-
-export const MedicalTitle = styled.h3`
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 1px;
-`;
-
 export const DynamicAnnounceWrapper = styled.div`
     width: 100%;
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .anticon{
-        font-size: 38px;
-        color: #333;
-        cursor: pointer;
-        opacity: 0.7;
-    }
+    position: relative;
+    z-index: 1000;
+    box-sizing: border-box;
+    margin-top: -50px;
 `;
 
 export const DynamicArea = styled.div`
-    width: 1120px;
-    min-width: 1120px;
-    padding: 0 20px;
+    width: 1020px;
+    min-width: 1020px;
+    padding: 30px 20px;
     margin: 0 auto;
-    text-align: right;
-    a{
-        color: #1a1a1a;
-        font-size: 18px;
-        font-weight: 600;
+    background-color: rgba(240, 240, 240, .95);
+    border-radius: 10px;
+    h3{
+      color: #1a1a1a;
+      font-size: 25px;
+      font-weight: 600;
+      padding: 5px 0;
     }
+    a{
+      font-size: 16px;
+      text-align: center;
+    }
+`;
+
+export const DynamicList = styled.div`
+    width: 980px;
+    margin: 0 auto;
 `;
 
 export const MomentItem = styled.div`
-    width: 100%;
-    height: 220px;
-    padding: 10px 8px;
-    text-align: center;
-    overflow: hidden;
+    height: 100px;
+    margin: 10px 0;
+    transition: 0.5s;
+    position: relative;
+    &:hover{
+        opacity: 0.7;
+        cursor: pointer;
+    }
 `;
 
-export const MomentImage = styled.div`
-    float: right;
-    right: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 1s ease;
-    background: url(${props=>props.imgUrl}) no-repeat center/100%;
-`;
-
-export const MomentContent = styled.div`
-    float: right;
-    width: calc(100% - 16px);
-    height: calc(100% - 20px);
-    transition: all 1s ease;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background: rgba(0,0,0,.48);
-    margin: 0;
+export const ItemNumber = styled.div`
+    height: 80px;
+    width: 90%;
+    line-height: 80px;
     position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 10px;
+    p{
+      width: 10%;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: #333;
+    }
+`;
+
+export const ItemInfo = styled.div`
+    height: 80px;
+    width: 90%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 2px solid #fff;
+    background: ${props=>props.background};
+    border-radius: 10px;
     h2{
-        width: 100%;
-        padding: 0 10px;
-        text-align: center;
-        color: #fff;
-        font-size: 24px;
-        line-height: 26px;
-        font-weight: 700;
+        margin-top: 10px;
+        font-size: 18px;
+        padding: 0 20px;
+        color: #f1f1f1;
+        font-weight: 600;
     }
     p{
-        padding: 0 5px;
-        overflow:hidden; 
-        text-overflow:ellipsis;
-        display:-webkit-box; 
-        -webkit-box-orient:vertical;
-        -webkit-line-clamp:2; 
-        color: #fff;
-        font-size: 14px;
-        line-height: 16px;
-        font-weight: 400;
-    }
-    .home-button{
-        background-color: #1890ff;
-        border-radius: 0;
-        border: 1px solid #1890ff;
-        color: #fff;
-        font-weight: 700;
-        font-size: 14px;
-        padding: 6px 14px;
-        transition: all .25s ease;
-        cursor: pointer;
-        &:hover{
-            background: #fff;
-            color: #1890ff;
-        }
+        float: right;
+        padding: 0 20px;
+        color: #999999;
     }
 `;
 
 export const HomeVideoWrapper = styled.div`
-    width: 1120px;
-    margin: 10px auto;
-    padding: 10px 28px;
+    width: 1020px;
+    margin: 20px auto;
+    padding: 10px 20px;
 `;
 
 export const TuinaWrapper = styled.div` 
@@ -175,7 +131,7 @@ export const TuinaWrapper = styled.div`
     padding: 20px 0;
     margin-top: 20px;
     box-sizing: border-box;
-    background: #f9f9f7;
+    background: #f1f1f1;
 `;
 
 export const TuinaArea = styled.div`
@@ -266,4 +222,9 @@ export const MapContactInfo = styled.div`
       font-size: 14px;
       color: #555;
     }
+`;
+
+export const MedicalItem = styled.div`
+    width: 100%;
+    margin: 0 auto;
 `;

@@ -10,6 +10,14 @@ const En = {
     'components.footer.help': 'Help',
     'components.footer.account': 'Account',
     'components.footer.privacy': 'Privacy Policy',
+    'home.contact.address.title':'Address:',
+    'home.contact.address.content':'г.Гродно ул. Даватара 23',
+    'home.contact.telephone.title':'Telephone:',
+    'home.contact.telephone.content':'+375 (29) 307-06-40',
+    'home.contact.time.title':'Opening Hours:',
+    'home.contact.time.content':'Пн-Пт: 8:00-23:00 сб 9.00-21.00 вс 11.00 до 20.00',
+    'home.contact.email.title':'Email:',
+    'home.contact.email.content':'xinghanluo@gmail.com',
     'privacy.version.time':'Effective Date：2019-11-09',
     'privacy.version.head': '<p>Grodno TCM Center （And "we", "our" or "this app" mentioned below.）is composed of main bodyThe company甘肃省中医院格罗德诺中医中心The network product that offers。' +
         '<br/>The product name：Grodno TCM Center<br/>Product category：website</p><p>Website：www.grodnotcmc.com</p>' +

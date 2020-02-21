@@ -10,6 +10,7 @@ import { reducer as containerReducer } from "../manage/containers/store";
 import { reducer as articleReducer } from "../pages/article/store";
 import { reducer as courseReducer } from "../pages/course/store";
 import { reducer as cenintroReducer } from "../pages/cenintro/store";
+import { reducer as momentReducer } from "../pages/moment/store";
 /*
     使用combineReducer对reducer进行管理
     以避免所有reducer下载一个文件造成不好维护
@@ -25,7 +26,8 @@ const reducer = combineReducers({
     course: courseReducer,
     pediatric: pediatricReducer,
     locales: localesReducer,
-    containers: containerReducer
+    containers: containerReducer,
+    moment: momentReducer
 });
 
 export default reducer;

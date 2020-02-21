@@ -57,38 +57,47 @@ export const CourseItem = styled.div`
     padding: 5px;
     box-sizing: border-box;
     overflow: hidden;
-    h4{
-        font-weight: 600;
-        text-align: center;
-        margin-top: 0.5em;
-        margin-bottom: 0.3em;
-    }
-    .course-img{
-        width: 100%;
-    }
-    p{
-        padding: 0;
-        margin: 0;
-        font-size: 12px;
-    }
-    .lecturee{
-        font-weight: 600;
-        text-align: center;
-    }
-    .address{
-        float: left;
-        font-size: 10px;
-    }
-    .lecture-time{
-        float: right;
-        font-size: 10px;
-    }
 `;
 
 export const ItemImage = styled.div`
     width: 100%;
-    height: 150px;
+    height: 160px;
     background: url("${props => props.imgUrl}") no-repeat center/100%;
+`;
+
+export const ItemContent = styled.div`
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    transition: all 1s ease;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background: rgba(0,0,0,.48);
+    margin: 0;
+    h2{
+        width: 100%;
+        padding: 0 10px;
+        color: #fff;
+        font-size: 24px;
+        line-height: 26px;
+        font-weight: 700;
+    }
+    .lecturer{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .address{
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+    }
+    .lecture-time{
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+    }
 `;
 
 export const PediatricGallery = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Hospital from "../../statics/picture/hospital-img.jpg";
 
 export const CenterIntroWrapper = styled.div`
     width: 100%;
@@ -6,6 +7,12 @@ export const CenterIntroWrapper = styled.div`
     min-width: 1020px;
     display: block;
     overflow: hidden;
+`;
+
+export const CenterIntroImg = styled.div`
+    width: 100%;
+    height: 500px;
+    background: url(${Hospital}) no-repeat center/100%;
 `;
 
 export const CenterIntroInfo = styled.div`
@@ -16,28 +23,21 @@ export const CenterIntroInfo = styled.div`
     background: #fff;
 `;
 
-export const Title = styled.div`
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 18px;
-    color: #95a5a6;
-    letter-spacing: 2px;
-    text-align: center;
+export const Title = styled.h2`
+    padding-top: 20px;
+    font-size: 24px;
+    color: #1f1f1f;
+    font-weight: 700;
 `;
 
 export const CenterIntro = styled.div`
-    
 `;
 
 export const IntroWordInfo = styled.div`
-    height: 100%;
-    width: 65%;
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0 20px 0 20px;
-    position: relative;
-    font-size: 15px;
-    color: #1a1a1a;
+    color: #333333;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 10px 0;
 `;
 
 export const IntroImgInfo = styled.div`
@@ -57,7 +57,7 @@ export const CenterDoctor = styled.div`
 
 export const DoctorItem = styled.div`
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
 `;
 
 export const DoctorImg = styled.div`
@@ -79,7 +79,7 @@ export const DoctorInfo = styled.div`
     vertical-align: middle;
     padding: 0 25px 0 25px;
     position: relative;
-    font-size: 14px;
+    font-size: 15px;
     .name{
       font-size: 16px;
       color: #444444;
@@ -92,7 +92,7 @@ export const DoctorInfo = styled.div`
       padding: 0;
     }
     .introduction{
-      font-size: 14px;
+      font-size: 15px;
       color: #1a1a1a;
       margin-top: 5px;
     }

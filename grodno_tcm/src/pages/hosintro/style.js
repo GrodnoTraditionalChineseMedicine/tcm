@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Hospital from "../../statics/picture/gszyy.jpg";
+import Hospital from "../../statics/picture/hospital-img.jpg";
 
 export const HospitalIntroWrapper = styled.div`
     width: 100%;
@@ -9,7 +9,7 @@ export const HospitalIntroWrapper = styled.div`
     overflow: hidden;
 `;
 
-export const HospitalIntroImg = styled.div`
+export const HospitalIntroImg = styled.img`
     width: 100%;
     height: 500px;
     background: url(${Hospital}) no-repeat center/100%;
@@ -25,21 +25,17 @@ export const HospitalIntroInfo = styled.div`
 `;
 
 export const Summary = styled.div`
-    padding-left: 50px;
-    padding-right: 50px;
     p{
-        color: #1a1a1a;
-        font-size: 15px;
+        color: #333333;
+        font-size: 16px;
         line-height: 24px;
-        text-indent: 2em;
         margin: 10px 0;
     }
 `;
 
 export const SummaryTitle = styled.div`
-    text-align: center;
-    font-size: 20px;
-    color: #1a1a1a;
-    font-weight: 600;
-    padding-bottom: 5px;
+    padding-top: 20px;
+    font-size: 24px;
+    color: #1f1f1f;
+    font-weight: 700;
 `;

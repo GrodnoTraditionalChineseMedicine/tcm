@@ -26,7 +26,7 @@ export const ContactMainArea = styled.div`
     box-sizing: border-box;
     h1{
         padding: 20px 0;
-        font-size: 46px;
+        font-size: 40px;
         font-weight: 500;
     }
     ul{
@@ -37,17 +37,17 @@ export const ContactMainArea = styled.div`
             list-style-type:none;
         }
         .message{
-            width: 35%;
+            width: 45%;
             .ant-input{
-                width: 80%;
-                height: 40px;
+                width: 70%;
+                height: 35px;
             }
         }
         .img{
-            width: 65%;
+            width: 55%;
             padding-left: 40px;
             img{
-                width: 100%;
+                width: 90%;
             }
         }
     }
