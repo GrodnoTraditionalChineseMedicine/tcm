@@ -31,7 +31,7 @@ class Moment extends Component {
                         </HeaderInfo>
                     </header>
                     <div className="moment-content">{moment.momentContent}</div>
-                    {images.map((item) => {
+                    {images === null ? null : images.map((item) => {
                         return (<img key={item.fileId} className="moment-img" src={item.filePath} alt="The Moment"/>);
                     })}
                 </DetailInfo>
