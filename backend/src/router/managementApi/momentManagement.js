@@ -205,5 +205,66 @@ router.post('/update', (req, res)=>{
         parametersInvalid(res);
     }
 });
+router.post('/id', (req, res)=>{
+    if(req.body.momentId === null){
+        parametersInvalid();
+    }
+    else{
+        dbTool.query(managementSql.getMomentInfoById, req.body.momentId, (err, result)=>{
+            if(err){
+                resObject.data.message = err.toString();
+                res.json(resObject);
+                res.status(400).end();
+            }
+            else{
+                let moment = {
+                    "momentId": -1,
+                    "momentTitle": "1",
+                    "momentContent": "",
+                    "publishedTime": "",
+                    "images" : []
+                };
+                if(result.length === 0){
+                    resObject.data.message = "没有指定id的moment！！"
+                    res.json(resObject);
+                    res.status(400).end();
+                }
+                else{
+                    moment.momentId = result[0].moment_id;
+                    moment.momentTitle = result[0].moment_title;
+                    moment.momentContent = result[0].moment_content;
+                    moment.publishedTime = result[0].published_time;
+                    moment.isShow = result[0].is_show;
+                    dbTool.query(managementSql.getImagesByMomentId, req.body.momentId, (err, result)=>{
+                        if(err){
+                            resObject.data.message = err;
+                            res.json(resObject);
+                            res.status(400).end();
+                        }
+                        else{
+                            for(let i = 0; i < result.length; i++){
+                                let image = {
+                                    "fileId": -1,
+                                    "filePath": "",
+                                    "order": -1
+                                };
+                                image.fileId = result[i].rel_moment_file_id;
+                                image.filePath = result[i].file_path;
+                                image.order = result[i].order;
+                                moment.images.push(image);
+                            }
+                            resObject.success = true;
+                            resObject.data.code = 200;
+                            resObject.data.moment = moment;
+                            res.json(resObject);
+                            res.status(200).end();
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+});
 
 module.exports = router;

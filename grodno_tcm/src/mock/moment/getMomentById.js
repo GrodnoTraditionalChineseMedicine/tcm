@@ -4,7 +4,7 @@ import Mock from 'mockjs'
 Mock.mock('/api/manage/containers/moments/id','post',function(option){
     console.log("mock moment get by id",option.body); //option.body = 1
     /*const postValue ={"momentId":"1"};*/
-    //这里不管是否隐藏 因为这个api前后台都需要 所以只需要传过来moment的id就找到文章和它对应的目录返回 不需要子目录
+    //这里不管是否隐藏 因为这个api前后台都需要 所以只需要传过来moment的id就找到文章和它对应的目录返回
     return Mock.mock({
         success: true,
         data: {
