@@ -20,21 +20,9 @@ class App extends Component {
                 locale={usersLocale}
                 messages={messages[usersLocale]}
             >
-                {console.log(usersLocale, messages[usersLocale])}
                 <GlobalStyled/>
                 <GlobalIconFont/>
                 <BrowserRouter>
-                    {/*<Route exact path={["/hospital_intro", "/","/center_intro","/learn_tcm"]}>
-                        <Header/>
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/hospital_intro" exact component={HospitalIntro}/>
-                        <Route path="/center_intro" exact component={CenterIntro}/>
-                        <Route path="/learn_tcm" exact component={LearnTcm}/>
-                        <Footer/>
-                    </Route>
-                    <Route exact path={["/rich_editor"]}>
-                        <Route path="/rich_editor" exact component={RichEditor}/>
-                    </Route>*/}
                     <Switch>
                         <Route path='/manage' component={PrivateLayout}/>
                         <Route path='/' component={PublicLayout}/>

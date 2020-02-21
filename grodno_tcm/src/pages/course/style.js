@@ -21,7 +21,7 @@ export const DetailInfo = styled.div`
 `;
 
 export const DetailLeft = styled.div`
-    width: 28%;
+    width: 40%;
     display: table-cell;
     padding-right: 20px;
     position: relative;
@@ -50,7 +50,7 @@ export const DetailLeft = styled.div`
 `;
 
 export const DetailRight = styled.div`
-    width: 72%;
+    width: 60%;
     display: table-cell;
     position: relative;
     vertical-align: top;

@@ -127,7 +127,7 @@ class Home extends Component {
                                     return (
                                         <Col key={item.momentId} span={8}>
                                             <MomentItem>
-                                                <MomentImage imgUrl={typeof item.images === 'undefined' ? "https://i.loli.net/2020/02/21/vEodNnOa2FrBUSk.jpg" : item.images[0].filePath}/>
+                                                <MomentImage imgUrl={typeof item.images === 'undefined' ? "https://i.loli.net/2020/02/21/vEodNnOa2FrBUSk.jpg" : (item.images.size() === 0 ? "https://i.loli.net/2020/02/21/vEodNnOa2FrBUSk.jpg" : item.images[0].filePath)}/>
                                                 <MomentContent>
                                                     <h2>{item.momentTitle}</h2>
                                                     <p>{item.momentContent}</p>
