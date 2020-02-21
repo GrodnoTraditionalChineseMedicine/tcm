@@ -6,6 +6,7 @@ function parametersInvalid(res){
     resObject.data.message = "Parameters are not valid!!1";
     res.json(resObject);
     res.status(400).end();
+    return 1;
 }
 let resObject = {
     "success" : false,
@@ -22,6 +23,7 @@ router.get('/', (req, res)=>{
             resObject.data.message = err.toString();
             res.json(resObject);
             res.status(400).end();
+            return 1;
         }
         else{
             let carouses = [];
@@ -44,6 +46,7 @@ router.get('/', (req, res)=>{
             resObject.data.carousels = carouses;
             res.json(resObject);
             res.end();
+            return 1;
         }
     });
 });
@@ -62,6 +65,7 @@ router.post('/add',(req,res)=>{
                 resObject.data.message = "Failed when insert record into file table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 dbTool.query(managementSql.getMaxId, (err, result)=>{
@@ -69,6 +73,7 @@ router.post('/add',(req,res)=>{
                        resObject.data.message = "Failed when get max file id from file table!! err info:" + err.toString();
                        res.json(resObject);
                        res.status(400).end();
+                       return 1;
                    }
                    else{
                        object.fileId = result[0].file_id;
@@ -78,6 +83,7 @@ router.post('/add',(req,res)=>{
                        resObject.data.carousel = object;
                        res.json(resObject);
                        res.end();
+                       return 1;
                    }
                 });
             }
@@ -91,6 +97,7 @@ router.post('/delete', (req, res)=>{
                 resObject.data.message = "Failed when delete record from file table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObject.success = true;
@@ -99,6 +106,7 @@ router.post('/delete', (req, res)=>{
                 resObject.data.carousel = null;
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         });
     }
@@ -126,6 +134,7 @@ router.post('/update', (req, res)=>{
                 resObject.data.message = "Failed when update record within  file table!! err info:" + err;
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
            else{
                 resObject.success = true;
@@ -134,6 +143,7 @@ router.post('/update', (req, res)=>{
                 resObject.data.carousel = object;
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         })
     }

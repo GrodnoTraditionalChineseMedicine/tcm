@@ -20,6 +20,11 @@ let resObject = {
         "moments" : []
     }
 };
+function clearCache(resObject){
+    resObject.success = false;
+    resObject.data.code = 400;
+    resObject.data.moments = [];
+}
 router.get('/', (req, res)=>{
     requestHelper(optionsForGetAllContents)
         .then(function (response) {
@@ -39,11 +44,15 @@ router.get('/', (req, res)=>{
                             if(resObject.data.moments.length === response.data.moments.length){
                                 res.json(resObject);
                                 res.end();
+                                clearCache(resObject);
+                                return 1;
                             }
                         })
                         .catch(function (err) {
                             res.json(err);
                             res.end();
+                            clearCache(resObject);
+                            return 1;
                         });
                 }
             }
@@ -51,6 +60,8 @@ router.get('/', (req, res)=>{
         .catch(function (err) {
             res.json(resObject);
             res.end();
+            clearCache(resObject);
+            return 1;
         });
 });
 

@@ -2,6 +2,11 @@ const dbTool = require('../dao/databaseConnection');
 const doctorsSql = require('../dao/doctorsSql.json');
 const doctorsResObject = require('../jsonObject/doctors');
 const express = require('express');
+function clearCache(doctorsResObject) {
+    doctorsResObject.success = true;
+    doctorsResObject.data.code = 200;
+    doctorsResObject.data.doctors =[];
+}
 const doctorsRouter = express.Router();
 doctorsRouter.get('/',(req, res)=>{
     dbTool.query(doctorsSql.getAllDoctors, (err, result)=>{
@@ -11,6 +16,8 @@ doctorsRouter.get('/',(req, res)=>{
            doctorsResObject.message  = "数据库查询出现错误，请检查sql语句";
            res.json(doctorsResObject);
            res.status(400).end();
+           clearCache(doctorsResObject);
+           return 1;
        }
        else{
             for(let i = 0; i < result.length; i++){
@@ -42,6 +49,8 @@ doctorsRouter.get('/',(req, res)=>{
             doctorsResObject.data.code = 200;
             res.json(doctorsResObject);
             res.status(200).end();
+            clearCache(doctorsResObject);
+            return 1;
        }
     });
 });

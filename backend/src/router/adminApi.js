@@ -35,6 +35,7 @@ adminRouter.get('/login',(req, res)=> {
                 adminManagementObject.data.currentUser.imgUrl = result[0]['avatar_url'];
                 res.status(200).json(adminManagementObject);
                 res.end();
+                return 1;
             }
         }
     });

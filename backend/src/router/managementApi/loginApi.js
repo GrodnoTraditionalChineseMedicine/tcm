@@ -11,6 +11,7 @@ router.post('/',(req, res)=>{
        if(err){
            res.json(resObject).status(400);
            res.end();
+           return 1;
        }
        else{
            if(result.length === 0){
@@ -20,6 +21,7 @@ router.post('/',(req, res)=>{
                resObject.data.isLogged = false;
                res.json(resObject).status(400);
                res.end();
+               return 1;
            }
            else{
                resObject.success = true;
@@ -32,6 +34,7 @@ router.post('/',(req, res)=>{
                resObject.data.currentUser.id = result[0].admin_id;
                res.json(resObject).status(200);
                res.end();
+               return 1;
            }
        }
    });

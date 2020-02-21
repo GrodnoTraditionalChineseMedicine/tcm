@@ -12,7 +12,7 @@ emailRouter.post('/',(req, res)=>{
         auth: {
             // should be replaced with real sender's account
             user: '13667601677@163.com',
-            pass: '19980725Lxh'
+            pass: 'll19971116'
         }
     });
     let mailOptions = {

@@ -27,6 +27,7 @@ roleManagementRouter.get('/', (req, res)=>{
            resObject.data.message = "数据库查询出现错误！！！请检查sql语句";
            res.json(resObject);
            res.status(400).end();
+           return 1;
        }
 
        for(let i = 0; i < result.length; i++){
@@ -46,6 +47,7 @@ roleManagementRouter.get('/', (req, res)=>{
 
        res.json(resObject);
        res.status(200).end();
+        return 1;
     });
 });
 roleManagementRouter.post('/add', (req, res)=>{
@@ -54,12 +56,14 @@ roleManagementRouter.post('/add', (req, res)=>{
         resObject.data.message = "The parameter is invalid：roleName is null!!";
         res.json(resObject);
         res.status(400).end();
+        return 1;
     }
     dbTool.query(sql.addRecord, roleName, (err)=>{
             if(err){
                 resObject.data.message = "Database query error!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
            else{
                 requestHelper(options).then(function (response) {
@@ -69,6 +73,7 @@ roleManagementRouter.post('/add', (req, res)=>{
                     resObject.data.code = 200;
                     res.json(resObject);
                     res.status(200).end();
+                    return 1;
                 }).catch(function (err) {
                 });
 
@@ -86,6 +91,7 @@ roleManagementRouter.post('/update', (req, res)=>{
                     resObject.data.message = "Database update failed!!!";
                     res.json(resObject);
                     res.status(400).end();
+                    return 1;
                 }
                 else{
                     requestHelper(options).then(function (response) {
@@ -95,6 +101,7 @@ roleManagementRouter.post('/update', (req, res)=>{
                         resObject.data.code = 200;
                         res.json(resObject);
                         res.status(200).end();
+                        return 1;
                     }).catch(function (err) {
                     });
                 }
@@ -105,6 +112,7 @@ roleManagementRouter.post('/update', (req, res)=>{
         resObject.data.message = "The parameter is invalid!!";
         res.json(resObject);
         res.status(200).end();
+        return 1;
     }
 });
 roleManagementRouter.post('/delete', (req, res)=>{
@@ -115,6 +123,7 @@ roleManagementRouter.post('/delete', (req, res)=>{
                 resObject.data.message = "Database delete failed!!!";
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
 
@@ -125,6 +134,7 @@ roleManagementRouter.post('/delete', (req, res)=>{
                     resObject.data.code = 200;
                     res.json(resObject);
                     res.status(200).end();
+                    return 1;
                 }).catch(function (err) {
                 });
             }
@@ -135,6 +145,7 @@ roleManagementRouter.post('/delete', (req, res)=>{
         resObject.data.message = "The parameter is invalid!! roleId is empty!!";
         res.json(resObject);
         res.status(200).end();
+        return 1;
     }
 });
 

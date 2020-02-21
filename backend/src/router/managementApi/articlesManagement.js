@@ -20,6 +20,7 @@ function parametersInvalid(res){
     resObject.data.message = "Parameters are not valid!!1";
     res.json(resObject);
     res.status(400).end();
+    return 1;
 }
 articleManagementRouter.get('/', (req, res)=>{
     const code = req.query.code;
@@ -34,6 +35,7 @@ articleManagementRouter.get('/', (req, res)=>{
             resObject.data.message = err.toString();
             res.json(resObject);
             res.status(400).end();
+            return 1;
         }
         else{
             let articles = [];
@@ -57,6 +59,7 @@ articleManagementRouter.get('/', (req, res)=>{
             resObject.data.articles = articles;
             res.json(resObject);
             res.end();
+            return 1;
         }
     });
 });
@@ -85,6 +88,7 @@ articleManagementRouter.post('/add', (req, res)=>{
                 resObject.data.message = "Failed when insert record into article table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 dbTool.query(sql.getMaxArticleId, (err, result)=>{
@@ -92,6 +96,7 @@ articleManagementRouter.post('/add', (req, res)=>{
                        resObject.data.message = "Failed when get maximum article id from article table, err info:" + err.toString();
                        res.json(resObject);
                        res.status(400).end();
+                       return 1;
                    }
                    else{
                        articleObject.articleId = result[0].article_id;
@@ -101,6 +106,7 @@ articleManagementRouter.post('/add', (req, res)=>{
                                   resObject.data.message = "Failed when insert record into rel_article_menu table, err info:" + err.toString();
                                   res.json(resObject);
                                   res.status(400).end();
+                                  return 1;
                               }
                               else{
                                     requestHelper(options).then(function (response) {
@@ -110,11 +116,13 @@ articleManagementRouter.post('/add', (req, res)=>{
                                         resObject.data.articles = response.data.articles;
                                         res.json(resObject);
                                         res.status(200).end();
+                                            return 1;
                                     }
                                     ).catch(function (err) {
                                         resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
                                         res.json(resObject);
                                         res.status(400).end();
+                                        return 1;
                                     });
                               }
                            });
@@ -153,6 +161,7 @@ articleManagementRouter.post('/update', (req, res)=>{
                 resObject.data.message = "Failed when update record within  article table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 if(articleObject.articleId !== undefined){
@@ -161,6 +170,7 @@ articleManagementRouter.post('/update', (req, res)=>{
                             resObject.data.message = "Failed when update record within the rel_article_menu table, err info:" + err.toString();
                             res.json(resObject);
                             res.status(400).end();
+                            return 1;
                         }
                         else{
                             requestHelper(options).then(function (response) {
@@ -170,11 +180,13 @@ articleManagementRouter.post('/update', (req, res)=>{
                                     resObject.data.articles = response.data.articles;
                                     res.json(resObject);
                                     res.status(200).end();
+                                return 1;
                                 }
                             ).catch(function (err) {
                                 resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
                                 res.json(resObject);
                                 res.status(400).end();
+                                return 1;
                             });
                         }
                     });
@@ -194,6 +206,7 @@ articleManagementRouter.post('/delete', (req, res)=>{
                resObject.data.message = "Failed when delete record from article table!! err info:" + err.toString();
                res.json(resObject);
                res.status(400).end();
+               return 1;
            }
            else{
                dbTool.query(sql.deleteRelationTableRecord, articleId, (err)=>{
@@ -201,6 +214,7 @@ articleManagementRouter.post('/delete', (req, res)=>{
                        resObject.data.message = "Failed when delete record from article table!! err info:" + err.toString();
                        res.json(resObject);
                        res.status(400).end();
+                       return 1;
                    }
                    else{
                        requestHelper(options).then(function (response) {
@@ -210,11 +224,13 @@ articleManagementRouter.post('/delete', (req, res)=>{
                                resObject.data.articles = response.data.articles;
                                res.json(resObject);
                                res.status(200).end();
+                               return 1;
                            }
                        ).catch(function (err) {
                            resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
                            res.json(resObject);
                            res.status(400).end();
+                           return 1;
                        });
                    }
                });
@@ -235,6 +251,7 @@ articleManagementRouter.post('/show', (req, res)=>{
                resObject.data.message = "Failed when update record into article table!! err info:" + err.toString();
                res.json(resObject);
                res.status(400).end();
+               return 1;
            }
            else{
                requestHelper(options).then(function (response) {
@@ -244,11 +261,13 @@ articleManagementRouter.post('/show', (req, res)=>{
                        resObject.data.articles = response.data.articles;
                        res.json(resObject);
                        res.status(200).end();
+                       return 1;
                    }
                ).catch(function (err) {
                    resObject.data.message = "Failed when sent request to get all records in article table, err info:" + err.toString();
                    res.json(resObject);
                    res.status(400).end();
+                   return 1;
                });
            }
        });
@@ -287,6 +306,7 @@ articleManagementRouter.post('/id', (req, res)=>{
                 resObject.data.message = "Failed when get records from article table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObeject.data.article.articleId = articleId;
@@ -302,6 +322,7 @@ articleManagementRouter.post('/id', (req, res)=>{
                         resObject.data.message = "Failed when get record from menu table!! err info:" ;
                         res.json(resObject);
                         res.status(400).end();
+                        return 1;
                     }
                     else{
                         resObeject.data.menu.menuName = result[0].menu_name;
@@ -314,6 +335,7 @@ articleManagementRouter.post('/id', (req, res)=>{
                         resObeject.success = true;
                         res.json(resObeject);
                         res.status(200).end();
+                        return 1;
                     }
                 });
             }

@@ -24,6 +24,7 @@ function parametersInvalid(res){
     resObject.data.message = "Parameters are not valid!!1";
     res.json(resObject);
     res.status(400).end();
+    return 1;
 }
 pediatricManagementRouter.get('/courses', (req, res)=>{
     const code = req.query.code;
@@ -34,6 +35,7 @@ pediatricManagementRouter.get('/courses', (req, res)=>{
             resObject.data.message = err.toString();
             res.json(resObject);
             res.status(400).end();
+            return 1;
         }
         else{
             let courses = [];
@@ -69,6 +71,7 @@ pediatricManagementRouter.get('/courses', (req, res)=>{
             resObject.data.courses = courses;
             res.json(resObject);
             res.end();
+            return 1;
         }
     });
 });
@@ -100,6 +103,7 @@ pediatricManagementRouter.post('/course-add', (req, res)=>{
                 resObject.data.message = "Failed when insert record into pediatric course table!! err info:" + err.toString();
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObject.success = true;
@@ -107,6 +111,7 @@ pediatricManagementRouter.post('/course-add', (req, res)=>{
                 resObject.data.message = "Insert records into pediatric course table succeed!!";
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         })
     }
@@ -130,6 +135,7 @@ pediatricManagementRouter.post('/images-add', (req, res)=>{
             resObject.data.message = "Failed when insert record into sys_file table!! err info:" + err.toString();
             res.json(resObject);
             res.status(400).end();
+            return 1;
         }
         else{
             dbTool.query(sql.getAllImages, (err, result)=>{
@@ -157,6 +163,7 @@ pediatricManagementRouter.post('/images-add', (req, res)=>{
                 resObject.data.images = resImages;
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             });
         }
      });
@@ -192,6 +199,7 @@ pediatricManagementRouter.post('/course-update', (req, res)=>{
             if(err){
                 resObject.data.message = "Failed when update record into pediatric course table!! err info:" + err;
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObject.success = true;
@@ -199,6 +207,7 @@ pediatricManagementRouter.post('/course-update', (req, res)=>{
                 resObject.data.message = "update records into pediatric course table succeed!!";
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         })
     }
@@ -214,6 +223,7 @@ pediatricManagementRouter.post('/courses-delete', (req, res)=>{
                 resObject.data.message = "Failed when delete record from COURSE table!! err info:" + err;
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObject.success = true;
@@ -221,6 +231,7 @@ pediatricManagementRouter.post('/courses-delete', (req, res)=>{
                 resObject.data.message = "Delete a record from pediatric table succeed!!";
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         });
     }
@@ -236,6 +247,7 @@ pediatricManagementRouter.post('/images-delete', (req, res)=>{
                 resObject.data.message = "Failed when delete record from file table!! err info:" + err;
                 res.json(resObject);
                 res.status(400).end();
+                return 1;
             }
             else{
                 resObject.success = true;
@@ -243,6 +255,7 @@ pediatricManagementRouter.post('/images-delete', (req, res)=>{
                 resObject.data.message = "Delete a record from file table succeed!!";
                 res.json(resObject);
                 res.status(200).end();
+                return 1;
             }
         });
     }
@@ -256,6 +269,7 @@ pediatricManagementRouter.get('/images', (req, res)=>{
          resObject.data.message = "Failed when get record from file table!! err info:" + err;
          res.json(resObject);
          res.status(400).end();
+         return 1;
      }
      else{
          let i = 0;
@@ -282,6 +296,7 @@ pediatricManagementRouter.get('/images', (req, res)=>{
          resObject.data.images = resImages;
          res.json(resObject);
          res.status(200).end();
+         return 1;
      }
     });
 });
@@ -321,7 +336,7 @@ pediatricManagementRouter.post('/course-id', (req, res)=>{
             resObject.success = true;
             resObject.data.code = 200;
             resObject.data.message = "Successfully get all records!!";
-            resObject.data.course = object;
+            resObject.data.courses = object;
             res.json(resObject);
             res.end();
         }

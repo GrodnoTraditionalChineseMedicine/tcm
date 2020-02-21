@@ -84,6 +84,7 @@ menusRouter.get('/', (req, res)=>{
             menusObject.data.menus = treeMenus;
             res.json(menusObject);
             res.end();
+            return 1;
         }
     });
 });

@@ -6,6 +6,7 @@ function parametersInvalid(res){
     resObject.data.message = "Parameters are not valid!!1";
     res.json(resObject);
     res.status(400).end();
+    return 1;
 }
 let resObject = {
     "success" : false,
@@ -22,6 +23,7 @@ router.get('/', (req, res)=>{
             resObject.data.message = err.toString();
             res.json(resObject);
             res.status(400).end();
+            return 1;
         }
         else{
             let moments = [];
@@ -46,6 +48,7 @@ router.get('/', (req, res)=>{
             resObject.data.moments = moments;
             res.json(resObject);
             res.end();
+            return 1;
         }
     });
 });
@@ -60,7 +63,6 @@ router.post('/images', (req, res)=>{
     };
     let getImagesSql = managementSql.getImagesSql;
     let moment_id = req.body.momentId;
-    console.log(req.body.momentId);
     dbTool.query(getImagesSql, moment_id,(err, result )=>{
         if(err){
             resObject.data.message = err;
@@ -166,6 +168,7 @@ router.post('/delete', (req, res)=>{
                         res.status(200).end();
                     }
                 });
+
             }
         });
     }

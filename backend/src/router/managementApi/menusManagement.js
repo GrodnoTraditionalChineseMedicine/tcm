@@ -103,6 +103,7 @@ menusManagementRouter.post('/add', (req,res)=>{
     else{
         res.json({"message": "参数不合法！！请求失败！！"});
         res.end();
+        return 1;
     }
 
 
@@ -122,6 +123,7 @@ menusManagementRouter.post('/delete', (req, res)=>{
     if(code === undefined){
       res.json(jsonObject);
       res.end();
+        return 1;
     }
     else{
         dbTool.query(menusManagementSql.deleteRecordByMenuCode, ("^" + code), (err)=>{
@@ -131,6 +133,7 @@ menusManagementRouter.post('/delete', (req, res)=>{
                     "err info" : err.toString()
                 });
                 res.end();
+                return 1;
             }
             else{
                 jsonObject.success = true;
@@ -142,6 +145,7 @@ menusManagementRouter.post('/delete', (req, res)=>{
                         jsonObject.data.content = response.data.menus;
                         res.json(jsonObject);
                         res.end();
+                        return 1;
                     })
                     .catch(function (err) {
                         // Something bad happened, handle the error
@@ -167,6 +171,7 @@ menusManagementRouter.post('/show', (req, res)=>{
         jsonObject.data.message = "参数不齐全！！！";
         res.json(jsonObject);
         res.end();
+        return 1;
     }
     else{
         if(isShow === true){
@@ -178,6 +183,7 @@ menusManagementRouter.post('/show', (req, res)=>{
                    "database update failed!!" : err.toString(),
                });
                res.status(400).end();
+               return 1;
            }
            else{
                requestHelper(options)
@@ -189,6 +195,7 @@ menusManagementRouter.post('/show', (req, res)=>{
                        }
                        res.json(jsonObject);
                        res.end();
+                       return 1;
                    })
                    .catch(function (err) {
                        // Something bad happened, handle the error
@@ -196,6 +203,7 @@ menusManagementRouter.post('/show', (req, res)=>{
                            "err occured! err info" : err.toString(),
                        });
                        res.end();
+                       return 1;
                    });
            }
         });
@@ -220,6 +228,7 @@ menusManagementRouter.get('/', (req, res)=>{
             }
             res.json(jsonObject);
             res.end();
+            return 1;
         })
         .catch(function (err) {
             // Something bad happened, handle the error
@@ -227,6 +236,7 @@ menusManagementRouter.get('/', (req, res)=>{
                 "err occured! err info" : err.toString(),
             });
             res.end();
+            return 1;
         });
 
 });
@@ -252,6 +262,7 @@ menusManagementRouter.post('/update', (req, res)=>{
         resObject.data.message = "request 中没有menusCode参数！！，非法参数！！"
         res.json(resObject);
         res.end();
+        return 1;
     }
     jsonObject.menuName = (req.body.menuName !== undefined) ? req.body.menuName : null;
     jsonObject.level = (req.body.level !== undefined) ? req.body.level : null;
@@ -264,6 +275,7 @@ menusManagementRouter.post('/update', (req, res)=>{
         if(err){
             res.json({"database update failed!!! err info:" : err.toString()});
             res.status(400).end();
+            return 1;
         }
         requestHelper(options)
             .then(function (response) {
@@ -276,6 +288,7 @@ menusManagementRouter.post('/update', (req, res)=>{
                 }
                 res.json(resObject);
                 res.end();
+                return 1;
             })
             .catch(function (err) {
                 // Something bad happened, handle the error
@@ -283,6 +296,7 @@ menusManagementRouter.post('/update', (req, res)=>{
                     "err occured! err info" : err.toString(),
                 });
                 res.end();
+                return 1;
             });
     });
 });

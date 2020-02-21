@@ -29,10 +29,12 @@ router.get('/', (req, res)=>{
             resObject.data.message = "Successfully get all valid records"
             res.json(resObject);
             res.end();
+            return 1;
         })
         .catch(function (err) {
             res.json(err.toString());
             res.end();
+            return 1;
         });
 });
 
