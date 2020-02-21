@@ -13,7 +13,7 @@ export const RouteWithSubRoutes = route => (
             console.log("Route.meta值得类型是否等于object", typeof (route.meta) === 'object', "route.meta等于多少",route.meta);
             console.log(!(typeof route.meta === 'object' && route.meta.isAuth) && !isAuthenticated);*/
             if ( !(typeof route.meta === 'object' && route.meta.isAuth) && !isAuthenticated ) {
-                console.log("Meta", route);
+                /*console.log("Meta", route);*/
                 return <Redirect
                     to={{
                         pathname: "/manage/login",
