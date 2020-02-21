@@ -16,7 +16,6 @@ export const HospitalIntroImg = styled.img`
 `;
 
 export const HospitalIntroInfo = styled.div`
-    box-sizing: border-box;
     width: 980px;
     min-width: 980px;
     padding: 10px 20px;

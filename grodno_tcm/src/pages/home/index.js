@@ -37,7 +37,7 @@ const opts = {
     width: '100%',
     height: '630',
     playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1,
+        autoplay: 0,
         iv_load_policy: 3,
         loop: 1
     }

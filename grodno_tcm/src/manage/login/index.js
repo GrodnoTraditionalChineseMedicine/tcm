@@ -16,6 +16,16 @@ import {
 } from "./style";
 
 class Login extends Component{
+    state = {
+        remember: true,
+    };
+
+    changeRemember = () => {
+        this.setState({
+            remember: !this.state.remember
+        })
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -38,10 +48,13 @@ class Login extends Component{
         let { loginData }  = this.props;
 
         const { from } = this.props.location.state || { from: { pathname: "/manage" } };
-        if (typeof loginData === 'object' && loginData.code === 200) {
-            localStorage.setItem('isAuthenticated', true);
-            localStorage.setItem('currentUser', JSON.stringify(loginData.currentUser));
+        if (typeof loginData === 'object') {
+            if (loginData.code === 200) {
+                localStorage.setItem('isAuthenticated', true);
+                localStorage.setItem('currentUser', JSON.stringify(loginData.currentUser));
+            }
         }
+
         let isAuthenticated  = localStorage.getItem('isAuthenticated');
         // 判断是否登录，
         if (isAuthenticated === "true") {
@@ -77,9 +90,9 @@ class Login extends Component{
                                 <Form.Item>
                                     {getFieldDecorator('remember', {
                                         valuePropName: 'checked',
-                                        initialValue: true,
+                                        initialValue: this.state.remember,
                                     })(
-                                        <Checkbox>记住我</Checkbox>
+                                        <Checkbox onChange={this.changeRemember}>记住我</Checkbox>
                                     )}
                                     <span className="login-form-forgot" onClick={this.openNotification}>忘记密码</span><br/>
                                     <Button type="primary" htmlType="submit" className="login-form-button">
@@ -107,6 +120,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login(values){
+            //console.log(values);
             dispatch(actionCreators.fetchPosts('/api/manage/login', actionTypes.LOGIN_ACTION, 'loginData', values));
         },
         changeAuth(isAuthenticated){
