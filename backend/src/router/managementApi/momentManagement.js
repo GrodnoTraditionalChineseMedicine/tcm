@@ -1,4 +1,5 @@
 const express = require('express');
+const formatter = require('../../tools/timeFormat.js');
 const router = express.Router();
 const dbTool = require('../../dao/databaseConnection');
 const managementSql = require('../../dao/momentsManagementSql');
@@ -46,7 +47,7 @@ router.get('/', (req, res)=>{
                 object.momentId = result[i].moment_id;
                 object.momentTitle = result[i].moment_title;
                 object.momentContent = result[i].moment_content;
-                object.publishedTime = result[i].published_time;
+                object.publishedTime = formatter(result[i].published_time.toString(), true);
                 object.isShow = result[i].is_show;
                 moments.push(object);
             }

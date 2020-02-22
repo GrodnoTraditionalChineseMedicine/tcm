@@ -48,7 +48,6 @@ class AddPediatricCourse extends React.Component {
                 if (submitData.imgUrl === null) {
                     delete submitData.imgUrl;
                 }
-                console.log(submitData);
                 createCourse(submitData, this.props);
             }
         })
