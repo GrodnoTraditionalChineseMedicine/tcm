@@ -45,7 +45,7 @@ menusManagementRouter.post('/add', (req,res)=>{
         menu.isModify = 0;
         menu.isShow = 1;
         menu.level = (menu.parentCode.length / 3) + 1;
-        if(menu.parentCode !== undefined){
+        if(menu.parentCode !== 'undefined'){
             dbTool.query(menusManagementSql.getSubMenusByParentCode, menu.parentCode, (err, result)=>{
                 console.log(result[0].menu_code);
                 let generateMenuCodeByDefault = "001";
@@ -191,7 +191,9 @@ menusManagementRouter.post('/show', (req, res)=>{
                        // Request was successful, use the response object at will
                        if(response.success === true){
                            jsonObject.success = true;
-                           jsonObject.data = response.data;
+                           jsonObject.data.message = "修改目录显示状态成功！";
+                           jsonObject.data.content = response.data.menus;
+                           jsonObject.data.code = 200;
                        }
                        res.json(jsonObject);
                        res.end();
