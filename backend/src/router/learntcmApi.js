@@ -95,28 +95,90 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
 });
 learntcmRouter.post('/current', (req, res)=>{
     const CurrentImgUrlSql = CurrentImgUrl.getCurrentImgUrl;
-    const menuCode = req.body.code;
+    const menuCode = req.body.menuCode;
+    // console.log(typeof menuCode);
     dbTool.query(CurrentImgUrlSql, (err, reslut)=>{
         if(err || menuCode === undefined){
-
+            console.log('Database query failed!!!'+ "/n err info:" + err.toString());
+            res.json(err.toString());
+            return 1;
         }
         else{
-            let res = [];
+            let resObject = [];
             for(let i = 0; i < reslut.length; i++){
                 let object = {
-                    "menuCode" : '',
+                    "menuCode" : -1,
                     "imgUrl" : '',
+                    "menuName": "",
+                    "level": "1",
+                    "isShow": 1,
+                    "isModify": 0
                 };
                 object.menuCode = reslut[i].menu_code;
                 object.imgUrl = reslut[i].imgUrl;
-                res.push(object);
+                object.menuName = reslut[i].menu_name;
+                object.level = reslut[i].level;
+                object.isShow = reslut[i].is_show;
+                object.isModify = reslut[i].is_modify;
+                if(object.menuCode === menuCode){
+                    let resObjectWithImg = {
+                        "success" : true,
+                        "data" : {
+                            "code" : 200,
+                            "menu" :object
+                        }
+                    };
+                    res.json(resObjectWithImg);
+                    res.end();
+                    return 1;
+                }
+                else{
+                    resObject.push(object);
+                }
+            }
+            if(menuCode.length > 3){
+                let tep = menuCode.substr(0, menuCode.length - 3);
+                while(tep.length >= 3){
+                    for(let i = 0; i < resObject.length; i++){
+                        if(resObject[i].menuCode === tep){
+                            return dbTool.query("SELECT * FROM sys_menu WHERE menu_code = ?;", menuCode, (err, result1)=>{
+                               if(err){
+                                   res.json(err.toString());
+                                   return 1;
+                               }
+                               else{
+                                   let object = {
+                                       "menuCode" : -1,
+                                       "imgUrl" : '',
+                                       "menuName": "",
+                                       "level": "1",
+                                       "isShow": 1,
+                                       "isModify": 0
+                                   };
+                                   object.menuCode = result1[0].menu_code;
+                                   object.imgUrl = resObject[i].imgUrl;
+                                   object.menuName = result1[0].menu_name;
+                                   object.level = result1[0].level;
+                                   object.isShow = result1[0].is_show;
+                                   object.isModify = result1[0].is_modify;
+                                   let resObjectWithImg = {
+                                       "success" : true,
+                                       "data" : {
+                                           "code" : 200,
+                                           "menu" :object
+                                       }
+                                   };
+                                   res.json(resObjectWithImg);
+                                   return 1;
+                               }
+                            });
+                        }
+                    }
+                    tep = tep.substr(0, menuCode.length - 3);
+                }
             }
 
-            let tep = menuCode;
-            let i = 0;
-            while(tep !== ''){
-                if(res[i].menuCode = tep)1
-            }
+
         }
     })
 });

@@ -53,16 +53,9 @@ pediatricManagementRouter.get('/courses', (req, res)=>{
                 };
                 object.courseId = result[i].course_id;
                 object.title = result[i].title;
-                object.content = result[i].content;
                 object.lecturer = result[i].lecturer;
                 object.address = result[i].address;
-                // const lectureTime = new Date(result[i].lecture_time.toString());
-                // object.lectureTime = lectureTime.getFullYear() + '-' + lectureTime.getMonth() + '-' + lectureTime.getDate() + '  '
-                // + lectureTime.getHours() + ':' + lectureTime.getMinutes() + ':' + lectureTime.getSeconds();
                 object.lectureTime = formatter(result[i].lecture_time.toString(), true);
-                // const published_date = new Date(result[i].published_time.toString());
-                // object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate() + '  '
-                //     + published_date.getHours() + ':' + published_date.getMinutes() + ':' + published_date.getSeconds();
                 object.publishedTime = formatter(result[i].published_time.toString(), true);
                 object.isShow = result[i].is_show;
                 object.imgUrl = result[i].img_url;
@@ -174,7 +167,7 @@ pediatricManagementRouter.post('/images-add', (req, res)=>{
  }
 });
 pediatricManagementRouter.post('/course-update', (req, res)=>{
-    console.log("成功进入该界面！！！！！")
+    // console.log("成功进入该界面！！！！！")
     let pediatricObject ={
         "course_id" : -1,
         "title":"太恐怖了！感冒了一定不能吃这些东西，不然会威胁到生命！",
@@ -196,7 +189,7 @@ pediatricManagementRouter.post('/course-update', (req, res)=>{
         pediatricObject.address = req.body.address;
         pediatricObject.lectureTime = parseDateString(req.body.lectureTime);
         pediatricObject.publishedTime = parseDateString(req.body.publishedTime);
-        pediatricObject.isShow = 1;
+        pediatricObject.isShow = req.body.isShow;
         dbTool.query(sql.updateRecord, [pediatricObject.title, pediatricObject.content, pediatricObject.lecturer,
             pediatricObject.address, pediatricObject.lectureTime, pediatricObject.publishedTime,
             pediatricObject.isShow, pediatricObject.imgUrl, pediatricObject.course_id],(err)=>{
@@ -216,7 +209,30 @@ pediatricManagementRouter.post('/course-update', (req, res)=>{
         })
     }
     else{
-        parametersInvalid(res);
+        pediatricObject.course_id = req.body.courseId;
+        pediatricObject.title = req.body.title;
+        pediatricObject.imgUrl = (req.body.imgUrl === undefined) ? null : req.body.imgUrl;
+        pediatricObject.lecturer = req.body.lecturer;
+        pediatricObject.address = req.body.address;
+        pediatricObject.lectureTime = parseDateString(req.body.lectureTime);
+        pediatricObject.publishedTime = parseDateString(req.body.publishedTime);
+        pediatricObject.isShow = req.body.isShow;
+        dbTool.query(sql.updateIsShow, [pediatricObject.isShow, pediatricObject.course_id], (err, result)=>{
+            if(err){
+                resObject.data.message = "Failed when update record into pediatric course table!! err info:" + err;
+                res.status(400).end();
+                return 1;
+            }
+            else{
+                resObject.success = true;
+                resObject.data.code = 200;
+                resObject.data.message = "update records into pediatric course table succeed!!";
+                res.json(resObject);
+                res.status(200).end();
+                return 1;
+            }
+        });
+
     }
 });
 pediatricManagementRouter.post('/courses-delete', (req, res)=>{
