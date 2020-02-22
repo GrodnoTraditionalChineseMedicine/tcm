@@ -1,6 +1,11 @@
 const express = require('express');
 const learntcmRouter = express.Router();
 const getAllArticlesObject = require('../jsonObject/getArticles');
+function clearCache(object) {
+    object.success =  false;
+    object.data.code = 400;
+    object.data.articles = [];
+}
 //const article = require('../jsonObject/article');
 const dbTool = require('../dao/databaseConnection');
 const getAllArticlesSql = require('../dao/getAllArticlesSql');
@@ -18,6 +23,8 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                 getAllArticlesObject.data.code = 400;
                 getAllArticlesObject.data.article = [];
                 res.json(getAllArticlesObject);
+                clearCache(getAllArticlesObject);
+                return 1;
             }
             else{
                 getAllArticlesObject.success = true;
@@ -40,6 +47,8 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                 }
                 getAllArticlesObject.data.article = articles;
                 res.json(getAllArticlesObject);
+                clearCache(getAllArticlesObject);
+                return 1;
             }
         });
     }
@@ -51,6 +60,8 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                 getAllArticlesObject.data.code = 400;
                 getAllArticlesObject.data.article = [];
                 res.json(getAllArticlesObject);
+                clearCache(getAllArticlesObject);
+                return 1;
             }
             else{
                 getAllArticlesObject.success = true;
@@ -73,6 +84,8 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                 }
                 getAllArticlesObject.data.article = articles;
                 res.json(getAllArticlesObject);
+                clearCache(getAllArticlesObject);
+                return 1;
             }
         });
     }

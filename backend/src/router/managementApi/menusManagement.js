@@ -186,7 +186,7 @@ menusManagementRouter.post('/show', (req, res)=>{
                return 1;
            }
            else{
-               requestHelper(options)
+               requestHelper(optionsForGetAllContents)
                    .then(function (response) {
                        // Request was successful, use the response object at will
                        if(response.success === true){

@@ -3,7 +3,7 @@ const router = express.Router();
 const requestHelper = require('request-promise');
 const optionsForGetAllContents = {
     method: 'GET',
-    url: 'http://localhost:3001/api/manage/containers/moments',
+    url: 'http://localhost:3001/api/manage/containers/moments?getIsShowmoemnt=true',
     json: true
 };
 const optionsForGetImagesByMomentId = {
@@ -56,6 +56,7 @@ router.get('/', (req, res)=>{
                         });
                 }
             }
+            return 1;
         })
         .catch(function (err) {
             res.json(resObject);
@@ -63,6 +64,7 @@ router.get('/', (req, res)=>{
             clearCache(resObject);
             return 1;
         });
+        return 1;
 });
 
 module.exports = router;

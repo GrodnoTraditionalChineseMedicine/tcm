@@ -17,7 +17,15 @@ let resObject = {
     }
 };
 router.get('/', (req, res)=>{
-    let getMomentsSql = managementSql.getAllRecords;
+    let getIsShow = req.query.getIsShowmoemnt;
+    let getMomentsSql = '';
+    if(getIsShow === "true"){
+        getMomentsSql = managementSql.getIsShowMoment;
+    }
+    else{
+        getMomentsSql = managementSql.getAllRecords;
+    }
+    console.log(getMomentsSql);
     dbTool.query(getMomentsSql, (err, result )=>{
         if(err){
             resObject.data.message = err.toString();

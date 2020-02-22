@@ -8,5 +8,6 @@
   "getAllRecords" : "SELECT moment_id,moment_title, moment_content, published_time, is_show\nFROM sys_moment\nORDER BY published_time;",
   "updateRecord" : "UPDATE sys_moment\nSET  moment_title = ?, moment_content = ?, published_time = ?, is_show = ?\nWHERE moment_id = ?;",
   "getMomentInfoById" : "SELECT * FROM sys_moment WHERE moment_id = ?;",
-  "getImagesByMomentId" : "\nSELECT * FROM rel_moment_file WHERE moment_id = ?;"
+  "getImagesByMomentId" : "\nSELECT * FROM rel_moment_file WHERE moment_id = ?;",
+  "getIsShowMoment" : "SELECT moment_id,moment_title, moment_content, published_time, is_show\nFROM sys_moment\nWHERE is_show = 1\nORDER BY published_time;"
 }
