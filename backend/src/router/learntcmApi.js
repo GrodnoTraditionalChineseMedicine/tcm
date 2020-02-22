@@ -1,5 +1,6 @@
 const express = require('express');
 const learntcmRouter = express.Router();
+const formatter = require('../tools/timeFormat.js');
 const getAllArticlesObject = require('../jsonObject/getArticles');
 function clearCache(object) {
     object.success =  false;
@@ -36,13 +37,14 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                         "articleTitle": "",
                         "imgUrl": "",
                         "publishTime": ""
-                    }
+                    };
                     article.articleId = result[i].article_id;
                     article.imgUrl = result[i].imgUrl;
                     article.articleTitle = result[i].article_title;
                     //将datetime转化成date形式的字符串
-                    const published_date = new Date(result[i].published_time.toString());
-                    article.publishTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                    // const published_date = new Date(result[i].published_time.toString());
+                    // article.publishTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                    article.publishTime = formatter(result[i].published_time.toString(), false);
                     articles.push(article);
                 }
                 getAllArticlesObject.data.article = articles;
@@ -78,8 +80,9 @@ learntcmRouter.get('/menus/articles',(req,res)=>{
                     article.imgUrl = result[i].imgUrl;
                     article.articleTitle = result[i].article_title;
                     //将datetime转化成date形式的字符串
-                    const published_date = new Date(result[i].published_time.toString());
-                    article.publishTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                    // const published_date = new Date(result[i].published_time.toString());
+                    // article.publishTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                    article.publishTime = formatter(result[i].published_time.toString(), false);
                     articles.push(article);
                 }
                 getAllArticlesObject.data.article = articles;

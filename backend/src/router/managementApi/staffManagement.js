@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const formatter  = require('../../tools/timeFormat.js');
 const dbTool = require('../../dao/databaseConnection');
 const managementSql = require('../../dao/staffManagementSql');
 function parametersInvalid(res){
@@ -47,11 +48,12 @@ router.get('/', (req, res)=>{
                 object.name = result[i].name;
                 object.sex = result[i].sex;
                 object.phoneNum = result[i].phone_num;
-                const date_of_birth = new Date(result[i].date_of_birth.toString());
-                object.birthday = date_of_birth.getFullYear() + '-' + date_of_birth.getMonth() + '-' + date_of_birth.getDate();
+                // const date_of_birth = new Date(result[i].date_of_birth.toString());
+                // object.birthday = date_of_birth.getFullYear() + '-' + date_of_birth.getMonth() + '-' + date_of_birth.getDate();
+                object.birthday = formatter(result[i].date_of_birth.toString(), false);
                 object.address = result[i].address;
                 object.employeeDescription = result[i].employee_description;
-                 employees.push(object);
+                employees.push(object);
             }
             resObject.success = true;
             resObject.data.code = 200;

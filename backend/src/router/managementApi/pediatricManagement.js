@@ -1,4 +1,5 @@
 const express = require('express');
+const formatter = require('../../tools/timeFormat.js');
 const pediatricManagementRouter = express.Router();
 const sql = require('../../dao/pediatricManagementSql');
 const requestHelper = require('request-promise');
@@ -55,12 +56,14 @@ pediatricManagementRouter.get('/courses', (req, res)=>{
                 object.content = result[i].content;
                 object.lecturer = result[i].lecturer;
                 object.address = result[i].address;
-                const lectureTime = new Date(result[i].lecture_time.toString());
-                object.lectureTime = lectureTime.getFullYear() + '-' + lectureTime.getMonth() + '-' + lectureTime.getDate() + '  '
-                + lectureTime.getHours() + ':' + lectureTime.getMinutes() + ':' + lectureTime.getSeconds();
-                const published_date = new Date(result[i].published_time.toString());
-                object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate() + '  '
-                    + published_date.getHours() + ':' + published_date.getMinutes() + ':' + published_date.getSeconds();
+                // const lectureTime = new Date(result[i].lecture_time.toString());
+                // object.lectureTime = lectureTime.getFullYear() + '-' + lectureTime.getMonth() + '-' + lectureTime.getDate() + '  '
+                // + lectureTime.getHours() + ':' + lectureTime.getMinutes() + ':' + lectureTime.getSeconds();
+                object.lectureTime = formatter(result[i].lecture_time.toString(), true);
+                // const published_date = new Date(result[i].published_time.toString());
+                // object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate() + '  '
+                //     + published_date.getHours() + ':' + published_date.getMinutes() + ':' + published_date.getSeconds();
+                object.publishedTime = formatter(result[i].published_time.toString(), true);
                 object.isShow = result[i].is_show;
                 object.imgUrl = result[i].img_url;
                 courses.push(object);
@@ -151,9 +154,10 @@ pediatricManagementRouter.post('/images-add', (req, res)=>{
                   imageObject.fileId = result[i].file_id;
                   imageObject.fileType = result[i].file_type;
                   imageObject.filePath = result[i].file_path;
-                   const uploadTime = new Date(result[i].upload_time.toString());
-                   imageObject.uploadTime = uploadTime.getFullYear() + '-' + uploadTime.getMonth() + '-' + uploadTime.getDate() + '  '
-                       + uploadTime.getHours() + ':' + uploadTime.getMinutes() + ':' + uploadTime.getSeconds();
+                   // const uploadTime = new Date(result[i].upload_time.toString());
+                   // imageObject.uploadTime = uploadTime.getFullYear() + '-' + uploadTime.getMonth() + '-' + uploadTime.getDate() + '  '
+                   //     + uploadTime.getHours() + ':' + uploadTime.getMinutes() + ':' + uploadTime.getSeconds();
+                    imageObject.uploadTime = formatter(result[i].upload_time.toString(), true);
                    resImages.push(imageObject);
                    i++;
                }
@@ -284,9 +288,10 @@ pediatricManagementRouter.get('/images', (req, res)=>{
              imageObject.fileId = result[i].file_id;
              imageObject.fileType = result[i].file_type;
              imageObject.filePath = result[i].file_path;
-             const uploadTime = new Date(result[i].upload_time.toString());
-             imageObject.uploadTime = uploadTime.getFullYear() + '-' + uploadTime.getMonth() + '-' + uploadTime.getDate() + '  '
-                 + uploadTime.getHours() + ':' + uploadTime.getMinutes() + ':' + uploadTime.getSeconds();
+             // const uploadTime = new Date(result[i].upload_time.toString());
+             // imageObject.uploadTime = uploadTime.getFullYear() + '-' + uploadTime.getMonth() + '-' + uploadTime.getDate() + '  '
+             //     + uploadTime.getHours() + ':' + uploadTime.getMinutes() + ':' + uploadTime.getSeconds();
+             imageObject.uploadTime = formatter(result[i].upload_time.toString(), true);
              resImages.push(imageObject);
              i++;
          }
@@ -324,12 +329,14 @@ pediatricManagementRouter.post('/course-id', (req, res)=>{
             object.content = result[0].content;
             object.lecturer = result[0].lecturer;
             object.address = result[0].address;
-            const lectureTime = new Date(result[0].lecture_time.toString());
-            object.lectureTime = lectureTime.getFullYear() + '-' + lectureTime.getMonth() + '-' + lectureTime.getDate() + '  '
-                + lectureTime.getHours() + ':' + lectureTime.getMinutes() + ':' + lectureTime.getSeconds();
-            const published_date = new Date(result[0].published_time.toString());
-            object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate() + '  '
-                + published_date.getHours() + ':' + published_date.getMinutes() + ':' + published_date.getSeconds();
+            // const lectureTime = new Date(result[0].lecture_time.toString());
+            // object.lectureTime = lectureTime.getFullYear() + '-' + lectureTime.getMonth() + '-' + lectureTime.getDate() + '  '
+            //     + lectureTime.getHours() + ':' + lectureTime.getMinutes() + ':' + lectureTime.getSeconds();
+            object.lectureTime = formatter(result[0].lecture_time.toString(), true);
+            // const published_date = new Date(result[0].published_time.toString());
+            // object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate() + '  '
+            //     + published_date.getHours() + ':' + published_date.getMinutes() + ':' + published_date.getSeconds();
+            object.publishedTime = formatter(result[0].published_time.toString(), true);
             object.isShow = result[0].is_show;
             object.imgUrl = result[0].img_url;
 

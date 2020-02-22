@@ -1,6 +1,7 @@
 const express = require('express');
 const articleManagementRouter = express.Router();
 const sql = require('../../dao/articleManagementSql');
+const formatter = require('../../tools/timeFormat.js');
 const requestHelper = require('request-promise');
 const dbTool = require('../../dao/databaseConnection');
 let resObject = {
@@ -48,8 +49,9 @@ articleManagementRouter.get('/', (req, res)=>{
                 };
                 object.articleId = result[i].article_id;
                 object.articleTitle = result[i].article_title;
-                const published_date = new Date(result[i].published_time.toString());
-                object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                // const published_date = new Date(result[i].published_time.toString());
+                // object.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                object.publishedTime = formatter(result[i].published_time.toString(), false);
                 object.isShow = result[i].is_show;
                 articles.push(object);
             }
@@ -313,12 +315,13 @@ articleManagementRouter.post('/id', (req, res)=>{
                 resObeject.data.article.articleTitle = reslut[0].article_title;
                 resObeject.data.article.articleImg = reslut[0].imgUrl;
                 resObeject.data.article.articleRow = reslut[0].article_raw;
-                const published_date = new Date(reslut[0].published_time.toString());
-                resObeject.data.article.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                // const published_date = new Date(reslut[0].published_time.toString());
+                // resObeject.data.article.publishedTime = published_date.getFullYear() + '-' + published_date.getMonth() + '-' + published_date.getDate();
+                resObeject.data.article.publishedTime =  formatter(reslut[0].published_time.toString(), false);
                 resObeject.data.article.isShow = reslut[0].is_show;
 
                 dbTool.query(sql.getMenuInfo, articleId, (err, result)=>{
-                    if(err || result.length == 0){
+                    if(err || result.length === 0){
                         resObject.data.message = "Failed when get record from menu table!! err info:" ;
                         res.json(resObject);
                         res.status(400).end();
