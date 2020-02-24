@@ -3,11 +3,6 @@ const menusManagementRouter = express.Router();
 const menusManagementSql = require('../../dao/mensuManagementsSql');
 const dbTool = require('../../dao/databaseConnection');
 const requestHelper = require('request-promise');
-const options = {
-    method: 'GET',
-    url: 'http://localhost:3001/api/learntcm/menus',
-    json: true,
-};
 const optionsForGetAllContents = {
     method: 'GET',
     url: 'http://localhost:3001/api/learntcm/menus?all=true',
@@ -77,7 +72,7 @@ menusManagementRouter.post('/add', (req,res)=>{
                     }
                     else{
                         //make request to getmenus api to get all menus
-                        requestHelper(options)
+                        requestHelper(optionsForGetAllContents)
                             .then(function (response) {
                                 // Request was successful, use the response object at will
                                 const newMenus = response.data.menus;
@@ -139,7 +134,7 @@ menusManagementRouter.post('/delete', (req, res)=>{
                 jsonObject.success = true;
                 jsonObject.data.code = 200;
                 jsonObject.data.message = "删除成功！！！";
-                requestHelper(options)
+                requestHelper(optionsForGetAllContents)
                     .then(function (response) {
                         // Request was successful, use the response object at will
                         jsonObject.data.content = response.data.menus;
@@ -279,7 +274,7 @@ menusManagementRouter.post('/update', (req, res)=>{
             res.status(400).end();
             return 1;
         }
-        requestHelper(options)
+        requestHelper(optionsForGetAllContents)
             .then(function (response) {
                 // Request was successful, use the response object at will
                 if(response.success === true){
