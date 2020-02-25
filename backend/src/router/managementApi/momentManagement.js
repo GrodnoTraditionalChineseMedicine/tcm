@@ -32,7 +32,6 @@ router.get('/', (req, res)=>{
     else{
         getMomentsSql = managementSql.getAllRecords;
     }
-    console.log(getMomentsSql);
     dbTool.query(getMomentsSql, (err, result )=>{
         if(err){
             resObject.data.message = err.toString();
@@ -49,7 +48,7 @@ router.get('/', (req, res)=>{
                     momentContent: null,
                     publishedTime: null,
                     isShow: null
-                }
+                };
                 object.momentId = result[i].moment_id;
                 object.momentTitle = result[i].moment_title;
                 object.momentContent = result[i].moment_content;
