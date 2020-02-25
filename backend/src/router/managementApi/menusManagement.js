@@ -8,15 +8,6 @@ const optionsForGetAllContents = {
     url: 'http://localhost:3001/api/learntcm/menus?all=true',
     json: true
 };
-// const optionsOfPost = {
-//   method : 'POST',
-//     url  : 'http://localhost:3001/api/manage/containers/content/delete',
-//     json : true,
-//     headers : {
-//         "content-type": "application/json",
-//     },
-//     body: {"menuCode" : ''}
-// };
 menusManagementRouter.post('/add', (req,res)=>{
     let menu = {
         "menuCode": "002",

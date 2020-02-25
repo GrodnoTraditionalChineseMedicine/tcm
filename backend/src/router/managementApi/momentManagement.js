@@ -17,6 +17,12 @@ let resObject = {
         "moments" : []
     }
 };
+function clearCache(object){
+    object.success = false;
+    object.data.code = 400;
+    object.message = '';
+    object.moments = [];
+}
 router.get('/', (req, res)=>{
     let getIsShow = req.query.getIsShowmoemnt;
     let getMomentsSql = '';
@@ -218,11 +224,13 @@ router.post('/update', (req, res)=>{
 });
 router.post('/id', (req, res)=>{
     if(req.body.momentId === null){
-        parametersInvalid();
+        clearCache(resObject);
+        parametersInvalid(res);
     }
     else{
         dbTool.query(managementSql.getMomentInfoById, req.body.momentId, (err, result)=>{
             if(err){
+                clearCache(resObject);
                 resObject.data.message = err.toString();
                 res.json(resObject);
                 res.status(400).end();
@@ -236,7 +244,8 @@ router.post('/id', (req, res)=>{
                     "images" : []
                 };
                 if(result.length === 0){
-                    resObject.data.message = "没有指定id的moment！！"
+                    clearCache(resObject);
+                    resObject.data.message = "没有指定id的moment！！";
                     res.json(resObject);
                     res.status(400).end();
                 }
@@ -244,10 +253,11 @@ router.post('/id', (req, res)=>{
                     moment.momentId = result[0].moment_id;
                     moment.momentTitle = result[0].moment_title;
                     moment.momentContent = result[0].moment_content;
-                    moment.publishedTime = result[0].published_time;
+                    moment.publishedTime = formatter(result[0].published_time.toString(), true);
                     moment.isShow = result[0].is_show;
                     dbTool.query(managementSql.getImagesByMomentId, req.body.momentId, (err, result)=>{
                         if(err){
+                            clearCache(resObject);
                             resObject.data.message = err;
                             res.json(resObject);
                             res.status(400).end();
@@ -269,6 +279,8 @@ router.post('/id', (req, res)=>{
                             resObject.data.moment = moment;
                             res.json(resObject);
                             res.status(200).end();
+                            clearCache(resObject);
+                            return 1;
                         }
                     });
                 }
