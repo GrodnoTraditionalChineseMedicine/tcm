@@ -8,15 +8,15 @@ import {
     SendMessageArea
 } from "./style";
 import {Form, Input, Button, Modal} from "antd";
+import {FormattedMessage} from "react-intl";
 
 class ContactUs extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("Start Send Email!");
                 Modal.success({
-                    content: '谢谢您的反馈，我们会尽快通过邮件回复您！',
+                    content: <FormattedMessage id="contact.submit.message.content" defaultMessage="Спасибо за ваши отзывы, мы ответим вам по электронной почте как можно скорее!"/>,
                 });
                 this.props.form.resetFields();
             }
@@ -32,35 +32,35 @@ class ContactUs extends Component {
                         <ul>
                             <li className="message">
                                 <SendMessageArea>
-                                    <h1>给我们留言</h1>
+                                    <h1><FormattedMessage id="contact.submit.title" defaultMessage="Оставьте нам сообщение"/></h1>
                                     <Form onSubmit={this.handleSubmit} className="login-form">
                                         <Form.Item>
                                             {getFieldDecorator('fullName', {
-                                                rules: [{required: true, message: 'Please enter your name!'}],
+                                                rules: [{required: true, message: <FormattedMessage id="contact.submit.name.warning" defaultMessage="Пожалуйста, введите свое полное имя и фамилия!"/>}],
                                             })(
                                             <Input
-                                                placeholder="Full Name"
+                                                placeholder="Имя и фамилия"
                                             />)}
                                         </Form.Item>
                                         <Form.Item>
                                             {getFieldDecorator('email', {
-                                                rules: [{required: true, message: 'Please enter your email!'}],
+                                                rules: [{required: true, message: <FormattedMessage id="contact.submit.email.warning" defaultMessage="Пожалуйста, введите свой адрес электронной почты!"/>}],
                                             })(
                                                 <Input
-                                                    placeholder="Email Address"
+                                                    placeholder="Электронная почта"
                                                 />)}
                                         </Form.Item>
                                         <Form.Item>
                                             {getFieldDecorator('message', {
-                                                rules: [{required: true, message: 'Please enter your message!'}],
+                                                rules: [{required: true, message: <FormattedMessage id="contact.submit.content.warning" defaultMessage="Пожалуйста, введите сообщение!"/>}],
                                             })(
                                                 <Input
-                                                    placeholder="Message"
+                                                    placeholder="Содержание"
                                                 />)}
                                         </Form.Item>
                                         <Form.Item>
                                             <Button type="primary" htmlType="submit">
-                                                提交
+                                                <FormattedMessage id="contact.submit.submit" defaultMessage="Отправить"/>
                                             </Button>
                                         </Form.Item>
                                     </Form>

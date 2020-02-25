@@ -28,6 +28,7 @@ export const Summary = styled.div`
         color: #333333;
         font-size: 16px;
         line-height: 24px;
+        text-indent: 2em;
         margin: 10px 0;
     }
 `;

@@ -20,7 +20,6 @@ import {
     MomentImage,
     MomentItem,
     TuinaArea,
-    TuinaImg,
     TuinaIntro,
     TuinaWrapper,
 } from './style';
@@ -31,6 +30,7 @@ import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {actionCreators as headAC} from "../../common/header/store";
 import {FormattedMessage} from "react-intl";
+import Pediatric from "../../statics/picture/pediatric.jpg";
 import YouTube from "react-youtube";
 
 const opts = {
@@ -65,7 +65,13 @@ class Home extends Component {
 
     render() {
         const { moments, carousels, handleChangeKey } = this.props;
-        totalPage = Math.floor((moments.length + this.state.pageSize - 1) / this.state.pageSize);
+        console.log(typeof moments);
+        console.log(moments.length, this.state.pageSize)
+        if (typeof moments.length === "undefined") {
+            totalPage = 1;
+        } else {
+            totalPage = Math.floor((moments.length + this.state.pageSize - 1) / this.state.pageSize);
+        }
         momentsTemp = pagination(this.state.pageSize, this.state.currentPage, moments);
         return (
             <HomeWrapper>
@@ -82,38 +88,38 @@ class Home extends Component {
                             <Row>
                                 <Col span={4}>
                                     <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe60b;</span></MedicalIcon>
-                                        <MedicalTitle>Pediatrics</MedicalTitle>
+                                        <MedicalIcon><span className="iconfont">&#xe656;</span></MedicalIcon>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon1" defaultMessage="Пальпация пульса"/></MedicalTitle>
                                     </MedicalItem>
                                 </Col>
                                 <Col span={4}>
                                     <MedicalItem>
                                         <MedicalIcon><span className="iconfont">&#xe65b;</span></MedicalIcon>
-                                        <MedicalTitle>Acupuncture</MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe83a;</span></MedicalIcon>
-                                        <MedicalTitle>Conditioning</MedicalTitle>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon2" defaultMessage="Иглоукалывание и прижигание"/></MedicalTitle>
                                     </MedicalItem>
                                 </Col>
                                 <Col span={4}>
                                     <MedicalItem>
                                         <MedicalIcon><span className="iconfont">&#xe690;</span></MedicalIcon>
-                                        <MedicalTitle>Cupping</MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe609;</span></MedicalIcon>
-                                        <MedicalTitle>Primary Care</MedicalTitle>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon3" defaultMessage="Лечение банками"/></MedicalTitle>
                                     </MedicalItem>
                                 </Col>
                                 <Col span={4}>
                                     <MedicalItem>
                                         <MedicalIcon><span className="iconfont">&#xe749;</span></MedicalIcon>
-                                        <MedicalTitle>Massage</MedicalTitle>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon4" defaultMessage="Массаж"/></MedicalTitle>
+                                    </MedicalItem>
+                                </Col>
+                                <Col span={4}>
+                                    <MedicalItem>
+                                        <MedicalIcon><span className="iconfont">&#xe83a;</span></MedicalIcon>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon5" defaultMessage="Лекарства китайской медицины"/></MedicalTitle>
+                                    </MedicalItem>
+                                </Col>
+                                <Col span={4}>
+                                    <MedicalItem>
+                                        <MedicalIcon><span className="iconfont">&#xe60b;</span></MedicalIcon>
+                                        <MedicalTitle><FormattedMessage id="home.top.icon6" defaultMessage="Китайская медицина для детей"/></MedicalTitle>
                                     </MedicalItem>
                                 </Col>
                             </Row>
@@ -131,7 +137,7 @@ class Home extends Component {
                                                 <MomentContent>
                                                     <h2>{item.momentTitle}</h2>
                                                     <p>{item.momentContent}</p>
-                                                    <div><Link to={`/moment/detail/${item.momentId}`} target="_blank" className="home-button">了解</Link></div>
+                                                    <div><Link to={`/moment/detail/${item.momentId}`} target="_blank" className="home-button"><FormattedMessage id="home.moment.more" defaultMessage="Подробнее"/></Link></div>
                                                 </MomentContent>
                                             </MomentItem>
                                         </Col>
@@ -139,27 +145,27 @@ class Home extends Component {
                                 })}
                             </Row>
                         </DynamicArea>
+                        {console.log(totalPage, this.state.currentPage)}
                         {this.state.currentPage >= totalPage ? <Icon type="right" style={{visibility: "hidden"}} onClick={this.nextPage}/> : <Icon type="right" onClick={this.nextPage}/>}
 
                     </DynamicAnnounceWrapper>
                     <HomeVideoWrapper>
                         <YouTube
                             opts={opts}
-                            videoId="WO8mrVjW0-c"
+                            videoId="Zg5qIsk_mVY"
                         />
                     </HomeVideoWrapper>
                     <TuinaWrapper>
                         <TuinaArea>
                             <TuinaIntro>
-                                <h3>小儿推拿</h3>
+                                <h3><FormattedMessage id="home.mid.pediatric.title" defaultMessage="Детский Массаж"/></h3>
                                 <Divider/>
                                 <p>
-                                    小儿推拿疗法，是在其体表的特定穴位或部位施以手法，用来防病治病、助长益智的一种外治疗法。
-                                    小儿推拿是一种中医传统的保健治疗方法，推拿通过按压穴位、经络和肌肉或神经，消除阻碍淤塞,达到气血通畅。
+                                    <FormattedMessage id="home.mid.pediatric.content" defaultMessage="Детский массаж, как способ лечения, основывается на концепции единого целого и основных диагностических и лечебных принципах традиционной китайской медицины.  Применение детского массажа, а именно специальных методов работы на конкретных  поверхностях тела ребенка, изменяет и регулирует физиологическое состояние организма, останавливает патологические процессы, повышает иммунитет детского организма, тем самым достигая основной цели - профилактики и лечения болезней. Детский массаж относится к наружным методам лечения традиционной китайской медицины и является важным разделом мануальной терапии."/>
                                 </p>
-                                <Button type="primary" className="button" size="large" onClick={handleChangeKey}><Link to="/pediatric">加入课程</Link></Button>
+                                <Button type="primary" className="button" size="large" onClick={handleChangeKey}><Link to="/pediatric"><FormattedMessage id="home.mid.pediatric.join" defaultMessage="Подробнее"/></Link></Button>
                             </TuinaIntro>
-                            <TuinaImg/>
+                            <img className="pediatric-img" src={Pediatric} alt={Pediatric}/>
                         </TuinaArea>
                     </TuinaWrapper>
                     <HomeMapWrapper>
@@ -173,7 +179,7 @@ class Home extends Component {
                                 </Map>
                             </MapContainer>
                             <MapContactInfo>
-                                <h3>联系方式</h3>
+                                <h3><FormattedMessage id="home.contact.title" defaultMessage="Контактная Информация"/></h3>
                                 <Divider/>
                                 <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                     <Col span={3}><span className="iconfont">&#xe625;</span></Col>
@@ -185,22 +191,22 @@ class Home extends Component {
                                 <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                     <Col span={3}><span className="iconfont">&#xe61b;</span></Col>
                                     <Col span={21}>
-                                        <span className="title"><FormattedMessage id="home.contact.telephone.title" defaultMessage="Телефоны:"/></span><br/>
-                                        <span className="detail"><FormattedMessage id="home.contact.telephone.content" defaultMessage="+375 (29) 307-06-40"/></span>
+                                        <span className="title"><FormattedMessage id="home.contact.telephone.title" defaultMessage="Телефон:"/></span><br/>
+                                        <span className="detail"><FormattedMessage id="home.contact.telephone.content" defaultMessage="+375 (152) 44-20-11"/></span>
                                     </Col>
                                 </Row>
                                 <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                     <Col span={3}><span className="iconfont">&#xe600;</span></Col>
                                     <Col span={21}>
-                                        <span className="title"><FormattedMessage id="home.contact.time.title" defaultMessage="Рабочее время:"/></span><br/>
-                                        <span className="detail"><FormattedMessage id="home.contact.time.content" defaultMessage="Пн-Пт: 8:00-23:00 сб 9.00-21.00 вс 11.00 до 20.00"/></span>
+                                        <span className="title"><FormattedMessage id="home.contact.time.title" defaultMessage="Время работы:"/></span><br/>
+                                        <span className="detail"><FormattedMessage id="home.contact.time.content" defaultMessage="Пн-Пт: 9:00-17:00 (13:00-14:00 - обед) сб, вс: выходной"/></span>
                                     </Col>
                                 </Row>
                                 <Row type="flex" justify="space-around" align="middle" gutter={8}>
                                     <Col span={3}><span className="iconfont">&#xe617;</span></Col>
                                     <Col span={21}>
-                                        <span className="title"><FormattedMessage id="home.contact.email.title" defaultMessage="Эл. адрес:"/></span><br/>
-                                        <span className="detail"><FormattedMessage id="home.contact.email.content" defaultMessage="xinghanluo@gmail.com"/></span>
+                                        <span className="title"><FormattedMessage id="home.contact.email.title" defaultMessage="Электронная почта:"/></span><br/>
+                                        <span className="detail"><FormattedMessage id="home.contact.email.content" defaultMessage="tcmgrodno@outlook.com"/></span>
                                     </Col>
                                 </Row>
                             </MapContactInfo>

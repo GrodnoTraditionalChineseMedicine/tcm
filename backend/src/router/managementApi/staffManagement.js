@@ -50,7 +50,9 @@ router.get('/', (req, res)=>{
                 object.phoneNum = result[i].phone_num;
                 // const date_of_birth = new Date(result[i].date_of_birth.toString());
                 // object.birthday = date_of_birth.getFullYear() + '-' + date_of_birth.getMonth() + '-' + date_of_birth.getDate();
-                object.birthday = formatter(result[i].date_of_birth.toString(), false);
+                if (result[i].date_of_birth !== null) {
+                    object.birthday = formatter(result[i].date_of_birth.toString(), false);
+                }
                 object.address = result[i].address;
                 object.employeeDescription = result[i].employee_description;
                 employees.push(object);

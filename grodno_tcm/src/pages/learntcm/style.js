@@ -13,7 +13,7 @@ export const LearnTcmImg = styled.div`
     width: 100%;
     height: 500px;
     background: url("${props => props.imgUrl !== null ? props.imgUrl : LearnTcm}") no-repeat center/100%;
-    transition: .5s;
+    transition: 0.3s;
 `;
 
 export const LearnTcmContent = styled.div`

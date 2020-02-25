@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {Menu, Dropdown} from "antd";
+import {Menu} from "antd";
 import {Link, withRouter} from "react-router-dom";
 import {
-    HeaderWrapper, NavLogo, NavMenu,HeaderMenu,HeaderNav,LanguageChange
+    HeaderWrapper, NavLogo, NavMenu,HeaderMenu,HeaderNav
 } from './style';
 import {actionCreators} from "./store";
 import {actionCreators as localesActionCreators} from "../../locales/store";
@@ -14,33 +14,13 @@ let thisScrollY = 0;
 
 class Header extends Component {
     render() {
-        const {isHide, isTop, handleChangeKey, usersLocale, changeToChinese, changeToRussian, changeToEnglish} = this.props;
+        const {isHide, isTop, handleChangeKey} = this.props;
         const path = this.props.location.pathname;
-        const menu = (
-            <Menu>
-                <Menu.Item onClick={changeToChinese}>
-                    中文
-                </Menu.Item>
-                <Menu.Item onClick={changeToRussian}>
-                    Русский
-                </Menu.Item>
-                <Menu.Item onClick={changeToEnglish}>
-                    English
-                </Menu.Item>
-            </Menu>
-        );
         return (
             <HeaderWrapper>
                 <NavMenu isHide={isHide} isTop={isTop}>
                     <NavLogo/>
                     <HeaderMenu>
-                        <LanguageChange>
-                            <Dropdown overlay={menu} placement="bottomCenter">
-                                <span className="iconfont">&#xe614; {
-                                    usersLocale === "cn" ? "中文" : (usersLocale === "en" ? "English" : "Русский")
-                                }</span>
-                            </Dropdown>
-                        </LanguageChange>
                         <HeaderNav>
                             <Menu
                                 mode="horizontal"
@@ -55,7 +35,6 @@ class Header extends Component {
                             </Menu>
                         </HeaderNav>
                     </HeaderMenu>
-
                 </NavMenu>
             </HeaderWrapper>
         );

@@ -15,6 +15,7 @@ import {
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import {Divider} from "antd";
+import {FormattedHTMLMessage, FormattedMessage} from "react-intl";
 
 class HospitalIntro extends Component {
     componentDidMount() {
@@ -28,18 +29,14 @@ class HospitalIntro extends Component {
                 <CenterIntroImg/>
                 <CenterIntroInfo>
                     <CenterIntro>
-                        <Title>中心介绍</Title>
+                        <Title><FormattedMessage id="center.introduce.title" defaultMessage="Краткое описание центра традиционной китайской медицины"/></Title>
                         <Divider/>
                         <IntroWordInfo>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
-                            Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
-                            tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                            mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus
-                            sapien nunc eget.
+                            <FormattedHTMLMessage id="center.introduce.content"/>
                         </IntroWordInfo>
                     </CenterIntro>
                     <CenterDoctor>
-                        <Title>我们的医生</Title>
+                        <Title><FormattedMessage id="center.doctors.title" defaultMessage="Наши врачи"/></Title>
                         <Divider/>
                         {doctors.map((item)=>{
                             return (

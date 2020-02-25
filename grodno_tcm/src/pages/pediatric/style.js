@@ -31,17 +31,28 @@ export const PediatricTitle = styled.h1`
 `;
 
 export const InfoArea = styled.div`
+    h2{
+        padding-top: 10px;
+        padding-bottom: 5px;
+        color: #1f1f1f;
+        font-size: 20px;
+        font-weight: 700;
+    }
     h3{
         padding-top: 10px;
         padding-bottom: 5px;
         color: #1f1f1f;
         font-size: 18px;
-        font-weight: 700;
+        font-weight: 600;
+        text-indent: 2em;
     }
     p, ul{
         color: #333333;
         font-size: 16px;
         font-weight: 400;
+    }
+    p, .ti {
+        text-indent: 2em;
     }
 `;
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Hospital from "../../statics/picture/hospital-img.jpg";
+import Center from "../../statics/picture/center.jpg";
 
 export const CenterIntroWrapper = styled.div`
     width: 100%;
@@ -12,7 +12,7 @@ export const CenterIntroWrapper = styled.div`
 export const CenterIntroImg = styled.div`
     width: 100%;
     height: 500px;
-    background: url(${Hospital}) no-repeat center/100%;
+    background: url(${Center}) no-repeat center/100%;
 `;
 
 export const CenterIntroInfo = styled.div`
@@ -38,6 +38,9 @@ export const IntroWordInfo = styled.div`
     font-size: 16px;
     line-height: 24px;
     margin: 10px 0;
+    p{
+      text-indent: 2em;
+    }
 `;
 
 export const IntroImgInfo = styled.div`

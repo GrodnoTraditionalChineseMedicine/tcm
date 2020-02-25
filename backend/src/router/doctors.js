@@ -35,7 +35,7 @@ doctorsRouter.get('/',(req, res)=>{
                 };
                 doctor.employeeId = result[i].employee_id;
                 doctor.roleId = result[i].role_id;
-                doctor.roleName = "医生";
+                doctor.roleName = "Лечащие врачи";
                 doctor.avatarUrl = result[i].avatar_url;
                 doctor.name = result[i].name;
                 doctor.sex = result[i].sex;

@@ -70,34 +70,20 @@ export const MenuItem = styled.li`
         color: #9abdb1;
     }
     a{
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600;
         color: rgba(241, 242, 246,1.0);
     }
-    padding-left: 45px;
+    padding-left: 30px;
 `;
 
 export const NavLogo = styled.a.attrs({
    href: '/'
 })`
     height: 68px;
-    width: 180px;
+    width: 240px;
     float: left;
     z-index: 999;
     position: relative;
-    margin-right: 30px;
     background: url(${last_logo}) no-repeat center/100%;
-`;
-
-export const LanguageChange = styled.div`
-    line-height: 68px;
-    width: 80px;
-    position: relative;
-    float: right;
-    display: inline-block;
-    .iconfont{
-        float: left;
-        font-size: 14px;
-        font-weight: 500;
-    }
 `;

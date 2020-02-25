@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import pureLogo from "../../statics/logo/pure_logo.png";
+import pureLogo from "../../statics/logo/with_not_text.png";
 import loginBackground from "../../statics/picture/login.png";
 
 export const LoginWrapper = styled.div`

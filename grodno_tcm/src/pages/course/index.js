@@ -13,6 +13,7 @@ import {
     HeaderInfo
 } from "./style";
 import {Divider} from "antd";
+import {FormattedMessage} from "react-intl";
 
 class PediatricCourse extends Component {
     componentDidMount() {
@@ -44,7 +45,7 @@ class PediatricCourse extends Component {
                                     <p className="lecturer">{course.lecturer}</p>
                                     <p className="address">{course.address}</p>
                                     <Divider/>
-                                    <p className="time-title">开课时间</p>
+                                    <p className="time-title"><FormattedMessage id="course.detail.start.time" defaultMessage="Время проведения курсов"/></p>
                                     <p className="time">{course.lectureTime}</p>
                                 </DetailLeft>
                                 <DetailRight>
@@ -53,7 +54,7 @@ class PediatricCourse extends Component {
                                         <h1>{course.title}<TitleLine/></h1>
                                         <HeaderInfo>
                                             <span className="time">
-                                                <span className="time-title">发布时间: </span>
+                                                <span className="time-title"><FormattedMessage id="course.detail.publish.time" defaultMessage="Время издания: "/></span>
                                                 {course.publishedTime}
                                             </span>
                                         </HeaderInfo>

@@ -179,14 +179,19 @@ export const TuinaWrapper = styled.div`
 `;
 
 export const TuinaArea = styled.div`
-    width: 1020px;
+    width: 1120px;
     margin: 20px auto;
     padding: 0 20px;
     position: relative;
+    display: flex;
+    align-items: center;
+    .pediatric-img{
+        width: 35%;
+    }
 `;
 
 export const TuinaIntro = styled.div`
-    width: 70%;
+    width: 65%;
     float: left;
     padding-right: 20px;
     h3{
@@ -199,32 +204,19 @@ export const TuinaIntro = styled.div`
       color: #7f8c8d;
     }
     .button{
-      position: absolute;
-      bottom: 0;
+      display: block;
     }
 `;
 
 export const TuinaImg = styled.div`
     width: 30%;
+    float: left;
     height: 200px;
     background-color: red;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-`;
-
-export const MapTitle = styled.div`
-    width: 1020px;
-    font-size: 16px;
-    color: #95a5a6;
-    letter-spacing: 2px;
-    margin: 20px auto;
-    padding: 10px 20px;
-    text-align: center;
 `;
 
 export const HomeMapWrapper = styled.div`
-    width: 1020px;
+    width: 1120px;
     margin: 20px auto;
     padding: 20px 20px;
     display: flex;
