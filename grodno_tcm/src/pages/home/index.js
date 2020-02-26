@@ -65,8 +65,6 @@ class Home extends Component {
 
     render() {
         const { moments, carousels, handleChangeKey } = this.props;
-        console.log(typeof moments);
-        console.log(moments.length, this.state.pageSize)
         if (typeof moments.length === "undefined") {
             totalPage = 1;
         } else {
@@ -145,7 +143,6 @@ class Home extends Component {
                                 })}
                             </Row>
                         </DynamicArea>
-                        {console.log(totalPage, this.state.currentPage)}
                         {this.state.currentPage >= totalPage ? <Icon type="right" style={{visibility: "hidden"}} onClick={this.nextPage}/> : <Icon type="right" onClick={this.nextPage}/>}
 
                     </DynamicAnnounceWrapper>

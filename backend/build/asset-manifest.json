@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.6865473b.chunk.js",
-    "main.js.map": "/static/js/main.6865473b.chunk.js.map",
+    "main.js": "/static/js/main.1eab28f2.chunk.js",
+    "main.js.map": "/static/js/main.1eab28f2.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
     "static/css/2.cfcb5b7a.chunk.css": "/static/css/2.cfcb5b7a.chunk.css",
     "static/js/2.e343e8dc.chunk.js": "/static/js/2.e343e8dc.chunk.js",
     "static/js/2.e343e8dc.chunk.js.map": "/static/js/2.e343e8dc.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.abf985ed1b3b72e80ff1bf1e80629cb2.js": "/precache-manifest.abf985ed1b3b72e80ff1bf1e80629cb2.js",
+    "precache-manifest.89595c0c8bd424fa20c4c2093ce8559a.js": "/precache-manifest.89595c0c8bd424fa20c4c2093ce8559a.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.cfcb5b7a.chunk.css.map": "/static/css/2.cfcb5b7a.chunk.css.map",
     "static/media/3.jpg": "/static/media/3.746d3972.jpg",
@@ -18,7 +18,7 @@
     "static/media/hospital-img.jpg": "/static/media/hospital-img.7d62497f.jpg",
     "static/media/learntcm.jpg": "/static/media/learntcm.e7dcd98f.jpg",
     "static/media/login.png": "/static/media/login.c6bb67d7.png",
-    "static/media/logo.png": "/static/media/logo.a4a0c978.png",
+    "static/media/logo.png": "/static/media/logo.4ffb2ca1.png",
     "static/media/pediatric.jpg": "/static/media/pediatric.347b4d25.jpg",
     "static/media/privacy.png": "/static/media/privacy.49d34d5e.png",
     "static/media/with_not_text.png": "/static/media/with_not_text.b519cbd0.png"
