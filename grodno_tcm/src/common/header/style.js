@@ -12,7 +12,6 @@ export const HeaderWrapper = styled.header`
 export const NavMenu = styled.div`
     width: auto;
     position: relative;
-    height: 1rem;
     padding: 0 20px;
     margin: 0 auto;
     font-weight: 600;

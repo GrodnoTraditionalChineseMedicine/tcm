@@ -18,14 +18,14 @@ class Header extends Component {
         const path = this.props.location.pathname;
         return (
             <HeaderWrapper>
-                <NavMenu isHide={isHide} isTop={isTop}>
+                <NavMenu>
                     <NavLogo/>
                     <HeaderMenu>
                         <HeaderNav>
                             <Menu
                                 mode="horizontal"
                                 defaultSelectedKeys={[path]}
-                                style={{ lineHeight: '66px'}}
+                                style={{ lineHeight: '70px'}}
                             >
                                 <Menu.Item onClick={handleChangeKey} key="/"><Link to="/"><FormattedMessage id="components.header.home" defaultMessage="首页"/></Link></Menu.Item>
                                 <Menu.Item onClick={handleChangeKey} key="/hospital_intro"><Link to="/hospital_intro"><FormattedMessage id="components.header.hospital" defaultMessage="医院简介"/></Link></Menu.Item>
@@ -40,7 +40,7 @@ class Header extends Component {
         );
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         const {handleScroll} = this.props;
         window.addEventListener('scroll', handleScroll);
     };
@@ -48,7 +48,7 @@ class Header extends Component {
     componentWillUnmount() {
         const {handleScroll} = this.props;
         window.removeEventListener('scroll', handleScroll);
-    };
+    };*/
 }
 
 const mapStateToProps = (state) => {
