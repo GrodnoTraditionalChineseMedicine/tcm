@@ -149,7 +149,7 @@ class Home extends Component {
                     <HomeVideoWrapper>
                         <YouTube
                             opts={opts}
-                            videoId="Zg5qIsk_mVY"
+                            videoId="XzuIEQCcelE"
                         />
                     </HomeVideoWrapper>
                     <TuinaWrapper>

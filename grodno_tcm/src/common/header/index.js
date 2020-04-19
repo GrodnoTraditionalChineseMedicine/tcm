@@ -14,7 +14,8 @@ let thisScrollY = 0;
 
 class Header extends Component {
     render() {
-        const {isHide, isTop, handleChangeKey} = this.props;
+        /*const {isHide, isTop, handleChangeKey} = this.props;*/
+        const {handleChangeKey} = this.props;
         const path = this.props.location.pathname;
         return (
             <HeaderWrapper>

@@ -7,9 +7,10 @@ const Ru = {
 
     'components.footer.follow': 'Следите за нами',
     'components.footer.contact': 'Контактная информация',
-    'components.footer.about': 'О нас',
+    'components.footer.about': 'Наша больница',
     'components.footer.help': 'Справка',
     'components.footer.account': 'Аккаунт',
+    'components.footer.feedback': 'Обратная связь',
     'components.footer.privacy': 'Политика приватности',
     'components.footer.copyright':'Больница традиционной китайской медицины провинции Ганьсу',
 

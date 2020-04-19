@@ -7,9 +7,10 @@ const Cn = {
 
     'components.footer.follow': '关注我们',
     'components.footer.contact': '联系我们',
-    'components.footer.about': '关于我们',
+    'components.footer.about': '我们医院',
     'components.footer.help': '帮助',
     'components.footer.account': '账号',
+    'components.footer.feedback': '反馈',
     'components.footer.privacy': '隐私政策',
     'components.footer.copyright':'甘肃省中医院',
 

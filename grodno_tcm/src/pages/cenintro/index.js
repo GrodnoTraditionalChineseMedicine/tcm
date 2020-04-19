@@ -47,7 +47,7 @@ class HospitalIntro extends Component {
                                     <DoctorInfo>
                                         <h3 className="name">{item.name}</h3>
                                         <p className="job-title">{item.roleName}</p>
-                                        <p className="introduction">{item.employeeDescription}</p>
+                                        <div className="introduction" dangerouslySetInnerHTML={{__html: item.employeeDescription}}/>
                                     </DoctorInfo>
                                 </DoctorItem>
                             )

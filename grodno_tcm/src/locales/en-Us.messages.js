@@ -7,9 +7,10 @@ const En = {
 
     'components.footer.follow': 'Follow Us',
     'components.footer.contact': 'Contact Us',
-    'components.footer.about': 'About Us',
+    'components.footer.about': 'Our Hospital',
     'components.footer.help': 'Help',
     'components.footer.account': 'Account',
+    'components.footer.feedback': 'Feedback',
     'components.footer.privacy': 'Privacy Policy',
     'components.footer.copyright':'Gansu Provincial Hospital of Traditional Chinese Medicine',
 
