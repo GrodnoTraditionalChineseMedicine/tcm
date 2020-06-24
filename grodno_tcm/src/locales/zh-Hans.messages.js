@@ -165,7 +165,31 @@ const Cn = {
         '</br>通过邮件：tcmgrodno@outlook.com</br>通过电话：+375 152 44 20 11</p>',
     'privacy.version.content11':'<h3>11、对此隐私策略的更改</h3>' +
         '<p>我们可能会不时更新我们的隐私政策。我们将通过在此页面上发布新的隐私政策来通知您任何更改。' +
-        '</br>建议您定期查看本隐私政策以了解任何变更。本隐私政策的更改在此页面上发布时生效。</p>'
+        '</br>建议您定期查看本隐私政策以了解任何变更。本隐私政策的更改在此页面上发布时生效。</p>',
+
+    'help.question1.title':'1、我们的就诊流程',
+    'help.question1.content':'<p><strong>① 咨询：</strong>一般不提供电话咨询。如果不治疗，咨询费用为<strong>5卢布</strong>。</p>' +
+        '<p><strong>② 预约：</strong>咨询后即可预约治疗时间。</p>' +
+        '<p><strong>③ 治疗：</strong>治疗时间为<strong>20~30分钟</strong>，一般<strong>一周三次</strong>，也可根据实际情况安排。</p>',
+    'help.question2.title':'2、就诊前需要注意什么？',
+    'help.question2.content':'<p>不得空腹、不能太累、不能酗酒</p>',
+    'help.question3.title':'3、针刺痛不痛？',
+    'help.question3.content':'<p>针刺有酸痛、胀困，少见的冷、热感，触电感都是正常的。如果针刺时出现锐痛是不对的，要及时告知医生。</p>',
+    'help.question4.title':'4、针刺时出现头晕恶心、出血、有血肿、肢体酸困无力正常吗？',
+    'help.question4.content':'<p>针刺过程中因为空腹、紧张、针刺操作粗暴，可引起患者头晕、恶心、出汗等现象，一般属于正常现象，不需要紧张。</p>' +
+        '<p>拔针后，出血、有血肿和肢体酸困无力一般不需要紧张，都会自行消失。</p>',
+    'help.question5.title':'5、针刺后需要注意什么？',
+    'help.question5.content':'<p>一般针刺当天不要洗澡、游泳，不能过度劳累，不能酗酒。</p>',
+    'help.price.title':'6、甘肃省格罗德诺中医中心收费标准',
+    'help.price.table':'<table className="price-table">' +
+        '<tr><th>服务名称</th><th>价格(卢布)</th><th>次数</th><th>治疗内容</th></tr>' +
+        '<tr><td>针刺1</td><td>20 руб</td><td>1</td><td>针灸+其他服务（拔罐等）</td></tr>' +
+        '<tr><td>针刺2</td><td>15 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>拔罐</td><td>5 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>耳穴治疗</td><td>5 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>推拿</td><td>20 руб</td><td>1</td><td>/</td></tr>' +
+        '</table>'
+
 };
 
 export default Cn;

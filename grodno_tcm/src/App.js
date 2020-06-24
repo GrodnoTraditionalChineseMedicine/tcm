@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {GlobalStyled} from "./style";
 import {GlobalIconFont} from "./statics/iconfont/iconfont";
 import {IntlProvider} from "react-intl";
-import 'antd/dist/antd.css';
 /*import "./mock";*/
 import messages from "./locales/messages";
 

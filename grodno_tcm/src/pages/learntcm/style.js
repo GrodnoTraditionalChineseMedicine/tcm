@@ -47,15 +47,28 @@ export const ContentList = styled.div`
       display: table-cell;
       padding: 10px;
       background: #fff;
-      border-radius: 10px
+      border-radius: 10px;
       width: 70%;
+      .ant-list-item {
+        padding: 18px 0;
+      }
+      .ant-list-item-meta-title a{
+        font-size: 18px;
+        color: #1a1a1a;
+        line-height: 28.8px;
+      }
 `;
 
 export const ArticleItemImg = styled.div`
-    height: 80px;
-    width: 145px;
-    margin-right: 10px;
+    height: 120px;
+    width: 180px;
+    margin-right: 20px;
+    border-radius: 20px;
     background: url("${props => props.imgUrl !== null ? props.imgUrl : LearnTcm}") no-repeat center/100%;
+    transition: 0.5s;
+    &:hover{
+      opacity: 0.7;
+    }
 `;
 
 /*export const HospitalIntroImg = styled.div`

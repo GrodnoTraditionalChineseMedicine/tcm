@@ -60,7 +60,9 @@ class LearnTcm extends Component {
                         renderItem={item => (
                             <List.Item key={item.articleId}>
                                 {(typeof (item.imgUrl) === "undefined" || item.imgUrl === null )? null :
-                                    <ArticleItemImg imgUrl={item.imgUrl} />
+                                    <Link to={`/article/detail/${item.articleId}`} target="_blank">
+                                        <ArticleItemImg imgUrl={item.imgUrl} />
+                                    </Link>
                                 }
                                 <List.Item.Meta
                                     title={<Link to={`/article/detail/${item.articleId}`} target="_blank">{item.articleTitle}</Link>}

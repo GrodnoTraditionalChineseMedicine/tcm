@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'antd'; // +
-import {Layout} from "antd/lib/index"; // +
+import { Menu, Layout } from 'antd'; // +
 import {connect} from "react-redux";
 import {actionCreators} from "../../store";
 import {filterData} from "../../utils";

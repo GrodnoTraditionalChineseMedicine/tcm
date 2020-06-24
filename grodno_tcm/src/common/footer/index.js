@@ -56,9 +56,9 @@ class Footer extends Component {
                         </CtUs>
                     </FooterContact>
                     <FooterRight>
-                        <Link className="link-content" to="http://www.gszyy.com/">
+                        <a className="link-content" href="http://www.gszyy.com/">
                             <p><FormattedMessage id="components.footer.about" defaultMessage="О нас"/></p>
-                        </Link>
+                        </a>
                         <Link className="link-content" to="/help">
                             <p><FormattedMessage id="components.footer.help" defaultMessage="Справка"/></p>
                         </Link>

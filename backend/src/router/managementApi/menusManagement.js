@@ -32,23 +32,28 @@ menusManagementRouter.post('/add', (req,res)=>{
         menu.isShow = 1;
         menu.level = (menu.parentCode.length / 3) + 1;
         if(menu.parentCode !== 'undefined'){
+            console.log(menu.parentCode);
             dbTool.query(menusManagementSql.getSubMenusByParentCode, menu.parentCode, (err, result)=>{
-                console.log(result[0].menu_code);
                 let generateMenuCodeByDefault = "001";
-                if(result[0].menu_code !== null){
-                    let maximumSubMenuCode = result[0].menu_code;
-                    let subMenuCode = maximumSubMenuCode.substr(maximumSubMenuCode.length - 3, 3);
-                    let codeWithoutZero = (parseInt(subMenuCode) + 1).toString();
-                    console.log(subMenuCode + "   " + codeWithoutZero);
-                    switch (codeWithoutZero.length) {
-                        case 1: generateMenuCodeByDefault = '00' + codeWithoutZero;
-                            break;
-                        case 2: generateMenuCodeByDefault = '0' + codeWithoutZero;
-                            break;
-                        case 3: generateMenuCodeByDefault = codeWithoutZero;
-                            break;
-                        default:
-                            break;
+                if (result.length !== 0) {
+                    if (result[0].menu_code !== null) {
+                        let maximumSubMenuCode = result[0].menu_code;//001004005
+                        let subMenuCode = maximumSubMenuCode.substr(maximumSubMenuCode.length - 3, 3);//005
+                        let codeWithoutZero = (parseInt(subMenuCode) + 1).toString();//6
+                        console.log(subMenuCode + "   " + codeWithoutZero);//005
+                        switch (codeWithoutZero.length) {
+                            case 1:
+                                generateMenuCodeByDefault = '00' + codeWithoutZero;
+                                break;
+                            case 2:
+                                generateMenuCodeByDefault = '0' + codeWithoutZero;
+                                break;
+                            case 3:
+                                generateMenuCodeByDefault = codeWithoutZero;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 if(menu.parentCode === "000"){

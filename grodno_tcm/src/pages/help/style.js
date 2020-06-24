@@ -20,18 +20,27 @@ export const HelpInfo = styled.div`
     min-width: 980px;
     padding: 10px 20px;
     margin: 10px auto;
-    background: #fff;
-    .site-collapse-custom-collapse .site-collapse-custom-panel {
-      background: #f7f7f7;
-      border-radius: 2px;
-      margin-bottom: 10px;
-      border: 0px;
-      overflow: hidden;
-    }
-    .ant-collapse > .ant-collapse-item > .ant-collapse-header {{
-      background-color: #555555;
-      color: #f0f0f0;
+    .ant-collapse-header{
       font-weight: 600;
-      font-size: 16px;
+    }
+    p{
+      margin: 5px 0;
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+      }
+      th{
+        background-color: #ddd;
+      }
+    }
+    ul{
+      li{
+        list-style-type: none;
+      }
     }
 `;

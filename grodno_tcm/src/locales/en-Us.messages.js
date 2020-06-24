@@ -165,6 +165,29 @@ const En = {
         '</br>By email:tcmgrodno@outlook.com</br>By telephone:+375 152 44 20 11</p>',
     'privacy.version.content11':'<h3>11. Changes to this privacy policy</h3>' +
         '<p>We may update our privacy policy from time to time. We will notify you of any changes by Posting a new privacy policy on this page.' +
-        '</br>It is recommended that you review this privacy policy periodically for any changes. Changes to this privacy policy take effect when published on this page.</p>'
+        '</br>It is recommended that you review this privacy policy periodically for any changes. Changes to this privacy policy take effect when published on this page.</p>',
+
+    'help.question1.title':'1. Our consultation process',
+    'help.question1.content':'<p><strong>① Consultation. </strong>Telephone consultation is generally not provided. If not treated, the consultation fee is <strong>5 ruble</strong>.</p>' +
+        '<p><strong>② Reservation. </strong>After consultation, treatment time can be reserved.</p>' +
+        '<p><strong>③ Treatment. </strong>Treatment time is <strong>20 to 30 minutes</strong>, usually<strong> three times a week</strong>, and can also be arranged according to the actual situation.</p>',
+    'help.question2.title':'2. What should I pay attention to before visiting the doctor?',
+    'help.question2.content':'<p>No fasting, no fatigue, no alcohol</p>',
+    'help.question3.title':'3. Does the acupuncture hurt?',
+    'help.question3.content':'<p>Acupuncture is sore, swollen, uncommonly cold and hot, and touch inductance is normal. If sharp pain during acupuncture is wrong, inform the doctor in time.</p>',
+    'help.question4.title':'4. Is it normal to have dizziness, nausea, bleeding, hematoma, and limb weakness?',
+    'help.question4.content':'<p>During the acupuncture process, fasting, tension, and rough acupuncture can cause dizziness, nausea, and sweating. It is generally normal and does not require tension.</p>' +
+        '<p>After the needle is removed, bleeding, hematoma, and soreness of the limbs generally do not require tension and will disappear on their own.</p>',
+    'help.question5.title':'5. What should I pay attention to after acupuncture?',
+    'help.question5.content':'<p>Generally, do not bathe or swim on the day of acupuncture, do not overwork, and do not drink alcohol.</p>',
+    'help.price.title':"6. Charge standard of Gansu Province - Grodno Chinese Traditional Medicine Center",
+    'help.price.table':'<table>' +
+        '<tr><th>Service name</th><th>Price (Ruble)</th><th>Times</th><th>Treatment content</th></tr>' +
+        '<tr><td>Acupuncture 1</td><td>20 руб</td><td>1</td><td>Acupuncture + other services (cupping, etc.)</td></tr>' +
+        '<tr><td>Acupuncture 2</td><td>15 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>Cupping</td><td>5 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>Ear Point Treatment</td><td>5 руб</td><td>1</td><td>/</td></tr>' +
+        '<tr><td>Massage</td><td>20 руб</td><td>1</td><td>/</td></tr>' +
+        '</table>'
 };
 export default En;
