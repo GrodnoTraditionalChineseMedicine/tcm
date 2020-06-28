@@ -39,11 +39,16 @@ class MyHeader extends Component {
         const menu = (
             <Menu>
                 <Menu.Item key="0">
-                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                    <a target="_blank" rel="noopener noreferrer" href="#">
                         个人信息
                     </a>
                 </Menu.Item>
                 <Menu.Item key="1">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=QmoFnR4ddgM&list=PLUXNJaj8DgUrHHHUr0pcO81gw2Xo6949C">
+                        教学视频
+                    </a>
+                </Menu.Item>
+                <Menu.Item key="2">
                     <span onClick={this.logout}>
                         退出
                     </span>
