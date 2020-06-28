@@ -19,7 +19,7 @@ const En = {
     'home.top.icon3':'Cupping',
     'home.top.icon4':'Massage',
     'home.top.icon5':'Decoction',
-    'home.top.icon6':'Pediatrics',
+    'home.top.icon6':'Health care',
     'home.moment.more':'Learn More',
     'home.mid.pediatric.title':'Pediatric Massage',
     'home.mid.pediatric.content':'Pediatric massage therapy is based on the principle of TCM as a whole and dialectical treatment. It uses special operating methods to change and adjust the body\'s physiological and pathological conditions in specific parts of the child\'s body surface to improve the body\'s immunity, thereby achieving the purpose of preventing and treating diseases. One of the external treatment methods of Chinese medicine is an important branch of massage therapy.',

@@ -54,6 +54,13 @@ export const MedicalItem = styled.div`
     text-align: center;
     line-height: 1.2;
     color: #1f1f1f;
+    transition: .5s;
+    &:hover{
+      opacity: 0.6;
+      h3{
+        color: #52c41a;
+      }
+    }
 `;
 
 export const MedicalIcon = styled.div`

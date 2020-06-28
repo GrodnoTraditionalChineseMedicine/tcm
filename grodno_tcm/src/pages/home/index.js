@@ -51,6 +51,31 @@ let pagination = function(pageSize, currentPage, arr) {
     return (skipNum + pageSize >= arr.length) ? arr.slice(skipNum, arr.length) : arr.slice(skipNum, skipNum + pageSize);
 };
 
+const homeIcon = [{
+    font: "&#xe656;",
+    translateId: "home.top.icon1",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/20"
+},{
+    font: "&#xe65b;",
+    translateId: "home.top.icon2",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/25"
+},{
+    font: "&#xe690;",
+    translateId: "home.top.icon3",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/22"
+},{
+    font: "&#xe749;",
+    translateId: "home.top.icon4",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/24"
+},{
+    font: "&#xe83a;",
+    translateId: "home.top.icon5",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/26"
+},{
+    font: "&#xe653;",
+    translateId: "home.top.icon6",
+    linkAdd: "http://www.ctcmgrodno.com/article/detail/32"
+}];
 class Home extends Component {
     state = {
         pageSize: 3,
@@ -84,42 +109,17 @@ class Home extends Component {
                     <MedicalWayContent>
                         <MedicalWayList>
                             <Row>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe656;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon1" defaultMessage="Пальпация пульса"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe65b;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon2" defaultMessage="Иглоукалывание и прижигание"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe690;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon3" defaultMessage="Лечение банками"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe749;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon4" defaultMessage="Массаж"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe83a;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon5" defaultMessage="Лекарства китайской медицины"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
-                                <Col span={4}>
-                                    <MedicalItem>
-                                        <MedicalIcon><span className="iconfont">&#xe60b;</span></MedicalIcon>
-                                        <MedicalTitle><FormattedMessage id="home.top.icon6" defaultMessage="Китайская медицина для детей"/></MedicalTitle>
-                                    </MedicalItem>
-                                </Col>
+                                {homeIcon.map((item, index) => {
+                                    return (
+                                        <Col span={4}>
+                                            <a target="_blank" href={item.linkAdd}>
+                                                <MedicalItem>
+                                                    <MedicalIcon><span className="iconfont" dangerouslySetInnerHTML={{ __html: item.font}}></span></MedicalIcon>
+                                                    <MedicalTitle><FormattedMessage id={item.translateId} defaultMessage="Пальпация пульса"/></MedicalTitle>
+                                                </MedicalItem></a>
+                                        </Col>
+                                    )
+                                })}
                             </Row>
                         </MedicalWayList>
                     </MedicalWayContent>

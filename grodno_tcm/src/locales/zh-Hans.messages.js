@@ -19,7 +19,7 @@ const Cn = {
     'home.top.icon3':'拔罐',
     'home.top.icon4':'按摩',
     'home.top.icon5':'汤药',
-    'home.top.icon6':'小儿',
+    'home.top.icon6':'养生',
     'home.moment.more':'了解更多',
     'home.mid.pediatric.title':'小儿推拿',
     'home.mid.pediatric.content':'小儿推拿疗法，是以中医整体观念和辨证论治为原则，在小儿体表的特定部位，运用特殊的操作方法，改变和调节机体生理、病理状况，提高小儿机体免疫力，从而达到防治疾病的目的。属于中医的外治法之一，是推拿疗法的重要分支。',
