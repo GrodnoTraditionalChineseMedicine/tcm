@@ -1,3 +1,0 @@
-{
-  "getUserInfoByUserName" : "SELECT * FROM sys_admin \nWHERE admin_account = ?;"
-}

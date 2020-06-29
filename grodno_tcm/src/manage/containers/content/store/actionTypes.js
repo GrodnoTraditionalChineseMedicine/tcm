@@ -1,1 +1,0 @@
-export const CHANGE_CONTENT = "container/content/change_content";

@@ -1,1 +1,0 @@
-export const CHANGE_DOCTORS = "center_introduction/change_doctors";

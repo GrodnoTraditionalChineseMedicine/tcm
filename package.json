@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": " node --inspect server.js",
-    "start": "concurrently \"cd backend && node server.js\" \"cd grodno_tcm && npm start\""
+    "start": "concurrently \\\\\\\"cd server && node server.js\\\\\\\" \\\\\\\"cd client && npm start\\\\\\\""
   },
   "keywords": [],
   "author": "",

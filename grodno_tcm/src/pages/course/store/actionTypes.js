@@ -1,1 +1,0 @@
-export const CHANGE_COURSE = "pediatric/course/change_course";

@@ -1,3 +1,0 @@
-{
-  "getAllCourses" : "SELECT * FROM sys_massage_course where is_show = 1;"
-}

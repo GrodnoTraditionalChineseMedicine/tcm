@@ -1,3 +1,0 @@
-{
-  "getAllDoctors": "SELECT * FROM sys_employee WHERE role_id = 5;"
-}

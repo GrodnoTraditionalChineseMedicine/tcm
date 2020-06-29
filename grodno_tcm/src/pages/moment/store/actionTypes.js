@@ -1,1 +1,0 @@
-export const CHANGE_CURRENT = "moment/change_current";
